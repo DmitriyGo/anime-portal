@@ -8,7 +8,7 @@ const GlobalStyles = () => (
   <style jsx global>
     {`
       body {
-        background: ${COLORS.GREY_PRIMARY};
+        background: ${COLORS.BLACK};
         color: ${COLORS.WHITE};
       }
       body * {

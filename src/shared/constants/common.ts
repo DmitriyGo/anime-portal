@@ -10,7 +10,7 @@ export const AUTHORIZATION_TOKEN_EXPIRES = 24;
 export const SAVED_ROUTE_LOCATION_DATA_STORAGE_KEY =
   'saved_route_location_data';
 
-export enum ResponseStatusCodes {
+export enum ResponseStatusCode {
   SUCCESS = 200,
   ACCEPTED = 202,
   TEMPORARY_REDIRECT = 307,

@@ -3,15 +3,15 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import { rootReducer } from './rootReducer';
 
-import { themingApi } from '@/modules/_Theme';
+// import { themingApi } from '@/modules/_Theme';
 
-const middleware = [themingApi.middleware];
+// const middleware = [themingApi.middleware];
 
 export function makeStore() {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(middleware),
+    // middleware: (getDefaultMiddleware) =>
+    //   getDefaultMiddleware().concat(middleware),
     devTools: true,
   });
 }

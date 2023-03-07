@@ -2,14 +2,15 @@ import baseTheme from './baseTheme';
 
 import { COLORS } from '@/theme';
 
-const providerTheme = {
+const darkTheme = {
   token: {
     ...baseTheme,
-    colorPrimary: COLORS.VIOLET_PRIMARY,
-    colorLink: COLORS.VIOLET_PRIMARY_LIGHT,
-    colorLinkHover: COLORS.VIOLET_PRIMARY_HOVER,
-    colorLinkActive: COLORS.VIOLET_PRIMARY_ACTIVE,
+    colorPrimary: COLORS.PRIMARY.DARK,
+    colorSecondary: COLORS.SECONDARY.DARK,
+    colorLink: COLORS.LINK.DARK,
+    colorLinkHover: COLORS.LINK_HOVER.DARK,
+    colorLinkActive: COLORS.LINK_ACTIVE.DARK,
   },
 };
 
-export default providerTheme;
+export default darkTheme;
