@@ -1,7 +1,17 @@
 import { COLORS } from '@/theme';
 
-const baseTheme = {
-  colorTextBase: COLORS.WHITE,
+export interface BaseThemeInterface {
+  whiteColor: string;
+  blackColor: string;
+  dividerColor: string;
+  radiusBase: number;
+  borderRadius: number;
+}
+
+const baseTheme: BaseThemeInterface = {
+  whiteColor: COLORS.WHITE,
+  blackColor: COLORS.BLACK,
+  dividerColor: COLORS.DIVIDER,
   radiusBase: 8,
   borderRadius: 8,
 };

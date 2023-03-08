@@ -1,15 +1,18 @@
+import { DefaultTheme } from 'styled-components';
+
 import baseTheme from './baseTheme';
 
 import { COLORS } from '@/theme';
 
-const providerTheme = {
-  token: {
-    ...baseTheme,
-    colorPrimary: COLORS.VIOLET_PRIMARY,
-    colorLink: COLORS.VIOLET_PRIMARY_LIGHT,
-    colorLinkHover: COLORS.VIOLET_PRIMARY_HOVER,
-    colorLinkActive: COLORS.VIOLET_PRIMARY_ACTIVE,
-  },
+const darkTheme: DefaultTheme = {
+  ...baseTheme,
+  colorPrimary: COLORS.PRIMARY.DARK,
+  colorSecondary: COLORS.SECONDARY.DARK,
+  colorLink: COLORS.LINK.DARK,
+  colorLinkHover: COLORS.LINK_HOVER.DARK,
+  colorLinkActive: COLORS.LINK_ACTIVE.DARK,
+  backGroundColor: COLORS.BLACK,
+  fontColor: COLORS.WHITE,
 };
 
-export default providerTheme;
+export default darkTheme;

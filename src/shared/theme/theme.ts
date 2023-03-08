@@ -1,13 +1,27 @@
 export const COLORS = {
   WHITE: '#FFFFFF',
   BLACK: '#121212',
-  VIOLET_PRIMARY_LIGHT: '#DEACF5',
-  VIOLET_PRIMARY: '#9754CB',
-  VIOLET_PRIMARY_HOVER: '#6237A0',
-  VIOLET_PRIMARY_ACTIVE: '#28104E',
-  GREY_PRIMARY_LIGHT: '#313136 ',
-  GREY_PRIMARY: '#202125 ',
-  DIVIDER: '#D6D6D6',
+  DIVIDER: '#BDBDBD',
+  PRIMARY: {
+    LIGHT: '#C3B4E4',
+    DARK: '#674299',
+  },
+  SECONDARY: {
+    LIGHT: '#EDC7D8',
+    DARK: '#A4506C',
+  },
+  LINK: {
+    LIGHT: '#8B5EB9',
+    DARK: '#AE8CD3',
+  },
+  LINK_HOVER: {
+    LIGHT: '#61417E',
+    DARK: '#9661A6',
+  },
+  LINK_ACTIVE: {
+    LIGHT: '#3D2650',
+    DARK: '#774982',
+  },
 };
 
 export const FONT_SIZES = {

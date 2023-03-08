@@ -1,16 +1,18 @@
+import { DefaultTheme } from 'styled-components';
+
 import baseTheme from './baseTheme';
 
 import { COLORS } from '@/theme';
 
-const buyerTheme = {
-  token: {
-    ...baseTheme,
-    //TODO fix this bullshit (add motherfucker light theme, you fucking scumbag) ;)
-    colorPrimary: COLORS.VIOLET_PRIMARY,
-    colorLink: COLORS.VIOLET_PRIMARY,
-    colorLinkHover: COLORS.VIOLET_PRIMARY_HOVER,
-    colorLinkActive: COLORS.VIOLET_PRIMARY_ACTIVE,
-  },
+const lightTheme: DefaultTheme = {
+  ...baseTheme,
+  colorPrimary: COLORS.PRIMARY.LIGHT,
+  colorSecondary: COLORS.SECONDARY.LIGHT,
+  colorLink: COLORS.LINK.LIGHT,
+  colorLinkHover: COLORS.LINK_HOVER.LIGHT,
+  colorLinkActive: COLORS.LINK_ACTIVE.LIGHT,
+  backGroundColor: COLORS.WHITE,
+  fontColor: COLORS.BLACK,
 };
 
-export default buyerTheme;
+export default lightTheme;

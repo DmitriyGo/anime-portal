@@ -2,15 +2,28 @@ import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { themingApi } from '@/modules/_Theme';
-import { wrapper } from '@/store';
+import { selectTheme, setDark, setLight } from '@/modules/_Theme';
+import { useDispatch, useSelector, wrapper } from '@/store';
 
-const Home = (props: unknown) => {
+const Home = () => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
+  const theme = useSelector(selectTheme);
+
+  const handleOnDark = () => {
+    dispatch(setDark());
+  };
+
+  const handleOnLight = () => {
+    dispatch(setLight());
+  };
 
   return (
     <main>
-      <p>{t('asdasd')}</p>
+      <p>{t('greeting_message')}</p>
+      <p>{theme}</p>
+      <button onClick={handleOnDark}>Dark</button>
+      <button onClick={handleOnLight}>Light</button>
     </main>
   );
 };
@@ -18,10 +31,8 @@ const Home = (props: unknown) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async (context) => {
+  wrapper.getServerSideProps(() => async (context) => {
     const { locale = 'uk', res } = context;
-
-    // store.dispatch(themingApi.endpoints.getTheme.initiate());
 
     res.setHeader(
       'Cache-Control',
@@ -29,8 +40,6 @@ export const getServerSideProps: GetServerSideProps =
     );
 
     const i18nProps = await serverSideTranslations(locale, ['common']);
-
-    // await Promise.all(store.dispatch(themingApi.util.getRunningQueriesThunk()));
 
     return {
       props: {

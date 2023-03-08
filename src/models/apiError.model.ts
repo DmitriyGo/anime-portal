@@ -1,9 +1,9 @@
-import { ResponseStatusCodes } from '@/constants/common';
+import { ResponseStatusCode } from '@/constants/common';
 
 export type TApiFieldErrors = Record<string, string[]>;
 
 export interface IApiError {
-  status: ResponseStatusCodes;
+  status: ResponseStatusCode;
   message: string;
   errors?: Record<string, string> | null;
 }
