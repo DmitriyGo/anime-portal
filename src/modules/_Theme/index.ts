@@ -1,2 +1,4 @@
 export { default as ThemeConfigProvider } from './containers/ThemeConfigProvider/ThemeConfigProvider';
-export { default as themingApi } from './feature/themingApi';
+export * from './feature/selectors';
+export * from './feature/themingSlice';
+export { default as themingReducer } from './feature/themingSlice';

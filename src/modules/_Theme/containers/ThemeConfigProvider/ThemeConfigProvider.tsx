@@ -1,8 +1,10 @@
 import React, { ReactNode, useMemo } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import light from '../../helpers/dark';
-import dark from '../../helpers/light';
+import { Theme } from '../../feature/models';
+import { selectTheme } from '../../feature/selectors';
+import dark from '../../helpers/dark';
+import light from '../../helpers/light';
 
 import { useSelector } from '@/store';
 
@@ -11,12 +13,9 @@ interface IThemeContextProvider {
 }
 
 const ThemeConfigProvider = ({ children }: IThemeContextProvider) => {
-  // TODO
-  // const mode = useSelector((state) => state.theming);
+  const mode = useSelector(selectTheme);
 
-  const mode = 'dark';
-
-  const theme = useMemo(() => (mode === 'dark' ? dark : light), [mode]);
+  const theme = useMemo(() => (mode === Theme.DARK ? dark : light), [mode]);
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
