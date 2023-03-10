@@ -1,8 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
-import { initialState, Theme, THEMING_SLICE_NAME } from './models';
+import {
+  initialState,
+  Theme,
+  THEMING_SLICE_NAME,
+  ThemingState,
+} from './models';
 
-const themingSlice = createSlice({
+const hydrate = createAction<{
+  [THEMING_SLICE_NAME]: ThemingState;
+}>(HYDRATE);
+
+export const themingSlice = createSlice({
   name: THEMING_SLICE_NAME,
   initialState,
   reducers: {
@@ -13,8 +23,12 @@ const themingSlice = createSlice({
       state.theme = Theme.LIGHT;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(hydrate, (state: ThemingState, action) => ({
+      ...state,
+      ...action.payload[THEMING_SLICE_NAME],
+    }));
+  },
 });
 
 export const { setDark, setLight } = themingSlice.actions;
-
-export default themingSlice.reducer;

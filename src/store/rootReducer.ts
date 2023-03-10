@@ -1,7 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { themingReducer } from '@/modules/_Theme';
+import { themingSlice } from '@/modules/_Theme/feature/themingSlice';
 
 export const rootReducer = combineReducers({
-  theming: themingReducer,
+  [themingSlice.name]: themingSlice.reducer,
 });

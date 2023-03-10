@@ -6,8 +6,9 @@ import { selectTheme, setDark, setLight } from '@/modules/_Theme';
 import { useDispatch, useSelector, wrapper } from '@/store';
 
 const Home = () => {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
 
   const handleOnDark = () => {
