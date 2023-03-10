@@ -2,12 +2,14 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import { THEMING_SLICE_NAME, ThemingState } from './models';
 
-import { RootState } from '@/store';
+type RootState = {
+  [THEMING_SLICE_NAME]: ThemingState;
+};
 
-const themeSelector = (state: RootState): ThemingState =>
+const ThemingSelector = (state: RootState): ThemingState =>
   state[THEMING_SLICE_NAME];
 
 export const selectTheme = createSelector(
-  themeSelector,
+  ThemingSelector,
   (state: ThemingState) => state.theme,
 );

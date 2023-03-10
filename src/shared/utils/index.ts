@@ -1,1 +1,1 @@
-export { default as showApiErrors } from './showApiErrors';
+export { default as axiosBaseQuery } from './axiosBaseQuery';
