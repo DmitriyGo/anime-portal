@@ -3,9 +3,13 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import { rootReducer } from './rootReducer';
 
+import { todoApi } from '@/modules/ToDo';
+
 function makeStore() {
   return configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(todoApi.middleware),
     devTools: true,
   });
 }

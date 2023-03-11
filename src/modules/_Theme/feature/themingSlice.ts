@@ -12,7 +12,7 @@ const hydrate = createAction<{
   [THEMING_SLICE_NAME]: ThemingState;
 }>(HYDRATE);
 
-export const themingSlice = createSlice({
+const themingSlice = createSlice({
   name: THEMING_SLICE_NAME,
   initialState,
   reducers: {
@@ -32,3 +32,4 @@ export const themingSlice = createSlice({
 });
 
 export const { setDark, setLight } = themingSlice.actions;
+export default themingSlice.reducer;
