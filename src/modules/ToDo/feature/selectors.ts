@@ -1,17 +1,15 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { TODO_API_NAME, ToDoState } from './models';
-import { todoApi } from './todoApi';
+import { TODO_SLICE_NAME, ToDoState } from './models';
+import {} from './todoSlice';
 
 type RootState = {
-  [TODO_API_NAME]: ToDoState;
+  [TODO_SLICE_NAME]: ToDoState;
 };
 
-const ThemingSelector = (state: RootState): ToDoState => state[TODO_API_NAME];
+const ThemingSelector = (state: RootState): ToDoState => state[TODO_SLICE_NAME];
 
-export const selectToDos = createSelector(
-  todoApi.endpoints.getToDos.select(),
-  (state) => state.data,
+export const selectTodos = createSelector(
+  ThemingSelector,
+  (state) => state.todos,
 );
-
-export const { useGetToDosQuery } = todoApi;

@@ -1,23 +1,16 @@
-export interface ToDo {
-  id: number;
-  todo: string;
-  completed: boolean;
-  userId: number;
-}
+import { IApiError } from '@/models/apiError.model';
+import { ITodo } from '@/models/todo.model';
 
-export interface ToDoResponce {
-  todos: ToDo[];
-  total: number;
-  skip: number;
-  limit: number;
-}
-
-export const TODO_API_NAME = 'todoApi';
+export const TODO_SLICE_NAME = 'todos';
 
 export interface ToDoState {
-  todos: ToDo[];
+  todos: ITodo[];
+  isLoading: boolean;
+  error: IApiError | null;
 }
 
 export const initialState: ToDoState = {
   todos: [],
+  isLoading: false,
+  error: null,
 };

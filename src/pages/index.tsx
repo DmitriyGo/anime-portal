@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { selectTheme, setDark, setLight } from '@/modules/_Theme';
+import { selectTheme, setDark, setLight } from '@/modules/Theme';
 import { useDispatch, useSelector, wrapper } from '@/store';
 
 const Home = () => {

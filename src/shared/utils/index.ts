@@ -1,1 +1,6 @@
-export { default as axiosBaseQuery } from './axiosBaseQuery';
+export {
+  default as httpClient,
+  type ApiResponse,
+  isHttpClientError,
+} from './httpClient';
+export { default as formatApiError } from './formatApiError';

@@ -16,9 +16,11 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@/api/*": ["./src/api/*"],
       "@/theme": ["./src/shared/theme"],
       "@/components": ["./src/shared/components"],
       "@/modules/*": ["./src/modules/*"],
+      "@/models/*": ["./src/models/*"],
       "@/store": ["./src/store"],
       "@/ui": ["./src/shared/ui"],
       "@/utils": ["./src/shared/utils"],

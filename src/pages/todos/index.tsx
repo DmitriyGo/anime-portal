@@ -1,45 +1,42 @@
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
-import styled from 'styled-components';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import ToDoItem from './components/ToDoItem';
-
-import { useGetToDosQuery } from '@/modules/ToDo';
+import { selectTodos, ToDoContainer } from '@/modules/ToDo';
+import { getTodos } from '@/modules/ToDo';
+import { useSelector, wrapper } from '@/store';
 
 const ToDo = () => {
-  const { data, isLoading, isError, isSuccess, error } = useGetToDosQuery();
-
-  let content;
-  if (isLoading) {
-    content = <p>Loading...</p>;
-  } else if (isError) {
-    content = <p>Error</p>;
-    console.error(error);
-  } else if (data?.length === 0) {
-    content = <p>No todos yet</p>;
-  } else if (isSuccess) {
-    content = data.map((todo) => <ToDoItem key={todo.id} todo={todo} />);
-  }
+  const todos = useSelector(selectTodos);
 
   return (
     <>
       <Head>
         <title>ToDo</title>
       </Head>
-      <MainStyled>
-        <Link href="/">Home</Link>
-        <ul>{content}</ul>
-      </MainStyled>
+      <ToDoContainer todos={todos} />
     </>
   );
 };
 
-const MainStyled = styled.main`
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-`;
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps((store) => async (context) => {
+    const { locale = 'uk', res } = context;
+
+    await store.dispatch(getTodos());
+
+    res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=60, stale-while-revalidate=59',
+    );
+
+    const i18nProps = await serverSideTranslations(locale, ['common']);
+
+    return {
+      props: {
+        ...i18nProps,
+      },
+    };
+  });
 
 export default ToDo;
