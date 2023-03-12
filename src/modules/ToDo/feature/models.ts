@@ -12,7 +12,7 @@ export interface ToDoResponce {
   limit: number;
 }
 
-export const TODO_API_NAME = 'todoApi';
+export const TODO_API_NAME = 'todo';
 
 export interface ToDoState {
   todos: ToDo[];

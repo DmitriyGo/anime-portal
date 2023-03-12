@@ -26,7 +26,7 @@ const themingSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(hydrate, (state: ThemingState, action) => ({
       ...state,
-      ...action.payload[THEMING_SLICE_NAME],
+      ...action.payload,
     }));
   },
 });

@@ -10,8 +10,8 @@ type RootState = {
 const ThemingSelector = (state: RootState): ToDoState => state[TODO_API_NAME];
 
 export const selectToDos = createSelector(
-  todoApi.endpoints.getToDos.select(),
-  (state) => state.data,
+  ThemingSelector,
+  (state) => state.todos,
 );
 
 export const { useGetToDosQuery } = todoApi;
