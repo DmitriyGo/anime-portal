@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { appWithTranslation } from 'next-i18next';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import GlobalStyles from '../styles/globals';
 
@@ -20,12 +21,14 @@ const App = ({ Component, ...rest }: AppProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Provider store={store}>
-        <ThemeConfigProvider>
-          <GlobalStyles />
-          <Component {...props.pageProps} />
-        </ThemeConfigProvider>
-      </Provider>
+      <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
+        <Provider store={store}>
+          <ThemeConfigProvider>
+            <GlobalStyles />
+            <Component {...props.pageProps} />
+          </ThemeConfigProvider>
+        </Provider>
+      </PersistGate>
     </>
   );
 };

@@ -2,7 +2,7 @@ import type { BaseQueryFn } from '@reduxjs/toolkit/query';
 import axios from 'axios';
 import type { AxiosRequestConfig, AxiosError } from 'axios';
 
-interface IBaseQueryFn {
+export interface IBaseQueryFn {
   url: string;
   method: AxiosRequestConfig['method'];
   data?: AxiosRequestConfig['data'];

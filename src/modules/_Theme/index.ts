@@ -6,4 +6,8 @@ export {
   initialState,
 } from './feature/models';
 export { selectTheme } from './feature/selectors';
-export { setDark, setLight } from './feature/themingSlice';
+export {
+  setDark,
+  setLight,
+  default as themingReducer,
+} from './feature/themingSlice';

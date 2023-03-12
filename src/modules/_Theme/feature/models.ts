@@ -12,7 +12,3 @@ export interface ThemingState {
 export const initialState: ThemingState = {
   theme: Theme.DARK,
 };
-
-export interface IThemeResponse {
-  data: Theme;
-}
