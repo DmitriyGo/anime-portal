@@ -1,7 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import { themingSlice } from '@/modules/_Theme/feature/themingSlice';
+import { THEMING_SLICE_NAME } from '@/modules/Theme/feature/models';
+import themingReducer from '@/modules/Theme/feature/themingSlice';
+import { TODO_SLICE_NAME, todoReducer } from '@/modules/ToDo';
 
 export const rootReducer = combineReducers({
-  [themingSlice.name]: themingSlice.reducer,
+  [TODO_SLICE_NAME]: todoReducer,
+  [THEMING_SLICE_NAME]: themingReducer,
 });

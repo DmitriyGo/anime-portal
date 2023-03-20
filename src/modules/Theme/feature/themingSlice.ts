@@ -12,7 +12,7 @@ const hydrate = createAction<{
   [THEMING_SLICE_NAME]: ThemingState;
 }>(HYDRATE);
 
-export const themingSlice = createSlice({
+const themingSlice = createSlice({
   name: THEMING_SLICE_NAME,
   initialState,
   reducers: {
@@ -26,9 +26,11 @@ export const themingSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(hydrate, (state: ThemingState, action) => ({
       ...state,
-      ...action.payload[THEMING_SLICE_NAME],
+      ...action.payload,
     }));
   },
 });
 
 export const { setDark, setLight } = themingSlice.actions;
+
+export default themingSlice.reducer;

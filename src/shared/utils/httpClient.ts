@@ -71,4 +71,7 @@ httpClient.interceptors.response.use(
   },
 );
 
+export const isHttpClientError = axios.isAxiosError;
+export type ApiResponse<Response> = Promise<AxiosResponse<Response>>;
+
 export default httpClient;

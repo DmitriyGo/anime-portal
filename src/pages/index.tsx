@@ -1,8 +1,10 @@
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { selectTheme, setDark, setLight } from '@/modules/_Theme';
+import { selectTheme, setDark, setLight } from '@/modules/Theme';
 import { useDispatch, useSelector, wrapper } from '@/store';
 
 const Home = () => {
@@ -20,12 +22,18 @@ const Home = () => {
   };
 
   return (
-    <main>
-      <p>{t('greeting_message')}</p>
-      <p>{theme}</p>
-      <button onClick={handleOnDark}>Dark</button>
-      <button onClick={handleOnLight}>Light</button>
-    </main>
+    <>
+      <Head>
+        <title>Home Page</title>
+      </Head>
+      <main>
+        <p>{t('greeting_message')}</p>
+        <p>{theme}</p>
+        <button onClick={handleOnDark}>Dark</button>
+        <button onClick={handleOnLight}>Light</button>
+        <Link href="/todos">ToDo Page</Link>
+      </main>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import GlobalStyles from '../styles/globals';
 
-import { ThemeConfigProvider } from '@/modules/_Theme';
+import { ThemeConfigProvider } from '@/modules/Theme';
 import { wrapper } from '@/store';
 
 const App = ({ Component, ...rest }: AppProps) => {
