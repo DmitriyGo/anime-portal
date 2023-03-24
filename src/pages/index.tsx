@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { selectTheme, setDark, setLight } from '@/modules/Theme';
+import { Theme, selectTheme, setTheme } from '@/modules/Theme';
 import { useDispatch, useSelector, wrapper } from '@/store';
 
 const Home = () => {
@@ -14,11 +14,11 @@ const Home = () => {
   const theme = useSelector(selectTheme);
 
   const handleOnDark = () => {
-    dispatch(setDark());
+    dispatch(setTheme(Theme.DARK));
   };
 
   const handleOnLight = () => {
-    dispatch(setLight());
+    dispatch(setTheme(Theme.LIGHT));
   };
 
   return (

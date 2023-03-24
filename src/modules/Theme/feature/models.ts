@@ -1,4 +1,5 @@
 export const THEMING_SLICE_NAME = 'theming';
+export const THEMING_COOKIE_NAME = 'theme';
 
 export enum Theme {
   DARK = 'dark',

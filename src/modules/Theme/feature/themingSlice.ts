@@ -1,12 +1,15 @@
-import { createAction, createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 import {
   initialState,
   Theme,
+  THEMING_COOKIE_NAME,
   THEMING_SLICE_NAME,
   ThemingState,
 } from './models';
+
+import appCookiesStorage from 'src/shared/utils/appCookies';
 
 const hydrate = createAction<{
   [THEMING_SLICE_NAME]: ThemingState;
@@ -16,11 +19,10 @@ const themingSlice = createSlice({
   name: THEMING_SLICE_NAME,
   initialState,
   reducers: {
-    setDark: (state) => {
-      state.theme = Theme.DARK;
-    },
-    setLight: (state) => {
-      state.theme = Theme.LIGHT;
+    setTheme: (state, { payload }: PayloadAction<Theme>) => {
+      appCookiesStorage.setItem(THEMING_COOKIE_NAME, payload);
+
+      state.theme = payload;
     },
   },
   extraReducers: (builder) => {
@@ -31,6 +33,6 @@ const themingSlice = createSlice({
   },
 });
 
-export const { setDark, setLight } = themingSlice.actions;
+export const { setTheme } = themingSlice.actions;
 
 export default themingSlice.reducer;
