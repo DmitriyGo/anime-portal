@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { selectTodos, ToDoContainer } from '@/modules/ToDo';
 import { getTodos } from '@/modules/ToDo';
