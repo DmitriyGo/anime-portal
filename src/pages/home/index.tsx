@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { selectTheme, setDark, setLight } from '@/modules/Theme';
+import { Theme, selectTheme, setTheme } from '@/modules/Theme';
 import { useDispatch, useSelector } from '@/store';
 
 const Home = () => {
@@ -11,11 +11,11 @@ const Home = () => {
   const theme = useSelector(selectTheme);
 
   const handleOnDark = () => {
-    dispatch(setDark());
+    dispatch(setTheme(Theme.DARK));
   };
 
   const handleOnLight = () => {
-    dispatch(setLight());
+    dispatch(setTheme(Theme.LIGHT));
   };
 
   return (

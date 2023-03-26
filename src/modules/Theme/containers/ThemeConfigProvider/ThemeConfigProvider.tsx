@@ -12,10 +12,14 @@ interface IThemeContextProvider {
   children: ReactNode;
 }
 
+function GetTheme(theme: Theme) {
+  return theme === Theme.DARK ? dark : light;
+}
+
 const ThemeConfigProvider = ({ children }: IThemeContextProvider) => {
   const mode = useSelector(selectTheme);
 
-  const theme = useMemo(() => (mode === Theme.DARK ? dark : light), [mode]);
+  const theme = useMemo(() => GetTheme(mode), [mode]);
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
