@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 import { StyledToDoContainer } from './ToDoContainerStyles';
 import { ToDoItem } from '../../components';
@@ -10,10 +10,10 @@ interface IToDoContainerProps {
 }
 
 const ToDoContainer = ({ todos }: IToDoContainerProps) => {
-  const content = todos?.map((todo) => <ToDoItem key={todo.id} todo={todo} />);
+  const content = todos.map((todo) => <ToDoItem key={todo.id} todo={todo} />);
   return (
     <StyledToDoContainer>
-      <Link href="/">Home</Link>
+      <Link to="/">Home</Link>
       <ul>{content}</ul>
     </StyledToDoContainer>
   );

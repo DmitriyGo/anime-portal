@@ -1,3 +1,2 @@
 export { useDispatch, useSelector } from './hooks';
-export { wrapper } from './store';
-export type { RootState, AppStore } from './store';
+export { store, type RootState, type AppStore } from './store';
