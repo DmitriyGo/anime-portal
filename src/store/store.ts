@@ -5,12 +5,11 @@ import storage from 'redux-persist/lib/storage';
 import { rootReducer } from './rootReducer';
 
 import { TODO_SLICE_NAME } from '@/modules/ToDo';
-import { TRANSLATION_SLICE_NAME } from '@/modules/Translation';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [TODO_SLICE_NAME, TRANSLATION_SLICE_NAME],
+  whitelist: [TODO_SLICE_NAME],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
