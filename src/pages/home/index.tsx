@@ -5,7 +5,8 @@ import { Theme, selectTheme, setTheme } from '@/modules/Theme';
 import { useDispatch, useSelector } from '@/store';
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t: t1 } = useTranslation();
+  const { t: t2 } = useTranslation('auth');
 
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
@@ -20,7 +21,8 @@ const Home = () => {
 
   return (
     <main>
-      <p>{t('greeting_message')}</p>
+      <p>{t1('greeting_message')}</p>
+      <p>{t2('login')}</p>
       <p>{theme}</p>
       <button onClick={handleOnDark}>Dark</button>
       <button onClick={handleOnLight}>Light</button>

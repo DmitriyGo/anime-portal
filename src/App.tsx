@@ -1,23 +1,27 @@
-import { Provider } from 'react-redux';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { ThemeConfigProvider } from './modules/Theme';
 import { Home, Todos } from './pages';
-import { store } from './store';
 import GlobalStyles from './styles/globals';
 
 const App = () => {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage('uk');
+  }, [i18n]);
+
   return (
     <BrowserRouter>
-      <Provider store={store}>
-        <ThemeConfigProvider>
-          <GlobalStyles />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/todos" element={<Todos />} />
-          </Routes>
-        </ThemeConfigProvider>
-      </Provider>
+      <ThemeConfigProvider>
+        <GlobalStyles />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/todos" element={<Todos />} />
+        </Routes>
+      </ThemeConfigProvider>
     </BrowserRouter>
   );
 };
