@@ -11,6 +11,10 @@ const GlobalStyles = () => {
         body {
           background: ${theme.backGroundColor};
           color: ${theme.fontColor};
+
+          margin: 0px;
+          padding: 0px;
+          
         }
         body * {
           font-family: 'Rubik', sans-serif !important;

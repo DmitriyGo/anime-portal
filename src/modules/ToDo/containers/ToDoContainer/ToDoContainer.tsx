@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { LinkStyled } from 'src/shared/components/Link';
 
 import { StyledToDoContainer } from './ToDoContainerStyles';
 import { ToDoItem } from '../../components';
@@ -13,7 +13,7 @@ const ToDoContainer = ({ todos }: IToDoContainerProps) => {
   const content = todos.map((todo) => <ToDoItem key={todo.id} todo={todo} />);
   return (
     <StyledToDoContainer>
-      <Link to="/">Home</Link>
+      <LinkStyled to="/">Home</LinkStyled>
       <ul>{content}</ul>
     </StyledToDoContainer>
   );

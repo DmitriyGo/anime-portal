@@ -2,6 +2,16 @@ export const COLORS = {
   WHITE: '#FFFFFF',
   BLACK: '#121212',
   DIVIDER: '#BDBDBD',
+  BACKGROUND: {
+    LIGHT: '#FBFEF9',
+    DARK: '#202125',
+  },
+  GRAY: {
+    VERY_LIGHT: '#BDBDBD',
+    LIGHT: '#646568',
+    DARK: '#464749',
+    VERY_DARK: '#323334',
+  },
   PRIMARY: {
     LIGHT: '#C3B4E4',
     DARK: '#674299',

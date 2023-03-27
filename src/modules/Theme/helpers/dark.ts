@@ -11,7 +11,8 @@ const darkTheme: DefaultTheme = {
   colorLink: COLORS.LINK.DARK,
   colorLinkHover: COLORS.LINK_HOVER.DARK,
   colorLinkActive: COLORS.LINK_ACTIVE.DARK,
-  backGroundColor: COLORS.BLACK,
+  backGroundColor: COLORS.BACKGROUND.DARK,
+  dividerColor: COLORS.BACKGROUND.LIGHT,
   fontColor: COLORS.WHITE,
 };
 
