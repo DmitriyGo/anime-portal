@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { LinkStyled } from '../../shared/components/Link';
+import { ButtonStyled } from '@/components';
 
 const Home = () => {
   const { t: t1 } = useTranslation();
@@ -10,7 +10,7 @@ const Home = () => {
     <main>
       <p>{t1('greeting_message')}</p>
       <p>{t2('login')}</p>
-      <LinkStyled to="/todos">ToDo Page</LinkStyled>
+      <ButtonStyled to="/todos">ToDo Page</ButtonStyled>
     </main>
   );
 };
