@@ -15,6 +15,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <I18nextProvider i18n={i18n}>
         {/* //TODO WRITE LOADER */}
         <Suspense fallback="loading...">
+          <div id="layout" />
+          <div id="backdrop" />
           <App />
         </Suspense>
       </I18nextProvider>

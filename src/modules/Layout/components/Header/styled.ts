@@ -5,7 +5,7 @@ export const HeaderStyled = styled.div`
   justify-content: space-between;
 
   margin: 0 0 30px 0;
-  padding: 25px 20px 25px 20px;
+  padding: 15px;
 
   border-bottom: 2px ${({ theme }) => theme.dividerColor} solid;
 `;

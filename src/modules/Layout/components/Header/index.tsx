@@ -1,11 +1,23 @@
+import { Menu } from '@styled-icons/boxicons-regular';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
-import { HeaderStyled } from './HeaderStyled';
+import { HeaderStyled } from './styled';
+import SideBar from '../SideBar';
 
 import { setTheme, Theme } from '@/modules/Theme';
-import { useDispatch } from '@/store';
 
 const Header = () => {
+  const [showSideBar, setShowSideBar] = useState<boolean>(false);
+
+  const handleOnOpen = () => {
+    setShowSideBar(true);
+  };
+  const handleOnClose = () => {
+    setShowSideBar(false);
+  };
+
   const { i18n } = useTranslation();
 
   const handleClick = (lang: string) => {
@@ -24,6 +36,10 @@ const Header = () => {
 
   return (
     <HeaderStyled>
+      <div onClick={handleOnOpen}>
+        <Menu size={30} />
+      </div>
+
       <div>
         <button onClick={() => handleClick('uk')}>uk</button>
         <button onClick={() => handleClick('en')}>en</button>
@@ -33,6 +49,8 @@ const Header = () => {
         <button onClick={handleOnDark}>Dark</button>
         <button onClick={handleOnLight}>Light</button>
       </div>
+
+      {showSideBar && <SideBar onClose={handleOnClose} onOpen={handleOnOpen} />}
     </HeaderStyled>
   );
 };
