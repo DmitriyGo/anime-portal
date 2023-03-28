@@ -16,6 +16,10 @@ const GlobalStyles = () => {
           padding: 0px;
           
         }
+
+        *{
+          box-sizing: border-box;
+        }
         body * {
           font-family: 'Rubik', sans-serif !important;
         }

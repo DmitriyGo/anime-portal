@@ -10,7 +10,9 @@ const Home = () => {
     <main>
       <p>{t1('greeting_message')}</p>
       <p>{t2('login')}</p>
-      <ButtonStyled to="/todos">ToDo Page</ButtonStyled>
+      <ButtonStyled bg="red" bgactive="blue" bghover="green" to="/todos">
+        ToDo Page
+      </ButtonStyled>
     </main>
   );
 };

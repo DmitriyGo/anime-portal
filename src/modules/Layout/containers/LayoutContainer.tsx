@@ -2,10 +2,14 @@ import { Outlet } from 'react-router-dom';
 
 import { Header } from '../components';
 
-const Layout = () => {
+interface LayoutProps {
+  onShowSideBarChange: (event: boolean) => void;
+}
+
+const Layout = ({ onShowSideBarChange }: LayoutProps) => {
   return (
     <>
-      <Header />
+      <Header onShowSideBarChange={onShowSideBarChange} />
       <Outlet />
       {/* <footer>Hello</footer> */}
     </>

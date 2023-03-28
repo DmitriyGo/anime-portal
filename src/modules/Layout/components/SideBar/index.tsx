@@ -4,7 +4,6 @@ import SideBarBackdrop from '../SideBarBackdrop';
 import SideBarLayout from '../SideBarLayout';
 
 interface SideBarProps {
-  onOpen: () => void;
   onClose: () => void;
 }
 

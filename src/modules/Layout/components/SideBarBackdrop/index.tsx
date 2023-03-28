@@ -7,6 +7,7 @@ interface SideBarBackProps {
 }
 
 const SideBarBackdrop = ({ onClose }: SideBarBackProps) => {
+  //TODO
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {

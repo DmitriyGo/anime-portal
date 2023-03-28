@@ -1,21 +1,30 @@
-import { Menu } from '@styled-icons/boxicons-regular';
+import { Menu, Search, Notification } from '@styled-icons/boxicons-regular';
+import { Notifications } from '@styled-icons/material-outlined';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { HeaderStyled } from './styled';
+import logo from '../../../../assets/logo.png';
 import SideBar from '../SideBar';
 
+import { ButtonStyled } from '@/components';
 import { setTheme, Theme } from '@/modules/Theme';
 
-const Header = () => {
+interface HeaderProps {
+  onShowSideBarChange: (event: boolean) => void;
+}
+
+const Header = ({ onShowSideBarChange }: HeaderProps) => {
   const [showSideBar, setShowSideBar] = useState<boolean>(false);
 
-  const handleOnOpen = () => {
-    setShowSideBar(true);
-  };
-  const handleOnClose = () => {
-    setShowSideBar(false);
+  const clickHandle = () => {
+    setShowSideBar((prev) => {
+      const next = !prev;
+
+      onShowSideBarChange(next);
+      return next;
+    });
   };
 
   const { i18n } = useTranslation();
@@ -36,21 +45,40 @@ const Header = () => {
 
   return (
     <HeaderStyled>
-      <div onClick={handleOnOpen}>
-        <Menu size={30} />
-      </div>
+      <section>
+        <div onClick={clickHandle}>
+          <Menu size={30} />
+        </div>
 
-      <div>
-        <button onClick={() => handleClick('uk')}>uk</button>
-        <button onClick={() => handleClick('en')}>en</button>
-      </div>
+        <img src={logo} height={'30px'} alt="logo.png" />
+      </section>
 
-      <div>
-        <button onClick={handleOnDark}>Dark</button>
-        <button onClick={handleOnLight}>Light</button>
-      </div>
+      <section>
+        <div>
+          <ButtonStyled to="#" onClick={() => handleClick('uk')}>
+            uk
+          </ButtonStyled>
+          <ButtonStyled to="#" onClick={() => handleClick('en')}>
+            en
+          </ButtonStyled>
+        </div>
 
-      {showSideBar && <SideBar onClose={handleOnClose} onOpen={handleOnOpen} />}
+        <div>
+          <ButtonStyled to="#" onClick={handleOnDark}>
+            Dark
+          </ButtonStyled>
+          <ButtonStyled to="#" onClick={handleOnLight}>
+            Light
+          </ButtonStyled>
+        </div>
+      </section>
+
+      <section>
+        <Search size={30} />
+        <Notifications size={30} />
+      </section>
+
+      {showSideBar && <SideBar onClose={clickHandle} />}
     </HeaderStyled>
   );
 };

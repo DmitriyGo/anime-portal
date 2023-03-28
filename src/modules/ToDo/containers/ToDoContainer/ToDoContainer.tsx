@@ -12,7 +12,9 @@ const ToDoContainer = ({ todos }: IToDoContainerProps) => {
   const content = todos.map((todo) => <ToDoItem key={todo.id} todo={todo} />);
   return (
     <StyledToDoContainer>
-      <ButtonStyled to="/">Home</ButtonStyled>
+      <ButtonStyled br="5px" to="/">
+        Home
+      </ButtonStyled>
       <ul>{content}</ul>
     </StyledToDoContainer>
   );

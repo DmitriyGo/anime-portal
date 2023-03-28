@@ -5,27 +5,35 @@ import { FONT_SIZES } from '../../theme/theme';
 
 interface ButtonStyledProps {
   theme?: DefaultTheme;
-  color?: string;
+  bg?: string;
+  bgactive?: string;
+  bghover?: string;
+  br?: string;
 }
 
-export const ButtonStyled = styled(Link)`
+export const ButtonStyled = styled(Link)<ButtonStyledProps>`
   display: inline-block;
   padding: 6px 20px 6px 20px;
-  border-radius: 30px;
+  border-radius: ${({ br }) => br ?? '30px'};
 
   font-weight: 400;
   text-align: center;
   vertical-align: middle;
-  cursor: pointer;
   line-height: 1.5;
   font-size: ${FONT_SIZES[16]};
 
   color: ${({ theme }) => theme.fontColor};
-  background-color: ${({ color, theme }: ButtonStyledProps) =>
-    color ?? theme?.colorPrimary};
+  background-color: ${({ bg, theme }) => bg ?? theme.colorPrimary};
+
+  transition: all 0.15s ease;
 
   :hover {
-    -webkit-filter: brightness(90%);
-    transition: all 0.15s ease;
+    background-color: ${({ bghover: bgHover, theme }) =>
+      bgHover ?? theme.colorPrimary};
+  }
+
+  :active {
+    background-color: ${({ bgactive: bgActive, theme }) =>
+      bgActive ?? theme.colorPrimary};
   }
 `;

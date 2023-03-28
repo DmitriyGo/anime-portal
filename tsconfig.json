@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@/api/*": ["./src/api/*"],
+      "@/assets/*": ["./src/assets/*"],
       "@/theme": ["./src/shared/theme"],
       "@/components": ["./src/shared/components"],
       "@/modules/*": ["./src/modules/*"],
