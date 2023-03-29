@@ -1,6 +1,6 @@
 import { StyledLoading } from './styles';
 
-import gif from '@/assets/loading.gif';
+import gif from '/loading.gif';
 
 const Loading = () => {
   return (

@@ -37,7 +37,7 @@ export const COLORS = {
     900: '#0a0715',
   },
   LIGHT_GREEN: '#CAE962',
-  AQUA: '#00FFB7',
+  EMERALD: '#00FFB7',
   DIVIDER: '#BDBDBD',
   BACKGROUND: {
     LIGHT: '#FBFEF9',

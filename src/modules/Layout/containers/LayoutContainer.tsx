@@ -1,29 +1,18 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Header, SideBar } from '../components';
 
-interface LayoutProps {
-  onShowSideBarChange: (event: boolean) => void;
-}
+const Layout = () => {
+  const [sidebarShown, setSidebarShown] = useState(false);
 
-const Layout = ({ onShowSideBarChange }: LayoutProps) => {
-  const [showSideBar, setShowSideBar] = useState<boolean>(false);
-
-  const clickHandler = () => {
-    setShowSideBar((prev) => {
-      const next = !prev;
-
-      onShowSideBarChange(next);
-      return next;
-    });
-  };
-
+  const toggleSidebar = useCallback(() => {
+    setSidebarShown((show) => !show);
+  }, []);
   return (
     <>
-      <Header onShowSideBar={clickHandler} />
-      {showSideBar && <SideBar onClose={clickHandler} />}
-
+      <Header onMenuClick={toggleSidebar} />
+      {sidebarShown && <SideBar onClose={toggleSidebar} />}
       <Outlet />
       {/* TODO footer */}
     </>

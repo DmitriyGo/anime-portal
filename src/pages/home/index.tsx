@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import { StyledButton } from '@/components';
+import { Button } from '@/components';
 
 const Home = () => {
   const { t: t1 } = useTranslation();
@@ -10,9 +11,9 @@ const Home = () => {
     <main>
       <p>{t1('greeting_message')}</p>
       <p>{t2('login')}</p>
-      <StyledButton bg="red" bgactive="blue" bghover="green" to="/todos">
-        ToDo Page
-      </StyledButton>
+      <Button>
+        <Link to="/todos">Todo Page</Link>
+      </Button>
     </main>
   );
 };

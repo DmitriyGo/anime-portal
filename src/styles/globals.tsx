@@ -1,34 +1,45 @@
-import { useTheme } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyles = () => {
-  const theme = useTheme();
+const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
 
-  return (
-    <style>
-      {`
-        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+  body {
+    background: ${({ theme }) => theme.backGroundColor};
+    color: ${({ theme }) => theme.fontColor};
+    margin: 0;
+    padding: 0;
+  }
 
-        body {
-          background: ${theme.backGroundColor};
-          color: ${theme.fontColor};
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-          margin: 0px;
-          padding: 0px;
-          
-        }
+  body * {
+    font-family: 'Rubik', sans-serif !important;
+  }
 
-        *{
-          box-sizing: border-box;
-        }
-        body * {
-          font-family: 'Rubik', sans-serif !important;
-        }
-        body a {
-          text-decoration: none;
-        }
-      `}
-    </style>
-  );
-};
+  body a {
+    text-decoration: none;
+  }
+
+
+  ::-webkit-scrollbar-track {
+    all: unset;
+    background-color: ${({ theme }) => theme.backGroundColor};
+  }
+
+  ::-webkit-scrollbar {
+    all: unset;
+    width: 10px;
+    background-color: ${({ theme }) => theme.backGroundColor};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    all: unset;
+    background-color: ${({ theme }) => theme.colorPrimary};
+  }
+`;
 
 export default GlobalStyles;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSideBarLayout = styled.div`
+export const StyledSidebarLayout = styled.div`
   position: fixed;
   z-index: 20;
   left: 0;

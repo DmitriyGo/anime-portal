@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledSideBarBackdrop = styled.div`
+export const StyledSidebarBackdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;

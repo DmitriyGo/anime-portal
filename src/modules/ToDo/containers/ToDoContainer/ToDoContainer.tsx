@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 import { StyledToDoContainer } from './ToDoContainerStyles';
 import { ToDoItem } from '../../components';
 
-import { StyledButton } from '@/components';
+import { Button } from '@/components';
 import { ITodo } from '@/models/todo.model';
 
 interface IToDoContainerProps {
@@ -12,9 +14,9 @@ const ToDoContainer = ({ todos }: IToDoContainerProps) => {
   const content = todos.map((todo) => <ToDoItem key={todo.id} todo={todo} />);
   return (
     <StyledToDoContainer>
-      <StyledButton br="5px" to="/">
-        Home
-      </StyledButton>
+      <Button>
+        <Link to={'/'}>Home</Link>
+      </Button>
       <ul>{content}</ul>
     </StyledToDoContainer>
   );
