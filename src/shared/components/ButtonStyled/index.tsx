@@ -9,18 +9,20 @@ interface ButtonStyledProps {
   bgactive?: string;
   bghover?: string;
   br?: string;
+  fsize?: string;
+  p?: string;
 }
 
-export const ButtonStyled = styled(Link)<ButtonStyledProps>`
+export const StyledButton = styled(Link)<ButtonStyledProps>`
   display: inline-block;
-  padding: 6px 20px 6px 20px;
+  padding: ${({ p }) => p ?? '6px 20px 6px 20px'};
   border-radius: ${({ br }) => br ?? '30px'};
 
   font-weight: 400;
   text-align: center;
   vertical-align: middle;
   line-height: 1.5;
-  font-size: ${FONT_SIZES[16]};
+  font-size: ${({ fsize }) => fsize ?? FONT_SIZES[16]};
 
   color: ${({ theme }) => theme.fontColor};
   background-color: ${({ bg, theme }) => bg ?? theme.colorPrimary};
@@ -28,12 +30,11 @@ export const ButtonStyled = styled(Link)<ButtonStyledProps>`
   transition: all 0.15s ease;
 
   :hover {
-    background-color: ${({ bghover: bgHover, theme }) =>
-      bgHover ?? theme.colorPrimary};
+    background-color: ${({ bghover, theme }) => bghover ?? theme.colorPrimary};
   }
 
   :active {
-    background-color: ${({ bgactive: bgActive, theme }) =>
-      bgActive ?? theme.colorPrimary};
+    background-color: ${({ bgactive, theme }) =>
+      bgactive ?? theme.colorPrimary};
   }
 `;

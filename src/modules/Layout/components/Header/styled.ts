@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
+import { DEVICES } from '@/theme';
+
 export const HeaderStyled = styled.header`
+  @media ${DEVICES.LG} {
+    margin-bottom: 0.75rem;
+    position: inherit;
+  }
+
   position: fixed;
   top: 0;
 
@@ -17,6 +24,7 @@ export const HeaderStyled = styled.header`
   border-bottom: 2px ${({ theme }) => theme.dividerColor} solid;
 
   section {
+    align-items: center;
     display: flex;
     gap: 1.5rem;
 

@@ -1,7 +1,7 @@
 import { StyledToDoContainer } from './ToDoContainerStyles';
 import { ToDoItem } from '../../components';
 
-import { ButtonStyled } from '@/components';
+import { StyledButton } from '@/components';
 import { ITodo } from '@/models/todo.model';
 
 interface IToDoContainerProps {
@@ -12,9 +12,9 @@ const ToDoContainer = ({ todos }: IToDoContainerProps) => {
   const content = todos.map((todo) => <ToDoItem key={todo.id} todo={todo} />);
   return (
     <StyledToDoContainer>
-      <ButtonStyled br="5px" to="/">
+      <StyledButton br="5px" to="/">
         Home
-      </ButtonStyled>
+      </StyledButton>
       <ul>{content}</ul>
     </StyledToDoContainer>
   );

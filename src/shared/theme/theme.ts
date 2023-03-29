@@ -66,6 +66,7 @@ export const COLORS = {
 };
 
 export const FONT_SIZES = {
+  '10': '0.7rem',
   '12': '0.75rem',
   '14': '0.875rem',
   '16': '1rem',

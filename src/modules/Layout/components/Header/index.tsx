@@ -1,39 +1,26 @@
-import { Menu, Search, Notification } from '@styled-icons/boxicons-regular';
+import { Menu, Search } from '@styled-icons/boxicons-regular';
 import { Notifications } from '@styled-icons/material-outlined';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import { HeaderStyled } from './styled';
 import logo from '../../../../assets/logo.png';
-import SideBar from '../SideBar';
+import SearchForm from '../SearchForm';
 
-import { ButtonStyled } from '@/components';
+import { StyledButton } from '@/components';
 import { setTheme, Theme } from '@/modules/Theme';
 
 interface HeaderProps {
-  onShowSideBarChange: (event: boolean) => void;
+  onShowSideBar: () => void;
 }
 
-const Header = ({ onShowSideBarChange }: HeaderProps) => {
-  const [showSideBar, setShowSideBar] = useState<boolean>(false);
-
-  const clickHandle = () => {
-    setShowSideBar((prev) => {
-      const next = !prev;
-
-      onShowSideBarChange(next);
-      return next;
-    });
-  };
-
+const Header = ({ onShowSideBar }: HeaderProps) => {
   const { i18n } = useTranslation();
+  const dispatch = useDispatch();
 
   const handleClick = (lang: string) => {
     i18n.changeLanguage(lang);
   };
-
-  const dispatch = useDispatch();
 
   const handleOnDark = () => {
     dispatch(setTheme(Theme.DARK));
@@ -46,30 +33,32 @@ const Header = ({ onShowSideBarChange }: HeaderProps) => {
   return (
     <HeaderStyled>
       <section>
-        <div onClick={clickHandle}>
+        <div onClick={onShowSideBar}>
           <Menu size={30} />
         </div>
 
         <img src={logo} height={'30px'} alt="logo.png" />
+
+        <SearchForm />
       </section>
 
       <section>
         <div>
-          <ButtonStyled to="#" onClick={() => handleClick('uk')}>
+          <StyledButton to="#" onClick={() => handleClick('uk')}>
             uk
-          </ButtonStyled>
-          <ButtonStyled to="#" onClick={() => handleClick('en')}>
+          </StyledButton>
+          <StyledButton to="#" onClick={() => handleClick('en')}>
             en
-          </ButtonStyled>
+          </StyledButton>
         </div>
 
         <div>
-          <ButtonStyled to="#" onClick={handleOnDark}>
+          <StyledButton to="#" onClick={handleOnDark}>
             Dark
-          </ButtonStyled>
-          <ButtonStyled to="#" onClick={handleOnLight}>
+          </StyledButton>
+          <StyledButton to="#" onClick={handleOnLight}>
             Light
-          </ButtonStyled>
+          </StyledButton>
         </div>
       </section>
 
@@ -77,8 +66,6 @@ const Header = ({ onShowSideBarChange }: HeaderProps) => {
         <Search size={30} />
         <Notifications size={30} />
       </section>
-
-      {showSideBar && <SideBar onClose={clickHandle} />}
     </HeaderStyled>
   );
 };

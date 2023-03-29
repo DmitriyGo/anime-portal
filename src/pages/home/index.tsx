@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { ButtonStyled } from '@/components';
+import { StyledButton } from '@/components';
 
 const Home = () => {
   const { t: t1 } = useTranslation();
@@ -10,9 +10,9 @@ const Home = () => {
     <main>
       <p>{t1('greeting_message')}</p>
       <p>{t2('login')}</p>
-      <ButtonStyled bg="red" bgactive="blue" bghover="green" to="/todos">
+      <StyledButton bg="red" bgactive="blue" bghover="green" to="/todos">
         ToDo Page
-      </ButtonStyled>
+      </StyledButton>
     </main>
   );
 };
