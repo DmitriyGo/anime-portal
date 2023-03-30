@@ -1,4 +1,5 @@
 import { Notifications } from '@styled-icons/material-outlined';
+import { useState, useEffect } from 'react'; // Add useState and useEffect
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
@@ -49,7 +50,6 @@ const Header = ({ onMenuClick }: HeaderProps) => {
         <Button onClick={handleOnDark}>Dark</Button>
         <Button onClick={handleOnLight}>Light</Button>
       </StyledHeaderBlock>
-
       <StyledHeaderBlock>
         <StyledSearch size={'1.5rem'} />
         <Notifications size={'1.5rem'} />

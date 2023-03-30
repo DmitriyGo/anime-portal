@@ -5,9 +5,9 @@ import { DEVICES } from '@/theme';
 
 export const StyledHeader = styled.header`
   @media ${DEVICES.LG} {
-    margin-bottom: 0.75rem;
     position: inherit;
   }
+  z-index: 2;
   position: sticky;
   top: 0;
   width: 100%;
@@ -16,7 +16,6 @@ export const StyledHeader = styled.header`
   align-items: center;
   padding: 0.75rem 2.5rem;
   background-color: ${({ theme }) => theme.backGroundColor};
-  border-bottom: 2px ${({ theme }) => theme.dividerColor} solid;
 `;
 
 export const StyledHeaderBlock = styled.div`
