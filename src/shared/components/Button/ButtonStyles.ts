@@ -1,5 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 
+import { COLORS } from '@/theme';
+
 interface StyledButtonProps {
   theme?: DefaultTheme;
   variant?: 'default' | 'rounded';
@@ -29,7 +31,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   line-height: 1.5;
   font-size: 1rem;
 
-  color: ${({ theme }) => theme.fontColor};
+  color: ${COLORS.WHITE} !important;
   cursor: pointer;
   transition: all 0.15s ease;
 `;

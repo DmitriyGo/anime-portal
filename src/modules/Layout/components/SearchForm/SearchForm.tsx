@@ -1,8 +1,9 @@
+import { Search } from '@styled-icons/boxicons-regular';
 import { ChangeEvent, useState } from 'react';
 
 import { StyledForm, StyledInput, StyledInputButton } from './SearchFormStyles';
 
-import { StyledSearch } from '@/modules/Layout/components/Header/HeaderStyles';
+import { StyledIconButton } from '@/components';
 
 const SearchForm = () => {
   //TODO filter page
@@ -21,7 +22,9 @@ const SearchForm = () => {
         placeholder="Search anime..."
       />
       <div>
-        <StyledSearch size={'1.5rem'} />
+        <StyledIconButton>
+          <Search size={'1.5rem'} />
+        </StyledIconButton>
         <StyledInputButton>Filter</StyledInputButton>
       </div>
     </StyledForm>

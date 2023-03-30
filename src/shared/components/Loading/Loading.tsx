@@ -1,4 +1,4 @@
-import { StyledLoading } from './styles';
+import { StyledLoading } from './LoadingStyles';
 
 import gif from '/loading.gif';
 

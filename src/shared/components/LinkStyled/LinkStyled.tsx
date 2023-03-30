@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const LinkStyled = styled(Link)`
+export const StyledLink = styled(Link)`
   color: ${({ theme }) => theme.colorLink};
 
   :active {

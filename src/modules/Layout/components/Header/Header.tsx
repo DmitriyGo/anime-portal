@@ -1,58 +1,56 @@
-import { Notifications } from '@styled-icons/material-outlined';
-import { useState, useEffect } from 'react'; // Add useState and useEffect
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { Menu, Search } from '@styled-icons/boxicons-regular';
+import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
+import { FC } from 'react';
 
-import {
-  StyledHeader,
-  StyledHeaderBlock,
-  StyledMenu,
-  StyledSearch,
-} from './HeaderStyles';
+import { StyledHeader, StyledHeaderBlock } from './HeaderStyles';
 
 import logo from '/logo.png';
 
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import SearchForm from '../SearchForm/SearchForm';
+import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
-import { Button } from '@/components';
-import { setTheme, Theme } from '@/modules/Theme';
+import { StyledIconButton } from '@/components';
+import { DEVICES } from '@/theme';
+import { useMediaQuery } from '@/utils';
 
 interface HeaderProps {
   onMenuClick: () => void;
 }
 
-const Header = ({ onMenuClick }: HeaderProps) => {
-  const { i18n } = useTranslation();
-  const dispatch = useDispatch();
-
-  const handleClick = async (lang: string) => {
-    await i18n.changeLanguage(lang);
-  };
-
-  const handleOnDark = () => {
-    dispatch(setTheme(Theme.DARK));
-  };
-
-  const handleOnLight = () => {
-    dispatch(setTheme(Theme.LIGHT));
-  };
+const Header: FC<HeaderProps> = ({ onMenuClick }) => {
+  const queryLG = useMediaQuery(DEVICES.LG);
+  const queryMD = useMediaQuery(DEVICES.MD);
 
   return (
     <StyledHeader>
       <StyledHeaderBlock>
-        <StyledMenu onClick={onMenuClick} size={30} />
+        <StyledIconButton>
+          <Menu onClick={onMenuClick} size={30} />
+        </StyledIconButton>
         <img src={logo} height={'30px'} alt="logo.png" />
-        <SearchForm />
+        {!queryMD && <SearchForm />}
       </StyledHeaderBlock>
+
+      {!queryLG && (
+        <StyledHeaderBlock>
+          <ThemeSelector />
+          <LanguageSelector />
+        </StyledHeaderBlock>
+      )}
+
       <StyledHeaderBlock>
-        <Button onClick={() => handleClick('uk')}>uk</Button>
-        <Button onClick={() => handleClick('en')}>en</Button>
-        <Button onClick={handleOnDark}>Dark</Button>
-        <Button onClick={handleOnLight}>Light</Button>
-      </StyledHeaderBlock>
-      <StyledHeaderBlock>
-        <StyledSearch size={'1.5rem'} />
-        <Notifications size={'1.5rem'} />
+        {queryMD && (
+          <StyledIconButton>
+            <Search size={'1.5rem'} />
+          </StyledIconButton>
+        )}
+        <StyledIconButton>
+          <Notifications size={'1.5rem'} />
+        </StyledIconButton>
+        <StyledIconButton>
+          <AccountCircle size={'1.5rem'} />
+        </StyledIconButton>
       </StyledHeaderBlock>
     </StyledHeader>
   );

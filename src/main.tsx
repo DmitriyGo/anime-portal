@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import App from './App';
-import Loading from './shared/components/Loading';
+import Loading from './shared/components/Loading/Loading';
 import { persistor, store } from './store';
 
 import { i18n } from '@/modules/Translation';

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import { StyledCarouselItem } from './SpotlightCarouselItemStyles';
 
@@ -19,6 +20,9 @@ const SpotlightCarouselItem: FC<SpotlightCarouselItemProps> = ({
     <StyledCarouselItem imageUrl={imageUrl}>
       <Button onClick={onPrev}>Prev</Button>
       <Button onClick={onNext}>Next</Button>
+      <Button>
+        <Link to={'/todos'}>Todo</Link>
+      </Button>
     </StyledCarouselItem>
   );
 };
