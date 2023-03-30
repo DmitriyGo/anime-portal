@@ -4,6 +4,9 @@ export const StyledToDoContainer = styled.main`
   ul {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    gap: 1rem;
   }
 `;

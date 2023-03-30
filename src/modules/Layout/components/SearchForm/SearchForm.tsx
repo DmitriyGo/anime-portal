@@ -1,11 +1,28 @@
 import { Search } from '@styled-icons/boxicons-regular';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 
-import { StyledForm, StyledInput, StyledInputButton } from './SearchFormStyles';
+import {
+  StyledInput,
+  StyledInputButton,
+  StyledDiv,
+  StyledSearchFormSmall,
+  StyledSearchFormExtended,
+} from './SearchFormStyles';
 
 import { StyledIconButton } from '@/components';
+import { COLORS } from '@/theme';
 
-const SearchForm = () => {
+export enum SearchFormMode {
+  small = 'small',
+  extended = 'extended',
+}
+
+interface SearchFormProps {
+  mode: SearchFormMode;
+  show: boolean;
+}
+
+const SearchForm: FC<SearchFormProps> = ({ mode, show }) => {
   //TODO filter page
   //TODO search page
   const [inputValue, setInputValue] = useState('');
@@ -14,20 +31,31 @@ const SearchForm = () => {
     setInputValue(e.target.value);
   };
 
-  return (
-    <StyledForm>
+  const content = (
+    <>
       <StyledInput
         value={inputValue}
         onChange={handleInputChange}
         placeholder="Search anime..."
       />
-      <div>
+      <StyledDiv>
         <StyledIconButton>
-          <Search size={'1.5rem'} />
+          <Search size={'1.5rem'} color={COLORS.BLACK} />
         </StyledIconButton>
         <StyledInputButton>Filter</StyledInputButton>
-      </div>
-    </StyledForm>
+      </StyledDiv>
+    </>
+  );
+
+  return (
+    <>
+      {mode == SearchFormMode.small && (
+        <StyledSearchFormSmall>{content}</StyledSearchFormSmall>
+      )}
+      {mode == SearchFormMode.extended && show && (
+        <StyledSearchFormExtended>{content}</StyledSearchFormExtended>
+      )}
+    </>
   );
 };
 
