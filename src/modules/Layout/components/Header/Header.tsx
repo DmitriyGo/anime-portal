@@ -1,4 +1,4 @@
-import { Menu, Search } from '@styled-icons/boxicons-regular';
+import { Globe, Menu, Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
 import { FC, useState } from 'react';
 
@@ -6,8 +6,9 @@ import { StyledHeader, StyledHeaderBlock } from './HeaderStyles';
 
 import logo from '/logo.png';
 
+import { SearchFormMode } from '../../helpers/types';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
-import SearchForm, { SearchFormMode } from '../SearchForm/SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 import { StyledIconButton } from '@/components';
@@ -53,6 +54,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
           {queryMD && (
             <StyledIconButton onClick={handleSearchClick}>
               <Search
+                // TODO Icon button wrapper
                 color={showExtendedSearch ? COLORS.EMERALD : ''}
                 size={'1.5rem'}
               />
@@ -60,6 +62,9 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
           )}
           <StyledIconButton>
             <Notifications size={'1.5rem'} />
+          </StyledIconButton>
+          <StyledIconButton>
+            <Globe size={'1.5rem'} />
           </StyledIconButton>
           <StyledIconButton>
             <AccountCircle size={'1.5rem'} />

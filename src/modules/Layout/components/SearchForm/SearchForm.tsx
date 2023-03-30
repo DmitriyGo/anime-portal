@@ -8,14 +8,10 @@ import {
   StyledSearchFormSmall,
   StyledSearchFormExtended,
 } from './SearchFormStyles';
+import { SearchFormMode } from '../../helpers/types';
 
 import { StyledIconButton } from '@/components';
 import { COLORS } from '@/theme';
-
-export enum SearchFormMode {
-  small = 'small',
-  extended = 'extended',
-}
 
 interface SearchFormProps {
   mode: SearchFormMode;
@@ -23,8 +19,7 @@ interface SearchFormProps {
 }
 
 const SearchForm: FC<SearchFormProps> = ({ mode, show }) => {
-  //TODO filter page
-  //TODO search page
+  //TODO filter + search page
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,10 +44,10 @@ const SearchForm: FC<SearchFormProps> = ({ mode, show }) => {
 
   return (
     <>
-      {mode == SearchFormMode.small && (
+      {mode === SearchFormMode.small && (
         <StyledSearchFormSmall>{content}</StyledSearchFormSmall>
       )}
-      {mode == SearchFormMode.extended && show && (
+      {mode === SearchFormMode.extended && show && (
         <StyledSearchFormExtended>{content}</StyledSearchFormExtended>
       )}
     </>

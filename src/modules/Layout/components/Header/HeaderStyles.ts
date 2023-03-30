@@ -4,7 +4,7 @@ import { DEVICES } from '@/theme';
 
 export const StyledHeader = styled.header`
   @media ${DEVICES.LG} {
-    position: inherit;
+    position: relative;
   }
 
   position: sticky;

@@ -45,6 +45,21 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
     return () => clearInterval(intervalIdRef.current!);
   }, [delay, totalSlides]);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        clearInterval(intervalIdRef.current!);
+      } else {
+        resetInterval();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      clearInterval(intervalIdRef.current!);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
   const carouselItems = Object.values(images).map((imageUrl, index) => (
     <SpotlightCarouselItem
       key={index}
