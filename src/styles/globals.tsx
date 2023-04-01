@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.backGroundColor};
-    //TODO remove this
     color: ${({ theme }) => theme.fontColor};
     margin: 0;
     padding: 0;
@@ -20,7 +19,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body a {
-    text-decoration: none;
+    all: unset;
   }
 
 

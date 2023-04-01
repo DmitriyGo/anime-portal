@@ -1,15 +1,14 @@
 import { Globe, Menu, Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { StyledHeader, StyledHeaderBlock } from './HeaderStyles';
 
 import logo from '/logo.png';
 
+import { LanguageSelector, SearchForm, ThemeSelector } from '..';
 import { SearchFormMode } from '../../helpers/types';
-import LanguageSelector from '../LanguageSelector/LanguageSelector';
-import SearchForm from '../SearchForm/SearchForm';
-import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 import { StyledIconButton } from '@/components';
 import { COLORS, DEVICES } from '@/theme';
@@ -20,14 +19,26 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ onMenuClick }) => {
+  const [showExtendedSearch, setExtendedSearch] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+
   const queryLG = useMediaQuery(DEVICES.LG);
   const queryMD = useMediaQuery(DEVICES.MD);
-
-  const [showExtendedSearch, setExtendedSearch] = useState<boolean>(false);
 
   const handleSearchClick = () => {
     setExtendedSearch((show) => !show);
   };
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  useEffect(() => {
+    if (showExtendedSearch && !queryMD) {
+      setExtendedSearch(false);
+    }
+  }, [queryMD, showExtendedSearch]);
 
   return (
     <StyledHeader>
@@ -36,7 +47,10 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
           <StyledIconButton onClick={onMenuClick}>
             <Menu size={30} />
           </StyledIconButton>
-          <img src={logo} height={'30px'} alt="logo.png" />
+          <StyledIconButton onClick={handleLogoClick}>
+            <img src={logo} height={'30px'} alt="logo.png" />
+          </StyledIconButton>
+
           <SearchForm
             show={showExtendedSearch}
             mode={queryMD ? SearchFormMode.extended : SearchFormMode.small}
@@ -60,6 +74,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
               />
             </StyledIconButton>
           )}
+
           <StyledIconButton>
             <Notifications size={'1.5rem'} />
           </StyledIconButton>

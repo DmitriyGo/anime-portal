@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
 import { StyledSidebarBackdrop } from './SidebarStyles';
 import SidebarLayout from '../SidebarLayout/SidebarLayout';
@@ -7,7 +7,7 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const Sidebar = ({ onClose }: SidebarProps) => {
+const Sidebar: FC<SidebarProps> = ({ onClose }) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {

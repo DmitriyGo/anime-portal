@@ -1,12 +1,14 @@
+import { FC } from 'react';
+
 import { StyledToDoItem } from './ToDoItemStyles';
 
-import { ITodo } from '@/models/todo.model';
+import { TodoItem } from '@/models/todo.model';
 
-interface IToDoItemProps {
-  todo: ITodo;
+interface ToDoItemProps {
+  todo: TodoItem;
 }
 
-const ToDoItem = ({ todo }: IToDoItemProps) => {
+const ToDoItem: FC<ToDoItemProps> = ({ todo }) => {
   return (
     <StyledToDoItem>
       <p>{todo.id}</p>

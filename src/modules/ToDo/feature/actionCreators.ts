@@ -4,11 +4,11 @@ import { TODO_SLICE_NAME } from './models';
 
 import TodoAPI from '@/api/TodoApi';
 import { IApiError } from '@/models/apiError.model';
-import { ITodoResponse } from '@/models/todo.model';
+import { TodoResponse } from '@/models/todo.model';
 import { formatApiError } from '@/utils';
 
 export const getTodos = createAsyncThunk<
-  ITodoResponse,
+  TodoResponse,
   void,
   { serializedErrorType: IApiError }
 >(

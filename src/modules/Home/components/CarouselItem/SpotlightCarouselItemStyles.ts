@@ -8,7 +8,7 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
   padding: 6rem 4rem;
   z-index: 0;
 
-  background-image: url(${(props) => props.imageUrl});
+  background-image: url(${({ imageUrl }) => imageUrl});
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

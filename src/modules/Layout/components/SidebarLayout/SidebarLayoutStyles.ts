@@ -7,7 +7,19 @@ export const StyledSidebarLayout = styled.div`
   top: 0;
   bottom: 0;
   overflow-y: auto;
+
   width: 260px;
-  padding: 20px 0;
+  padding: 1rem;
+
   background: ${({ theme }) => theme.backGroundColor};
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
+export const StyledSidebarBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;

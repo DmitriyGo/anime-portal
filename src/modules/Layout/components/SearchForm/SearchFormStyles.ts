@@ -26,13 +26,14 @@ export const StyledSearchFormExtended = styled.form`
   left: 0;
   width: 100%;
 
-  height: 40px;
+  height: 3rem;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   border-top: 2px solid ${COLORS.BLACK};
+  border-bottom: 2px solid ${COLORS.BLACK};
   background-color: ${COLORS.WHITE};
   padding: 5px;
 `;

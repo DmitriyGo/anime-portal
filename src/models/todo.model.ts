@@ -2,15 +2,15 @@ export enum TodoEndpoint {
   ROOT = '/',
 }
 
-export interface ITodo {
+export interface TodoItem {
   id: number;
   todo: string;
   completed: boolean;
   userId: number;
 }
 
-export interface ITodoResponse {
-  todos: ITodo[];
+export interface TodoResponse {
+  todos: TodoItem[];
   total: number;
   skip: number;
   limit: number;

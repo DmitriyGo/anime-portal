@@ -1,29 +1,37 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
-import { DefaultTheme } from 'styled-components';
+import { ButtonHTMLAttributes, FC } from 'react';
 
 import { StyledButton } from './ButtonStyles';
 import useBackgroundColor from '../../utils/useBackgroundColor';
 
 import { COLORS } from '@/theme';
 
-type ButtonProps =
-  | {
-      children?: ReactNode;
-      theme?: DefaultTheme;
-      variant?: 'default' | 'rounded';
-      size?: 'small' | 'medium' | 'large';
-      color?: string;
-    }
-  | ButtonHTMLAttributes<HTMLButtonElement>;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  rounded?: 'none' | 'light' | 'strong';
+  color?: string;
+}
 
-const Button = ({
-  children,
+const Button: FC<ButtonProps> = ({
   color = COLORS.DARK_GREY[300],
+  rounded = 'light',
+  children,
   ...rest
-}: ButtonProps) => {
+}) => {
   const [bgColor, bgHover, bgActive] = useBackgroundColor(color, -10, -15);
+
+  const radiusValues = {
+    none: '0',
+    light: '5px',
+    strong: '50%',
+  };
+
   return (
-    <StyledButton {...rest} bg={bgColor} bgHover={bgHover} bgActive={bgActive}>
+    <StyledButton
+      bg={bgColor}
+      bgHover={bgHover}
+      bgActive={bgActive}
+      bRadius={radiusValues[rounded]}
+      {...rest}
+    >
       {children}
     </StyledButton>
   );

@@ -5,7 +5,7 @@
  * @param amount - A number representing the amount to increase or decrease the brightness of the color
  * @returns A string representing the modified color in hexadecimal format (#RRGGBB)
  */
-const colorModifier = (hexString: string, amount: number) => {
+const modifiColor = (hexString: string, amount: number) => {
   // Convert the hex string to RGB values
   let r = parseInt(hexString.slice(1, 3), 16);
   let g = parseInt(hexString.slice(3, 5), 16);
@@ -27,4 +27,4 @@ const colorModifier = (hexString: string, amount: number) => {
   return `#${hex}`;
 };
 
-export default colorModifier;
+export default modifiColor;

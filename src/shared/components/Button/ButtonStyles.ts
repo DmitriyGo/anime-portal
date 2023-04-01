@@ -1,14 +1,12 @@
-import styled, { DefaultTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { COLORS } from '@/theme';
 
 interface StyledButtonProps {
-  theme?: DefaultTheme;
-  variant?: 'default' | 'rounded';
-  size?: 'small' | 'medium' | 'large';
   bg?: string;
   bgHover?: string;
   bgActive?: string;
+  bRadius?: string;
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -25,6 +23,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
   :active {
     background: ${({ bgActive }) => bgActive};
   }
+
+  border-radius: ${({ bRadius }) => bRadius};
   font-weight: 400;
   text-align: center;
   vertical-align: middle;

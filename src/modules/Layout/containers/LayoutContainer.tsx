@@ -10,7 +10,7 @@ const Layout = () => {
     setSidebarShown((show) => !show);
   }, []);
 
-  // Apply "overflow: hidden" to the body element when the sidebar is shown
+  // Applies "overflow: hidden" to the body element when the sidebar is shown
   useEffect(() => {
     if (sidebarShown) {
       document.body.style.overflow = 'hidden';
