@@ -1,10 +1,10 @@
 import { IApiError } from '@/models/apiError.model';
-import { ITodo } from '@/models/todo.model';
+import { TodoItem } from '@/models/todo.model';
 
 export const TODO_SLICE_NAME = 'todos';
 
 export interface ToDoState {
-  todos: ITodo[];
+  todos: TodoItem[];
   isLoading: boolean;
   error: IApiError | null;
 }

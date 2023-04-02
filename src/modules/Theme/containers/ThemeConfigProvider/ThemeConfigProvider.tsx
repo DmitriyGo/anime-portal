@@ -1,25 +1,19 @@
 import React, { ReactNode, useMemo } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { Theme } from '../../feature/models';
 import { selectTheme } from '../../feature/selectors';
-import dark from '../../helpers/dark';
-import light from '../../helpers/light';
+import getTheme from '../../helpers/getTheme';
 
 import { useSelector } from '@/store';
 
-interface IThemeContextProvider {
+interface ThemeContextProvider {
   children: ReactNode;
 }
 
-function GetTheme(theme: Theme) {
-  return theme === Theme.DARK ? dark : light;
-}
-
-const ThemeConfigProvider = ({ children }: IThemeContextProvider) => {
+const ThemeConfigProvider = ({ children }: ThemeContextProvider) => {
   const mode = useSelector(selectTheme);
 
-  const theme = useMemo(() => GetTheme(mode), [mode]);
+  const theme = useMemo(() => getTheme(mode), [mode]);
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };

@@ -14,9 +14,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
       "@/api/*": ["./src/api/*"],
+      "@/assets/*": ["./src/assets/*"],
       "@/theme": ["./src/shared/theme"],
       "@/components": ["./src/shared/components"],
       "@/modules/*": ["./src/modules/*"],

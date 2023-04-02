@@ -1,26 +1,43 @@
-import { useTheme } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyles = () => {
-  const theme = useTheme();
+const GlobalStyles = createGlobalStyle`
+  body {
+    background: ${({ theme }) => theme.backGroundColor};
+    color: ${({ theme }) => theme.fontColor};
+    margin: 0;
+    padding: 0;
+  }
 
-  return (
-    <style>
-      {`
-        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-        body {
-          background: ${theme.backGroundColor};
-          color: ${theme.fontColor};
-        }
-        body * {
-          font-family: 'Rubik', sans-serif !important;
-        }
-        body a {
-          text-decoration: none;
-        }
-      `}
-    </style>
-  );
-};
+  body * {
+    font-family: 'Rubik', sans-serif !important;
+  }
+
+  body a {
+    all: unset;
+  }
+
+
+  ::-webkit-scrollbar-track {
+    all: unset;
+    background-color: ${({ theme }) => theme.backGroundColor};
+  }
+
+  ::-webkit-scrollbar {
+    all: unset;
+    width: 10px;
+    background-color: ${({ theme }) => theme.backGroundColor};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    all: unset;
+    background-color: ${({ theme }) => theme.colorPrimary};
+  }
+`;
 
 export default GlobalStyles;
