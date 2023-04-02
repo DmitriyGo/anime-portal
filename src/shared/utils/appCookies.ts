@@ -1,5 +1,7 @@
 import Cookies, { CookieAttributes } from 'js-cookie';
 
+import { StringMap } from '@/modules/Home/helpers';
+
 interface IAppCookies {
   setItem(name: string, value: string, options?: CookieAttributes): void;
   getItem(name: string): string | undefined;
@@ -24,7 +26,7 @@ class AppCookies<StorageType extends Cookies.CookiesStatic>
     return this.storage.get(key);
   }
 
-  getAll(): Record<string, string> {
+  getAll(): StringMap<string> {
     return this.storage.get();
   }
 
