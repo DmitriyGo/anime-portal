@@ -2,6 +2,7 @@
   "name": "anime-portal-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://DmitriyGo.github.io/anime-portal/#",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

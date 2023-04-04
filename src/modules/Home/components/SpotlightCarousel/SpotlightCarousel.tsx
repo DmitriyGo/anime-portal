@@ -4,11 +4,11 @@ import {
   StyledSpotlightsCarousel,
   StyledSpotlightsContent,
 } from './SpotlightCarouselStyles';
-import { ImageObject } from '../../helpers';
+import { StringMap } from '../../helpers';
 import SpotlightCarouselItem from '../CarouselItem/SpotlightCarouselItem';
 
 interface SpotlightCarouselProps {
-  images: ImageObject;
+  images: StringMap<string>;
 }
 
 const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {

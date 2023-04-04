@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { LayoutContainer } from './modules/Layout';
 import { ThemeConfigProvider } from './modules/Theme';
@@ -7,7 +7,7 @@ import GlobalStyles from './styles/globals';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ThemeConfigProvider>
         <GlobalStyles />
         <Routes>
@@ -17,7 +17,7 @@ const App = () => {
           </Route>
         </Routes>
       </ThemeConfigProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
