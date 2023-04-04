@@ -1,1 +1,1 @@
-export { type ImageObject } from './ImageObject';
+export { type StringMap } from './StringMap';

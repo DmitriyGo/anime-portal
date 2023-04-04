@@ -26,7 +26,8 @@
       "@/store": ["./src/store"],
       "@/ui": ["./src/shared/ui"],
       "@/utils": ["./src/shared/utils"],
-      "@/constants/*": ["./src/shared/constants/*"]
+      "@/constants/*": ["./src/shared/constants/*"],
+      "@/mocks/*": ["./src/mocks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lint-staged.config.js"],
