@@ -1,1 +1,5 @@
-{ "asdasd": "bibabiba" }
+{
+  "greeting_message": "Привіт, це наш дуже любимий Аніме Портал",
+  "search_form_placeholder": "Пошук аніме...",
+  "search_form_filter": "Фільтр"
+}

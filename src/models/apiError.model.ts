@@ -1,14 +1,15 @@
-import { ResponseStatusCodes } from '@/constants/common';
+import { ResponseStatusCode } from '@/constants/common';
+import { StringMap } from '@/modules/Home/helpers';
 
-export type TApiFieldErrors = Record<string, string[]>;
+export type TApiFieldErrors = StringMap<string[]>;
 
 export interface IApiError {
-  status: ResponseStatusCodes;
+  status: ResponseStatusCode;
   message: string;
-  errors?: Record<string, string> | null;
+  errors?: StringMap<string> | null;
 }
 
 export interface IApiResponseError {
   message: string;
-  errors?: Record<string, Array<string>>;
+  errors?: StringMap<string[]>;
 }

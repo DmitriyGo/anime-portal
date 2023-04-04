@@ -14,15 +14,23 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["vite/client"],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/theme": ["./src/shared"],
-      "@/components/*": ["./src/shared/components/*"],
-      "@/ui/*": ["./src/shared/ui/*"],
+      "@/api/*": ["./src/api/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/theme": ["./src/shared/theme"],
+      "@/components": ["./src/shared/components"],
+      "@/modules/*": ["./src/modules/*"],
+      "@/models/*": ["./src/models/*"],
+      "@/store": ["./src/store"],
+      "@/ui": ["./src/shared/ui"],
       "@/utils": ["./src/shared/utils"],
-      "@/constants/*": ["./src/shared/constants/*"]
+      "@/constants/*": ["./src/shared/constants/*"],
+      "@/mocks/*": ["./src/mocks/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lint-staged.config.js"],
+  "exclude": ["node_modules"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

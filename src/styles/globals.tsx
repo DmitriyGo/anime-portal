@@ -1,24 +1,43 @@
-import { Rubik } from 'next/font/google';
+import { createGlobalStyle } from 'styled-components';
 
-import { COLORS } from '@/shared';
+const GlobalStyles = createGlobalStyle`
+  body {
+    background: ${({ theme }) => theme.backGroundColor};
+    color: ${({ theme }) => theme.fontColor};
+    margin: 0;
+    padding: 0;
+  }
 
-const rubik = Rubik({ subsets: ['latin'] });
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-const GlobalStyles = () => (
-  <style jsx global>
-    {`
-      body {
-        background: ${COLORS.GREY_PRIMARY};
-        color: ${COLORS.WHITE};
-      }
-      body * {
-        font-family: ${rubik.style.fontFamily}!important;
-      }
-      body a {
-        text-decoration: none;
-      }
-    `}
-  </style>
-);
+  body * {
+    font-family: 'Rubik', sans-serif !important;
+  }
+
+  body a {
+    all: unset;
+  }
+
+
+  ::-webkit-scrollbar-track {
+    all: unset;
+    background-color: ${({ theme }) => theme.backGroundColor};
+  }
+
+  ::-webkit-scrollbar {
+    all: unset;
+    width: 10px;
+    background-color: ${({ theme }) => theme.backGroundColor};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    all: unset;
+    background-color: ${({ theme }) => theme.colorPrimary};
+  }
+`;
 
 export default GlobalStyles;

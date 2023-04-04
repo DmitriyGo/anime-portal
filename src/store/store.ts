@@ -1,23 +1,29 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { rootReducer } from './rootReducer';
 
-import { themingApi } from '@/modules/_Theme';
+import { THEMING_SLICE_NAME } from '@/modules/Theme';
 
-const middleware = [themingApi.middleware];
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: [THEMING_SLICE_NAME],
+};
 
-export function makeStore() {
-  return configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(middleware),
-    devTools: true,
-  });
-}
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({
+      serializableCheck: false,
+    });
+  },
+});
 
-export type AppStore = ReturnType<typeof makeStore>;
+export const persistor = persistStore(store);
+
+export type AppStore = typeof store;
 export type AppDispatch = AppStore['dispatch'];
 export type RootState = ReturnType<AppStore['getState']>;
-
-export const wrapper = createWrapper<AppStore>(makeStore);
