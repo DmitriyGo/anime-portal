@@ -26,6 +26,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 
   border-radius: ${({ bRadius }) => bRadius};
   font-weight: 400;
+  justify-content: center;
   text-align: center;
   vertical-align: middle;
   line-height: 1.5;

@@ -1,8 +1,11 @@
+import { LeftArrow, RightArrow } from '@styled-icons/boxicons-regular';
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import {
+  StyledSpotlightButton,
+  StyledSpotlightControlButtons,
   StyledSpotlightsCarousel,
-  StyledSpotlightsContent,
+  StyledSpotlightsSlices,
 } from './SpotlightCarouselStyles';
 import { StringMap } from '../../helpers';
 import SpotlightCarouselItem from '../CarouselItem/SpotlightCarouselItem';
@@ -61,19 +64,22 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
   }, []);
 
   const carouselItems = Object.values(images).map((imageUrl, index) => (
-    <SpotlightCarouselItem
-      key={index}
-      imageUrl={`${imageUrl}`}
-      onNext={handleNext}
-      onPrev={handlePrev}
-    />
+    <SpotlightCarouselItem key={index} imageUrl={`${imageUrl}`} />
   ));
 
   return (
     <StyledSpotlightsCarousel>
-      <StyledSpotlightsContent current={currentSlide} total={totalSlides}>
+      <StyledSpotlightsSlices current={currentSlide} total={totalSlides}>
         {carouselItems}
-      </StyledSpotlightsContent>
+      </StyledSpotlightsSlices>
+      <StyledSpotlightControlButtons>
+        <StyledSpotlightButton onClick={handlePrev}>
+          <LeftArrow size="1rem" />
+        </StyledSpotlightButton>
+        <StyledSpotlightButton onClick={handleNext}>
+          <RightArrow size="1rem" />
+        </StyledSpotlightButton>
+      </StyledSpotlightControlButtons>
     </StyledSpotlightsCarousel>
   );
 };

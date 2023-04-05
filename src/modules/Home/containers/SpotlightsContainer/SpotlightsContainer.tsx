@@ -3,26 +3,16 @@ import { useEffect, useState } from 'react';
 import { SpotlightCarousel } from '../../components';
 import { StringMap } from '../../helpers';
 
+import loadImages from '@/mocks/carouselImages';
+
 const SpotlightsContainer = () => {
   const [images, setImages] = useState<StringMap<string>>({});
 
   useEffect(() => {
-    const loadImages = async () => {
-      const imageModules = import.meta.glob(
-        `../../../../assets/spotlights/*.jpg`,
-      );
-      const loadedImages: StringMap<string> = {};
-
-      for (const path in imageModules) {
-        const module = await imageModules[path]();
-        // @ts-ignore
-        loadedImages[path] = module.default;
-      }
-
-      setImages(loadedImages);
-    };
-
-    loadImages();
+    (async () => {
+      const images = await loadImages();
+      setImages(images);
+    })();
   }, []);
 
   return (

@@ -7,24 +7,12 @@ import { Button } from '@/components';
 
 interface SpotlightCarouselItemProps {
   imageUrl: string;
-  onNext: () => void;
-  onPrev: () => void;
 }
 
 const SpotlightCarouselItem: FC<SpotlightCarouselItemProps> = ({
   imageUrl,
-  onPrev,
-  onNext,
 }) => {
-  return (
-    <StyledCarouselItem imageUrl={imageUrl}>
-      <Button onClick={onPrev}>Prev</Button>
-      <Button onClick={onNext}>Next</Button>
-      <Button>
-        <Link to={'/todos'}>Todo</Link>
-      </Button>
-    </StyledCarouselItem>
-  );
+  return <StyledCarouselItem imageUrl={imageUrl} />;
 };
 
 export default SpotlightCarouselItem;

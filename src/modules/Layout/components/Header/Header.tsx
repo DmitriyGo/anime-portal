@@ -25,6 +25,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   const queryLG = useMediaQuery(DEVICES.LG);
   const queryMD = useMediaQuery(DEVICES.MD);
+  const querySD = useMediaQuery(DEVICES.XS);
 
   const handleSearchClick = () => {
     setExtendedSearch((show) => !show);
@@ -75,12 +76,17 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
             </StyledIconButton>
           )}
 
-          <StyledIconButton>
-            <Notifications size={'1.5rem'} />
-          </StyledIconButton>
-          <StyledIconButton>
-            <Globe size={'1.5rem'} />
-          </StyledIconButton>
+          {!querySD && (
+            <>
+              <StyledIconButton>
+                <Notifications size={'1.5rem'} />
+              </StyledIconButton>
+              <StyledIconButton>
+                <Globe size={'1.5rem'} />
+              </StyledIconButton>
+            </>
+          )}
+
           <StyledIconButton>
             <AccountCircle size={'1.5rem'} />
           </StyledIconButton>

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Button } from '@/components';
+
 export const StyledSpotlightsCarousel = styled.div`
   display: flex;
   overflow: hidden;
@@ -8,7 +10,30 @@ export const StyledSpotlightsCarousel = styled.div`
   z-index: 0;
 `;
 
-export const StyledSpotlightsContent = styled.div<{
+export const StyledSpotlightButton = styled(Button)`
+  aspect-ratio: 1;
+  padding: 0;
+  width: 3rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledSpotlightControlButtons = styled.div`
+  position: absolute;
+  bottom: 1.5rem;
+  right: 3rem;
+  width: 2.5rem;
+  height: auto;
+  z-index: 15;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const StyledSpotlightsSlices = styled.div<{
   total: number;
   current: number;
 }>`
