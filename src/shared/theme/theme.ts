@@ -48,7 +48,7 @@ export const COLORS = {
     DARK: '#674299',
   },
   SECONDARY: {
-    LIGHT: '#EDC7D8',
+    LIGHT: '#de99b8',
     DARK: '#A4506C',
   },
   LINK: {

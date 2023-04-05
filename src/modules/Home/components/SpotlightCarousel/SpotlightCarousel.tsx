@@ -1,5 +1,6 @@
-import { LeftArrow, RightArrow } from '@styled-icons/boxicons-regular';
+import { ArrowLeft, ArrowRight } from '@styled-icons/material-rounded/';
 import React, { FC, useEffect, useRef, useState } from 'react';
+import { useTheme } from 'styled-components';
 
 import {
   StyledSpotlightButton,
@@ -10,43 +11,52 @@ import {
 import { StringMap } from '../../helpers';
 import SpotlightCarouselItem from '../CarouselItem/SpotlightCarouselItem';
 
+import { useTrottle } from '@/utils';
+
+const autoNextDelay = 7000;
+
 interface SpotlightCarouselProps {
   images: StringMap<string>;
 }
 
 const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = Object.keys(images).length;
-  const delay = 7000; // interval delay in milliseconds
-  const intervalIdRef = useRef<NodeJS.Timeout>(); // useRef to store the interval ID
+  const [withAnimation, setWithAnimation] = useState<boolean>(true);
+  const [currentSlide, setCurrentSlide] = useState<number>(1);
+  const intervalIdRef = useRef<NodeJS.Timeout>();
+  const theme = useTheme();
+
+  let imagesLinks = Object.values(images);
+  imagesLinks = [
+    imagesLinks[imagesLinks.length - 1],
+    ...imagesLinks,
+    imagesLinks[0],
+  ];
+
+  const totalSlides = imagesLinks.length;
 
   const resetInterval = () => {
     clearInterval(intervalIdRef.current!);
     intervalIdRef.current = setInterval(() => {
       handleNext();
-    }, delay);
+    }, autoNextDelay);
   };
 
-  const handlePrev = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? totalSlides - 1 : prevSlide - 1,
-    );
+  const handlePrev = useTrottle(() => {
+    setCurrentSlide((prevSlide) => prevSlide - 1);
     resetInterval();
-  };
+  }, 300);
 
-  const handleNext = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === totalSlides - 1 ? 0 : prevSlide + 1,
-    );
+  const handleNext = useTrottle(() => {
+    setCurrentSlide((prevSlide) => prevSlide + 1);
     resetInterval();
-  };
+  }, 300);
 
   useEffect(() => {
     intervalIdRef.current = setInterval(() => {
       handleNext();
-    }, delay);
+    }, autoNextDelay);
     return () => clearInterval(intervalIdRef.current!);
-  }, [delay, totalSlides]);
+  }, [autoNextDelay]);
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -63,21 +73,47 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
     };
   }, []);
 
-  const carouselItems = Object.values(images).map((imageUrl, index) => (
+  useEffect(() => {
+    if (currentSlide === totalSlides - 1) {
+      setTimeout(() => {
+        setWithAnimation(false);
+        setCurrentSlide(1);
+        setTimeout(() => setWithAnimation(true), 50);
+      }, 250);
+    } else if (currentSlide === 0) {
+      setTimeout(() => {
+        setWithAnimation(false);
+        setCurrentSlide(totalSlides - 2);
+        setTimeout(() => setWithAnimation(true), 50);
+      }, 250);
+    }
+  }, [currentSlide, totalSlides]);
+
+  const carouselItems = imagesLinks.map((imageUrl, index) => (
     <SpotlightCarouselItem key={index} imageUrl={`${imageUrl}`} />
   ));
 
   return (
     <StyledSpotlightsCarousel>
-      <StyledSpotlightsSlices current={currentSlide} total={totalSlides}>
+      <StyledSpotlightsSlices
+        showAnimtion={withAnimation}
+        current={currentSlide}
+        total={totalSlides}
+      >
         {carouselItems}
       </StyledSpotlightsSlices>
       <StyledSpotlightControlButtons>
-        <StyledSpotlightButton onClick={handlePrev}>
-          <LeftArrow size="1rem" />
+        <StyledSpotlightButton
+          color={theme.colorSecondary}
+          onClick={handlePrev}
+        >
+          <ArrowLeft size="3rem" />
         </StyledSpotlightButton>
-        <StyledSpotlightButton onClick={handleNext}>
-          <RightArrow size="1rem" />
+        <StyledSpotlightButton
+          color={theme.colorSecondary}
+          onClick={handleNext}
+        >
+          <ArrowRight size="3rem" />
         </StyledSpotlightButton>
       </StyledSpotlightControlButtons>
     </StyledSpotlightsCarousel>

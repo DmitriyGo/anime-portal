@@ -14,6 +14,7 @@ export const StyledSpotlightButton = styled(Button)`
   aspect-ratio: 1;
   padding: 0;
   width: 3rem;
+  height: 3rem;
 
   display: flex;
   justify-content: center;
@@ -36,6 +37,7 @@ export const StyledSpotlightControlButtons = styled.div`
 export const StyledSpotlightsSlices = styled.div<{
   total: number;
   current: number;
+  showAnimtion: boolean;
 }>`
   z-index: 1;
   height: 100%;
@@ -44,5 +46,7 @@ export const StyledSpotlightsSlices = styled.div<{
   grid-template-columns: repeat(${({ total }) => total}, 100%);
   width: ${({ total }) => total * 100}%;
   transform: translateX(-${({ current }) => current * 100}%);
-  transition: transform 1s ease-in-out;
+
+  ${({ showAnimtion }) =>
+    showAnimtion && 'transition: transform 0.25s ease-in-out;'}
 `;
