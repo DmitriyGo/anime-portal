@@ -1,26 +1,23 @@
+import { Moon, Sun } from '@styled-icons/boxicons-regular';
+
 import { StyledThemeSelector } from './ThemeSelectorStyles';
 
-import { Button } from '@/components';
-import { setTheme, Theme } from '@/modules/Theme';
-import { useDispatch } from '@/store';
+import { Button, StyledIconButton } from '@/components';
+import { selectTheme, setTheme, Theme } from '@/modules/Theme';
+import { useDispatch, useSelector } from '@/store';
 
 const ThemeSelector = () => {
   const dispatch = useDispatch();
+  const theme = useSelector(selectTheme);
 
-  const handleOnDark = () => {
-    dispatch(setTheme(Theme.DARK));
+  const handleClick = () => {
+    dispatch(setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK));
   };
 
-  const handleOnLight = () => {
-    dispatch(setTheme(Theme.LIGHT));
-  };
+  const icon =
+    theme === Theme.DARK ? <Moon size="1.5rem" /> : <Sun size="1.5rem" />;
 
-  return (
-    <StyledThemeSelector>
-      <Button onClick={handleOnDark}>Dark</Button>
-      <Button onClick={handleOnLight}>Light</Button>
-    </StyledThemeSelector>
-  );
+  return <StyledIconButton onClick={handleClick}>{icon}</StyledIconButton>;
 };
 
 export default ThemeSelector;

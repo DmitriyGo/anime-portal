@@ -23,7 +23,6 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
   const [withAnimation, setWithAnimation] = useState<boolean>(true);
   const [currentSlide, setCurrentSlide] = useState<number>(1);
   const intervalIdRef = useRef<NodeJS.Timeout>();
-  const theme = useTheme();
 
   let imagesLinks = Object.values(images);
   imagesLinks = [
@@ -103,16 +102,10 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
         {carouselItems}
       </StyledSpotlightsSlices>
       <StyledSpotlightControlButtons>
-        <StyledSpotlightButton
-          color={theme.colorSecondary}
-          onClick={handlePrev}
-        >
+        <StyledSpotlightButton onClick={handlePrev}>
           <ArrowLeft size="3rem" />
         </StyledSpotlightButton>
-        <StyledSpotlightButton
-          color={theme.colorSecondary}
-          onClick={handleNext}
-        >
+        <StyledSpotlightButton onClick={handleNext}>
           <ArrowRight size="3rem" />
         </StyledSpotlightButton>
       </StyledSpotlightControlButtons>

@@ -17,7 +17,7 @@ export const StyledHeader = styled.header`
   justify-content: center;
   gap: 1rem;
   flex-direction: column;
-  padding: 0.75rem 2.5rem;
+  padding: 0.75rem 2rem;
   background-color: ${({ theme }) => theme.backGroundColor};
 `;
 

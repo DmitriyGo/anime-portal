@@ -60,7 +60,6 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
         {!queryLG && (
           <StyledHeaderBlock>
-            <ThemeSelector />
             <LanguageSelector />
           </StyledHeaderBlock>
         )}
@@ -78,15 +77,16 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
           {!querySD && (
             <>
-              <StyledIconButton>
-                <Notifications size={'1.5rem'} />
-              </StyledIconButton>
+              <ThemeSelector />
               <StyledIconButton>
                 <Globe size={'1.5rem'} />
               </StyledIconButton>
             </>
           )}
 
+          <StyledIconButton>
+            <Notifications size={'1.5rem'} />
+          </StyledIconButton>
           <StyledIconButton>
             <AccountCircle size={'1.5rem'} />
           </StyledIconButton>
