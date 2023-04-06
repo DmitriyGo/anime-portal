@@ -1,14 +1,22 @@
-import { Globe, Menu, Search } from '@styled-icons/boxicons-regular';
+import { Menu, Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
 import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { StyledHeader, StyledHeaderBlock } from './HeaderStyles';
+import {
+  StyledHeader,
+  StyledHeaderBlock,
+  StyledHeaderListBlock,
+  StyledHeaderListItem,
+} from './HeaderStyles';
 
 import logo from '/logo.png';
 
-import { LanguageSelector, SearchForm, ThemeSelector } from '..';
 import { SearchFormMode } from '../../helpers/types';
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
+import SearchForm from '../SearchForm/SearchForm';
+import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 import { StyledIconButton } from '@/components';
 import { COLORS, DEVICES } from '@/theme';
@@ -23,9 +31,8 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   const navigate = useNavigate();
 
-  const queryLG = useMediaQuery(DEVICES.LG);
   const queryMD = useMediaQuery(DEVICES.MD);
-  const querySD = useMediaQuery(DEVICES.XS);
+  const queryXS = useMediaQuery(DEVICES.XS);
 
   const handleSearchClick = () => {
     setExtendedSearch((show) => !show);
@@ -58,39 +65,43 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
           />
         </StyledHeaderBlock>
 
-        {!queryLG && (
-          <StyledHeaderBlock>
-            <LanguageSelector />
-          </StyledHeaderBlock>
-        )}
-
-        <StyledHeaderBlock>
+        <StyledHeaderListBlock>
           {queryMD && (
-            <StyledIconButton onClick={handleSearchClick}>
-              <Search
-                // TODO Icon button wrapper
-                color={showExtendedSearch ? COLORS.EMERALD : ''}
-                size={'1.5rem'}
-              />
-            </StyledIconButton>
-          )}
-
-          {!querySD && (
-            <>
-              <ThemeSelector />
-              <StyledIconButton>
-                <Globe size={'1.5rem'} />
+            <StyledHeaderListItem>
+              <StyledIconButton onClick={handleSearchClick}>
+                <Search
+                  // TODO Icon button wrapper
+                  color={showExtendedSearch ? COLORS.EMERALD : ''}
+                  size={'1.5rem'}
+                />
               </StyledIconButton>
-            </>
+            </StyledHeaderListItem>
           )}
 
-          <StyledIconButton>
-            <Notifications size={'1.5rem'} />
-          </StyledIconButton>
-          <StyledIconButton>
-            <AccountCircle size={'1.5rem'} />
-          </StyledIconButton>
-        </StyledHeaderBlock>
+          {!queryXS && (
+            <StyledHeaderListItem>
+              <ThemeSelector />
+            </StyledHeaderListItem>
+          )}
+
+          <StyledHeaderListItem>
+            <StyledIconButton>
+              <Notifications size={'1.5rem'} />
+            </StyledIconButton>
+          </StyledHeaderListItem>
+
+          {!queryXS && (
+            <StyledHeaderListItem>
+              <LanguageSelector />
+            </StyledHeaderListItem>
+          )}
+
+          <StyledHeaderListItem>
+            <StyledIconButton>
+              <AccountCircle size={'1.5rem'} />
+            </StyledIconButton>
+          </StyledHeaderListItem>
+        </StyledHeaderListBlock>
       </StyledHeaderBlock>
     </StyledHeader>
   );

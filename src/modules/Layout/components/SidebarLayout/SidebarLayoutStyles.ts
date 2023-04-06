@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Button } from '@/components';
+
 export const StyledSidebarLayout = styled.div`
   position: fixed;
   z-index: 20;
@@ -20,6 +22,10 @@ export const StyledSidebarLayout = styled.div`
 
 export const StyledSidebarBlock = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  gap: 2rem;
+`;
+
+export const StyledSidebarCloseButton = styled(Button)`
+  display: flex;
+  flex-grow: 1;
 `;

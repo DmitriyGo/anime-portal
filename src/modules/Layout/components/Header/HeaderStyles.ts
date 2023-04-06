@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { Dropdown } from '@/components';
 import { DEVICES } from '@/theme';
 
 export const StyledHeader = styled.header`
@@ -26,4 +27,15 @@ export const StyledHeaderBlock = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
+`;
+
+export const StyledHeaderListBlock = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+export const StyledHeaderListItem = styled.li`
+  list-style-type: none;
 `;

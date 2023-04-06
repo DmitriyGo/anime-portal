@@ -1,8 +1,13 @@
 import { FC, Fragment, MouseEvent } from 'react';
 import { useTheme } from 'styled-components';
 
-import { StyledSidebarBlock, StyledSidebarLayout } from './SidebarLayoutStyles';
-import { LanguageSelector, ThemeSelector } from '../';
+import {
+  StyledSidebarBlock,
+  StyledSidebarCloseButton,
+  StyledSidebarLayout,
+} from './SidebarLayoutStyles';
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
+import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 import { Button } from '@/components';
 import { DEVICES } from '@/theme';
@@ -14,7 +19,7 @@ interface SideBarLayoutProps {
 
 const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
   const theme = useTheme();
-  const queryLG = useMediaQuery(DEVICES.LG);
+  const queryXS = useMediaQuery(DEVICES.XS);
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -23,26 +28,17 @@ const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
   return (
     <StyledSidebarLayout onClick={handleClick}>
       <StyledSidebarBlock>
-        <Button color={theme.colorPrimary} onClick={onClose}>
+        <StyledSidebarCloseButton color={theme.colorPrimary} onClick={onClose}>
           Close Menu
-        </Button>
+        </StyledSidebarCloseButton>
       </StyledSidebarBlock>
 
-      {queryLG && (
+      {queryXS && (
         <StyledSidebarBlock>
           <ThemeSelector />
           <LanguageSelector />
         </StyledSidebarBlock>
       )}
-
-      <StyledSidebarBlock>
-        {new Array(15).fill(1).map((_, i) => (
-          <Fragment key={i}>
-            <p>Hello!</p>
-            <div>aboba</div>
-          </Fragment>
-        ))}
-      </StyledSidebarBlock>
     </StyledSidebarLayout>
   );
 };

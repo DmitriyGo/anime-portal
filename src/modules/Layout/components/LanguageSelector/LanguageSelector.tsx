@@ -1,8 +1,7 @@
+import { Globe } from '@styled-icons/boxicons-regular';
 import { useTranslation } from 'react-i18next';
 
-import { StyledLanguageSelector } from './LanguageSelectorStyles';
-
-import { Button } from '@/components';
+import { Button, Dropdown } from '@/components';
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
@@ -12,10 +11,10 @@ const LanguageSelector = () => {
   };
 
   return (
-    <StyledLanguageSelector>
-      <Button onClick={() => handleClick('uk')}>uk</Button>
-      <Button onClick={() => handleClick('en')}>en</Button>
-    </StyledLanguageSelector>
+    <Dropdown icon={<Globe size={'1.5rem'} />}>
+      <Button onClick={() => handleClick('en')}>English</Button>
+      <Button onClick={() => handleClick('uk')}>Українська</Button>
+    </Dropdown>
   );
 };
 
