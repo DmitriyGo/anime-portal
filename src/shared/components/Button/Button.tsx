@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 
 import { StyledButton } from './ButtonStyles';
-import useBackgroundColor from '../../utils/useBackgroundColor';
 
+import { useBackgroundColor } from '@/hooks';
 import { COLORS } from '@/theme';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

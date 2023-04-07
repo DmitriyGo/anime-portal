@@ -1,7 +1,6 @@
 import { Menu, Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
 import { FC, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -19,8 +18,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 import { StyledIconButton } from '@/components';
+import { useMediaQuery } from '@/hooks';
 import { COLORS, DEVICES } from '@/theme';
-import { useMediaQuery } from '@/utils';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -56,7 +55,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
             <Menu size={30} />
           </StyledIconButton>
           <StyledIconButton onClick={handleLogoClick}>
-            <img src={logo} height={'30px'} alt="logo.png" />
+            <img src={logo} height="30px" alt="logo.png" />
           </StyledIconButton>
 
           <SearchForm
@@ -72,7 +71,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
                 <Search
                   // TODO Icon button wrapper
                   color={showExtendedSearch ? COLORS.EMERALD : ''}
-                  size={'1.5rem'}
+                  size="1.5rem"
                 />
               </StyledIconButton>
             </StyledHeaderListItem>
@@ -86,7 +85,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
           <StyledHeaderListItem>
             <StyledIconButton>
-              <Notifications size={'1.5rem'} />
+              <Notifications size="1.5rem" />
             </StyledIconButton>
           </StyledHeaderListItem>
 
@@ -98,7 +97,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
           <StyledHeaderListItem>
             <StyledIconButton>
-              <AccountCircle size={'1.5rem'} />
+              <AccountCircle size="1.5rem" />
             </StyledIconButton>
           </StyledHeaderListItem>
         </StyledHeaderListBlock>
