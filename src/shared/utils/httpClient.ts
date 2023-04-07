@@ -16,7 +16,7 @@ interface TokenRefreshResponse {
 }
 
 const defaultConfig: AxiosRequestConfig = {
-  baseURL: import.meta.env.NEXT_PUBLIC_API_URL,
+  baseURL: import.meta.env.VITE_PUBLIC_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -49,7 +49,7 @@ httpClient.interceptors.response.use(
       try {
         const refreshResponse: AxiosResponse<TokenRefreshResponse> =
           await axios.post<TokenRefreshResponse>(
-            `${import.meta.env.NEXT_PUBLIC_API_URL}/auth/refresh-token`,
+            `${import.meta.env.VITE_PUBLIC_API_URL}/auth/refresh`,
             { refreshToken },
           );
         const newAccessToken: string = refreshResponse.data.accessToken;

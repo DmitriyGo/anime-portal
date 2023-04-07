@@ -3,7 +3,12 @@ export {
   type TUpdateUserDataFormValues,
   type TChangePasswordFormValues,
   type TForgotPasswordFormValues,
-  type TLogInFormValues,
   type TResetPasswordFormValues,
-  type TSignUpFormValues,
 } from './helpers/types';
+export { AUTH_SLICE_NAME } from './feature/models';
+export {
+  default as authReducer,
+  logOut,
+  resetAuthState,
+  setIsAuthorized,
+} from './feature/authSlice';
