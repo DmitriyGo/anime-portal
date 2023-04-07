@@ -1,8 +1,6 @@
 import { Moon, Sun } from '@styled-icons/boxicons-regular';
 
-import { StyledThemeSelector } from './ThemeSelectorStyles';
-
-import { Button, StyledIconButton } from '@/components';
+import { StyledIconButton } from '@/components';
 import { selectTheme, setTheme, Theme } from '@/modules/Theme';
 import { useDispatch, useSelector } from '@/store';
 

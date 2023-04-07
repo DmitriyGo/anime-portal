@@ -11,7 +11,7 @@ const LanguageSelector = () => {
   };
 
   return (
-    <Dropdown icon={<Globe size={'1.5rem'} />}>
+    <Dropdown icon={<Globe size="1.5rem" />}>
       <Button onClick={() => handleClick('en')}>English</Button>
       <Button onClick={() => handleClick('uk')}>Українська</Button>
     </Dropdown>

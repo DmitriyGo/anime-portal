@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { Dropdown } from '@/components';
 import { DEVICES } from '@/theme';
 
 export const StyledHeader = styled.header`

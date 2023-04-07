@@ -14,9 +14,7 @@ const Home = () => {
       <Button
         style={{ width: '90%', margin: 'auto', marginTop: '10px' }}
         color={theme.colorPrimary}
-        onClick={() => {
-          navigate('/todos');
-        }}
+        onClick={() => navigate('/todos')}
       >
         Todos
       </Button>
