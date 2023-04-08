@@ -1,12 +1,13 @@
-import { StringMap } from '@/modules/Home/helpers';
+import { StringMap } from '@/utils';
 
 const loadImages = async () => {
-  const imageModules = import.meta.glob(`../assets/spotlights/*.jpg`);
+  const imageModules = import.meta.glob<StringMap<string>>(
+    `../assets/spotlights/*.jpg`,
+  );
   const loadedImages: StringMap<string> = {};
 
   for (const path in imageModules) {
     const module = await imageModules[path]();
-    // @ts-ignore
     loadedImages[path] = module.default;
   }
 

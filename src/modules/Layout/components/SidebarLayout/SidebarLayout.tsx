@@ -1,4 +1,4 @@
-import { FC, Fragment, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 import { useTheme } from 'styled-components';
 
 import {
@@ -9,9 +9,8 @@ import {
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
-import { Button } from '@/components';
+import { useMediaQuery } from '@/hooks';
 import { DEVICES } from '@/theme';
-import { useMediaQuery } from '@/utils';
 
 interface SideBarLayoutProps {
   onClose: () => void;

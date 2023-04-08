@@ -1,6 +1,5 @@
 import { ArrowLeft, ArrowRight } from '@styled-icons/material-rounded/';
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { useTheme } from 'styled-components';
 
 import {
   StyledSpotlightButton,
@@ -8,10 +7,10 @@ import {
   StyledSpotlightsCarousel,
   StyledSpotlightsSlices,
 } from './SpotlightCarouselStyles';
-import { StringMap } from '../../helpers';
-import SpotlightCarouselItem from '../CarouselItem/SpotlightCarouselItem';
+import { StyledCarouselItem } from '../CarouselItem/SpotlightCarouselItemStyles';
 
-import { useTrottle } from '@/utils';
+import { useThrottle } from '@/hooks';
+import { StringMap } from '@/utils';
 
 const autoNextDelay = 7000;
 
@@ -40,12 +39,12 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
     }, autoNextDelay);
   };
 
-  const handlePrev = useTrottle(() => {
+  const handlePrev = useThrottle(() => {
     setCurrentSlide((prevSlide) => prevSlide - 1);
     resetInterval();
   }, 300);
 
-  const handleNext = useTrottle(() => {
+  const handleNext = useThrottle(() => {
     setCurrentSlide((prevSlide) => prevSlide + 1);
     resetInterval();
   }, 300);
@@ -89,7 +88,7 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
   }, [currentSlide, totalSlides]);
 
   const carouselItems = imagesLinks.map((imageUrl, index) => (
-    <SpotlightCarouselItem key={index} imageUrl={`${imageUrl}`} />
+    <StyledCarouselItem key={index} imageUrl={imageUrl} />
   ));
 
   return (

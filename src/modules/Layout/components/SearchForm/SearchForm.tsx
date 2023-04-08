@@ -38,7 +38,7 @@ const SearchForm: FC<SearchFormProps> = ({ mode, show }) => {
       />
       <StyledDiv>
         <StyledIconButton>
-          <Search size={'1.5rem'} color={COLORS.BLACK} />
+          <Search size="1.5rem" color={COLORS.BLACK} />
         </StyledIconButton>
         <StyledInputButton>{t('search_form_filter')}</StyledInputButton>
       </StyledDiv>

@@ -1,4 +1,4 @@
-import modifyColor from './colorModifier';
+import modifyColor from '../utils/colorModifier';
 
 const useBackgroundColor = (
   color: string,
@@ -10,4 +10,5 @@ const useBackgroundColor = (
     modifyColor(color, hoverAmount),
     modifyColor(color, activeAmount),
   ] as const;
+
 export default useBackgroundColor;

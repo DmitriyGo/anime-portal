@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import { SpotlightCarousel } from '../../components';
-import { StringMap } from '../../helpers';
 
 import loadImages from '@/mocks/carouselImages';
+import { StringMap } from '@/utils';
 
 const SpotlightsContainer = () => {
   const [images, setImages] = useState<StringMap<string>>({});

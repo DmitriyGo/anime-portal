@@ -27,7 +27,8 @@
       "@/ui": ["./src/shared/ui"],
       "@/utils": ["./src/shared/utils"],
       "@/constants/*": ["./src/shared/constants/*"],
-      "@/mocks/*": ["./src/mocks/*"]
+      "@/mocks/*": ["./src/mocks/*"],
+      "@/hooks": ["./src/shared/hooks"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lint-staged.config.js"],

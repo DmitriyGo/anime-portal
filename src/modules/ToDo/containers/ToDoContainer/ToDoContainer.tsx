@@ -1,10 +1,8 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 import { StyledToDoContainer } from './ToDoContainerStyles';
 import { ToDoItem } from '../../components';
 
-import { Button } from '@/components';
 import { TodoItem } from '@/models/todo.model';
 
 interface ToDoContainerProps {
