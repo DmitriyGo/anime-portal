@@ -3,21 +3,36 @@ import { useEffect, useState } from 'react';
 import { SpotlightCarousel } from '../../components';
 
 import loadImages from '@/mocks/carouselImages';
-import { StringMap } from '@/utils';
+import { HomePageApiResponse, getHomePageData } from '@/mocks/homePageApi';
+
+const prepareHomePageData = (images: string[], data: HomePageApiResponse[]) => {
+  return data.map((el, index) => ({
+    ...el,
+    image: images[index],
+  }));
+};
 
 const SpotlightsContainer = () => {
-  const [images, setImages] = useState<StringMap<string>>({});
+  const [images, setImages] = useState<string[]>([]);
+  const [homePageData, setHomePageData] = useState<HomePageApiResponse[]>([]);
 
   useEffect(() => {
     (async () => {
       const images = await loadImages();
+      const data = await getHomePageData();
+
       setImages(images);
+      setHomePageData(data);
     })();
   }, []);
 
   return (
     <>
-      {Object.keys(images).length > 0 && <SpotlightCarousel images={images} />}
+      {images.length && (
+        <SpotlightCarousel
+          homePageData={prepareHomePageData(images, homePageData)}
+        />
+      )}
     </>
   );
 };

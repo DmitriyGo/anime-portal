@@ -7,30 +7,29 @@ import {
   StyledSpotlightsCarousel,
   StyledSpotlightsSlices,
 } from './SpotlightCarouselStyles';
-import { StyledCarouselItem } from '../CarouselItem/SpotlightCarouselItemStyles';
+import CarouselItem from '../CarouselItem/CarouselItem';
 
 import { useThrottle } from '@/hooks';
-import { StringMap } from '@/utils';
+import { HomePageApiResponse } from '@/mocks/homePageApi';
 
 const autoNextDelay = 7000;
 
 interface SpotlightCarouselProps {
-  images: StringMap<string>;
+  homePageData: HomePageApiResponse[];
 }
 
-const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
+const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
   const [withAnimation, setWithAnimation] = useState<boolean>(true);
   const [currentSlide, setCurrentSlide] = useState<number>(1);
   const intervalIdRef = useRef<NodeJS.Timeout>();
 
-  let imagesLinks = Object.values(images);
-  imagesLinks = [
-    imagesLinks[imagesLinks.length - 1],
-    ...imagesLinks,
-    imagesLinks[0],
+  homePageData = [
+    homePageData[homePageData.length - 1],
+    ...homePageData,
+    homePageData[0],
   ];
 
-  const totalSlides = imagesLinks.length;
+  const totalSlides = homePageData.length;
 
   const resetInterval = () => {
     clearInterval(intervalIdRef.current!);
@@ -87,8 +86,8 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ images }) => {
     }
   }, [currentSlide, totalSlides]);
 
-  const carouselItems = imagesLinks.map((imageUrl, index) => (
-    <StyledCarouselItem key={index} imageUrl={imageUrl} />
+  const carouselItems = homePageData.map((data, index) => (
+    <CarouselItem key={index} {...data} />
   ));
 
   return (
