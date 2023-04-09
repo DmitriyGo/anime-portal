@@ -1,8 +1,9 @@
 import { SnackbarProvider } from 'notistack';
 import { HashRouter, Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import { LayoutContainer } from './modules/Layout';
-import { ThemeConfigProvider } from './modules/Theme';
+import { defaultTheme } from './modules/Theme';
 import { Home, Todos } from './pages';
 import GlobalStyles from './styles/globals';
 
@@ -10,7 +11,7 @@ const App = () => {
   return (
     <HashRouter>
       <SnackbarProvider>
-        <ThemeConfigProvider>
+        <ThemeProvider theme={defaultTheme}>
           <GlobalStyles />
           <Routes>
             <Route path="/" element={<LayoutContainer />}>
@@ -18,7 +19,7 @@ const App = () => {
               <Route path="/todos" element={<Todos />} />
             </Route>
           </Routes>
-        </ThemeConfigProvider>
+        </ThemeProvider>
       </SnackbarProvider>
     </HashRouter>
   );

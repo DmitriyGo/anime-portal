@@ -4,12 +4,10 @@ import storage from 'redux-persist/lib/storage';
 
 import { rootReducer } from './rootReducer';
 
-import { THEMING_SLICE_NAME } from '@/modules/Theme';
-
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [THEMING_SLICE_NAME],
+  whitelist: [],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

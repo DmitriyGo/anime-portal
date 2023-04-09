@@ -7,7 +7,6 @@ import {
   StyledSidebarLayout,
 } from './SidebarLayoutStyles';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
-import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 import { useMediaQuery } from '@/hooks';
 import { DEVICES } from '@/theme';
@@ -34,7 +33,6 @@ const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
 
       {queryXS && (
         <StyledSidebarBlock>
-          <ThemeSelector />
           <LanguageSelector />
         </StyledSidebarBlock>
       )}

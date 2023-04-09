@@ -1,17 +1,18 @@
+import { DefaultTheme } from 'styled-components';
+
 import { COLORS } from '@/theme';
 
-export interface BaseThemeInterface {
-  whiteColor: string;
-  blackColor: string;
-  radiusBase: number;
-  borderRadius: number;
-}
-
-const baseTheme: BaseThemeInterface = {
+const defaultTheme: DefaultTheme = {
   whiteColor: COLORS.WHITE,
   blackColor: COLORS.BLACK,
-  radiusBase: 8,
-  borderRadius: 8,
+  colorPrimary: COLORS.PRIMARY,
+  colorSecondary: COLORS.SECONDARY,
+  colorLink: COLORS.LINK,
+  colorLinkHover: COLORS.LINK_HOVER,
+  colorLinkActive: COLORS.LINK_ACTIVE,
+  backGroundColor: COLORS.BACKGROUND.DARK,
+  dividerColor: COLORS.BACKGROUND.LIGHT,
+  fontColor: COLORS.WHITE,
 };
 
-export default baseTheme;
+export default defaultTheme;

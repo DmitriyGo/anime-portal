@@ -43,26 +43,11 @@ export const COLORS = {
     LIGHT: '#FBFEF9',
     DARK: '#202125',
   },
-  PRIMARY: {
-    LIGHT: '#C3B4E4',
-    DARK: '#674299',
-  },
-  SECONDARY: {
-    LIGHT: '#de99b8',
-    DARK: '#A4506C',
-  },
-  LINK: {
-    LIGHT: '#8B5EB9',
-    DARK: '#AE8CD3',
-  },
-  LINK_HOVER: {
-    LIGHT: '#61417E',
-    DARK: '#9661A6',
-  },
-  LINK_ACTIVE: {
-    LIGHT: '#3D2650',
-    DARK: '#774982',
-  },
+  PRIMARY: '#674299',
+  SECONDARY: '#A4506C',
+  LINK: '#AE8CD3',
+  LINK_HOVER: '#9661A6',
+  LINK_ACTIVE: '#774982',
 };
 
 export const FONT_SIZES = {

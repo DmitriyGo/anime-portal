@@ -15,7 +15,6 @@ import logo from '/logo.png';
 import { SearchFormMode } from '../../helpers/types';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import SearchForm from '../SearchForm/SearchForm';
-import ThemeSelector from '../ThemeSelector/ThemeSelector';
 
 import { StyledIconButton } from '@/components';
 import { useMediaQuery } from '@/hooks';
@@ -74,12 +73,6 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
                   size="1.5rem"
                 />
               </StyledIconButton>
-            </StyledHeaderListItem>
-          )}
-
-          {!queryXS && (
-            <StyledHeaderListItem>
-              <ThemeSelector />
             </StyledHeaderListItem>
           )}
 
