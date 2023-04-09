@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 import { COLORS } from '@/theme';
 
-export const StyledDropdown = styled.div`
+export const StyledDropdown = styled.div<{ zindex?: number }>`
   position: relative;
   display: flex;
   padding: 0;
+  z-index: ${({ zindex }) => zindex ?? 0};
 `;
 
 export const StyledDropdownContent = styled.div`
@@ -13,7 +14,7 @@ export const StyledDropdownContent = styled.div`
   top: 32px;
   left: -40px;
   background-color: ${({ theme }) => theme.backGroundColor};
-  border: 1px solid #4a4a50;
+  border: 1px solid ${COLORS.GREY[800]};
   box-shadow: 5px 5px 10px ${COLORS.BACKGROUND.DARK};
   transform: translateX(-45%);
   border-radius: 0.5rem;

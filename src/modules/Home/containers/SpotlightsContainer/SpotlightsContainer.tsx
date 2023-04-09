@@ -8,6 +8,7 @@ import { HomePageApiResponse, getHomePageData } from '@/mocks/homePageApi';
 const prepareHomePageData = (images: string[], data: HomePageApiResponse[]) => {
   return data.map((el, index) => ({
     ...el,
+    id: index,
     image: images[index],
   }));
 };

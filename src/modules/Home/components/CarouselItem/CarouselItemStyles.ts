@@ -1,10 +1,13 @@
+import { ArrowRight } from '@styled-icons/material-rounded';
 import styled from 'styled-components';
 
 import { Button } from '@/components';
+import { COLORS } from '@/theme';
 
 export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
   position: relative;
   height: 100%;
+  width: 100vw;
   flex: 1 0 100%;
 
   padding: 6rem 4rem;
@@ -56,32 +59,30 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
 `;
 
 export const Series = styled.div`
-  font-size: 18px;
+  font-size: 1.2rem;
   line-height: 1.3em;
-  font-weight: 400;
-  margin-bottom: 20px;
-  color: #cae962;
+  margin-bottom: 1.5rem;
+  color: ${COLORS.LIGHT_GREEN};
 `;
 
 export const Title = styled.div`
-  > p {
-    font-size: 30px;
-    line-height: 1.1em;
-    margin-bottom: 20px;
-    //width: 70vw;
-  }
+  font-size: 2rem;
+  line-height: 1.1em;
+  margin-bottom: 1.5rem;
+  width: 70%;
 `;
 
-export const Description = styled.p`
-  > p {
-    font-size: 14px;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-line-clamp: 2;
-    //width: 50vw;
-    margin-bottom: 30px;
-    -webkit-box-orient: vertical;
-  }
+export const Description = styled.p<{ lines: number }>`
+  display: -webkit-box;
+  text-align: justify;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  width: 75%;
+
+  -webkit-line-clamp: ${({ lines }) => lines};
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
 `;
 
 export const ButtonsBlock = styled.div`
@@ -93,25 +94,21 @@ export const WatchNow = styled(Button)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: #cae962;
-  color: #111 !important;
-  border-color: #cae962;
-  border-radius: 30px;
+  background: ${COLORS.LIGHT_GREEN};
+  color: ${COLORS.BLACK} !important;
+  border-color: ${COLORS.LIGHT_GREEN};
+  border-radius: 2.5rem;
   padding: 0.5rem 2rem;
 
-  svg {
-    width: 1rem;
-  }
-
   :hover {
-    color: #fff !important;
+    color: ${COLORS.WHITE} !important;
   }
 `;
 
 export const Detail = styled(Button)`
-  background: #4a4b51;
-  border-color: #4a4b51;
-  color: #fff;
+  background: ${COLORS.GREY[900]};
+  border-color: ${COLORS.GREY[900]};
+  color: ${COLORS.WHITE};
   display: flex;
   align-items: center;
 
@@ -119,26 +116,30 @@ export const Detail = styled(Button)`
   padding: 0.5rem 2rem;
 `;
 
+export const ArrowIcon = styled(ArrowRight)`
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+  margin-right: -1rem;
+`;
+
 export const AdditionalInfo = styled.div`
   display: flex;
   gap: 1rem;
 
-  > div {
-    display: flex;
-    gap: 0.5rem;
-
-    svg {
-      width: 0.8rem;
-    }
-  }
-
   margin-bottom: 20px;
+`;
+
+export const AdditionalInfoBlock = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 `;
 
 export const Tag = styled.div<{ name: string }>`
   padding: 3px 4px;
-  background: ${({ name }) => (name === 'HD' ? '#cae962' : '#fff')};
-  color: #111;
+  background: ${({ name }) =>
+    name === 'HD' ? COLORS.LIGHT_GREEN : COLORS.WHITE};
+  color: ${COLORS.BLACK};
   border-radius: 5px;
   font-weight: 600;
   font-size: 12px;

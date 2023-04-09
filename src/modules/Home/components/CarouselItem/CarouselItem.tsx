@@ -3,7 +3,7 @@ import {
   ClockFill,
   PlayCircleFill,
 } from '@styled-icons/bootstrap';
-import { ArrowRight } from '@styled-icons/material-rounded';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -17,23 +17,24 @@ import {
   AdditionalInfo,
   Tag,
   Tags,
-} from './SpotlightCarouselItemStyles';
+  AdditionalInfoBlock,
+  ArrowIcon,
+} from './CarouselItemStyles';
 
 import { useMediaQuery } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
 import { DEVICES } from '@/theme';
 
-// eslint-disable-next-line react/function-component-definition
-export default function CarouselItem({
+const CarouselItem: FC<HomePageApiResponse> = ({
   image,
-  id,
+  id = 0,
   title,
   description,
   placement,
   duration,
   date,
   tags,
-}: HomePageApiResponse) {
+}) => {
   const { t } = useTranslation();
 
   const querySM = useMediaQuery(DEVICES.SM);
@@ -46,52 +47,49 @@ export default function CarouselItem({
 
   return (
     <StyledCarouselItem imageUrl={image as string}>
-      <div style={{ width: '100%' }}>
-        <Series>
-          #{id} {t('Spotilight')}
-        </Series>
-        <Title>
-          <p>{title}</p>
-        </Title>
-        {!querySM && (
-          <>
-            <AdditionalInfo>
-              <div>
-                <PlayCircleFill />
-                {placement}
-              </div>
-              <div>
-                <ClockFill />
-                {duration}
-              </div>
-              <div>
-                <CalendarFill />
-                {formattedDate}
-              </div>
-            </AdditionalInfo>
-            <Tags>
-              {tags.map((tag, index) => (
-                <Tag key={index} name={tag}>
-                  {tag}
-                </Tag>
-              ))}
-            </Tags>
-          </>
-        )}
-        <Description>
-          <p>{description}</p>
-        </Description>
-        <ButtonsBlock>
-          <WatchNow>
-            <PlayCircleFill />
-            {t('Watch Now')}
-          </WatchNow>
-          <Detail>
-            {t('Detail')}
-            <ArrowRight size="1.5rem" />
-          </Detail>
-        </ButtonsBlock>
-      </div>
+      <Series>
+        #{+id + 1} {t('Spotilight')}
+      </Series>
+      <Title>{title}</Title>
+      {!querySM && (
+        <>
+          <AdditionalInfo>
+            <AdditionalInfoBlock>
+              <PlayCircleFill size="0.8rem" />
+              {placement}
+            </AdditionalInfoBlock>
+            <AdditionalInfoBlock>
+              <ClockFill size="0.8rem" />
+              {duration}
+            </AdditionalInfoBlock>
+            <AdditionalInfoBlock>
+              <CalendarFill size="0.8rem" />
+              {formattedDate}
+            </AdditionalInfoBlock>
+          </AdditionalInfo>
+          <Tags>
+            {tags.map((tag, index) => (
+              <Tag key={index} name={tag}>
+                {tag}
+              </Tag>
+            ))}
+          </Tags>
+        </>
+      )}
+      <Description lines={!querySM ? 3 : 6}>{description}</Description>
+      <ButtonsBlock>
+        <WatchNow>
+          <PlayCircleFill size="1rem" />
+          {t('Watch Now')}
+        </WatchNow>
+        <Detail>
+          {t('Detail')}
+
+          <ArrowIcon size="3rem" />
+        </Detail>
+      </ButtonsBlock>
     </StyledCarouselItem>
   );
-}
+};
+
+export default CarouselItem;

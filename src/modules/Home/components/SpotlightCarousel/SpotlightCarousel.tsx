@@ -12,7 +12,7 @@ import CarouselItem from '../CarouselItem/CarouselItem';
 import { useThrottle } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
 
-const autoNextDelay = 7000;
+const autoNextDelay = 70000;
 
 interface SpotlightCarouselProps {
   homePageData: HomePageApiResponse[];
@@ -76,7 +76,7 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
         setWithAnimation(false);
         setCurrentSlide(1);
         setTimeout(() => setWithAnimation(true), 50);
-      }, 250);
+      }, 250); //TODO refactor
     } else if (currentSlide === 0) {
       setTimeout(() => {
         setWithAnimation(false);
