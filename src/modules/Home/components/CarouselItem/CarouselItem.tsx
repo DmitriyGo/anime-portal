@@ -48,7 +48,7 @@ const CarouselItem: FC<HomePageApiResponse> = ({
   return (
     <StyledCarouselItem imageUrl={image as string}>
       <Series>
-        #{+id + 1} {t('Spotilight')}
+        #{+id + 1} {t('spotilight')}
       </Series>
       <Title>{title}</Title>
       {!querySM && (
@@ -80,10 +80,10 @@ const CarouselItem: FC<HomePageApiResponse> = ({
       <ButtonsBlock>
         <WatchNow>
           <PlayCircleFill size="1rem" />
-          {t('Watch Now')}
+          {t('watch_now')}
         </WatchNow>
         <Detail>
-          {t('Detail')}
+          {t('details')}
 
           <ArrowIcon size="3rem" />
         </Detail>

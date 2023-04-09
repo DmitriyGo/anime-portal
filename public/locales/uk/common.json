@@ -1,5 +1,8 @@
 {
   "greeting_message": "Привіт, це наш дуже любимий Аніме Портал",
   "search_form_placeholder": "Пошук аніме...",
-  "search_form_filter": "Фільтр"
+  "search_form_filter": "Фільтр",
+  "spotilight": "Слайд",
+  "watch_now": "Дивитись зараз",
+  "details": "Докладніше"
 }
