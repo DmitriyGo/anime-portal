@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { SpotlightCarousel } from '../../components';
+import { SpotlightCarousel } from '../components';
 
 import loadImages from '@/mocks/carouselImages';
 import { HomePageApiResponse, getHomePageData } from '@/mocks/homePageApi';

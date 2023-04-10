@@ -8,3 +8,4 @@ export { default as modifyColor } from './colorModifier';
 export { default as appCookiesStorage } from './appCookies';
 export { default as showApiErrors } from './showApiErrors';
 export type { StringMap } from './TypeUtils';
+export { default as calculateBackgroundColor } from './calculateBackgroundColor';

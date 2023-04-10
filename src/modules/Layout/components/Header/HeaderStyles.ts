@@ -21,20 +21,20 @@ export const StyledHeader = styled.header`
   background-color: ${({ theme }) => theme.backGroundColor};
 `;
 
-export const StyledHeaderBlock = styled.div`
+export const StyledBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
 `;
 
-export const StyledHeaderListBlock = styled.ul`
+export const StyledListBlock = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
 `;
 
-export const StyledHeaderListItem = styled.li`
+export const StyledListItem = styled.li`
   list-style-type: none;
 `;

@@ -2,8 +2,8 @@ import { FC, MouseEvent } from 'react';
 import { useTheme } from 'styled-components';
 
 import {
-  StyledSidebarBlock,
-  StyledSidebarCloseButton,
+  StyledBlock,
+  StyledButton,
   StyledSidebarLayout,
 } from './SidebarLayoutStyles';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
@@ -25,16 +25,16 @@ const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
 
   return (
     <StyledSidebarLayout onClick={handleClick}>
-      <StyledSidebarBlock>
-        <StyledSidebarCloseButton color={theme.colorPrimary} onClick={onClose}>
+      <StyledBlock>
+        <StyledButton color={theme.colorPrimary} onClick={onClose}>
           Close Menu
-        </StyledSidebarCloseButton>
-      </StyledSidebarBlock>
+        </StyledButton>
+      </StyledBlock>
 
       {queryXS && (
-        <StyledSidebarBlock>
+        <StyledBlock>
           <LanguageSelector />
-        </StyledSidebarBlock>
+        </StyledBlock>
       )}
     </StyledSidebarLayout>
   );

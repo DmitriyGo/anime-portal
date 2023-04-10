@@ -8,17 +8,17 @@ import { useTranslation } from 'react-i18next';
 
 import {
   StyledCarouselItem,
-  Series,
-  Title,
-  Description,
-  ButtonsBlock,
-  WatchNow,
-  Detail,
-  AdditionalInfo,
-  Tag,
-  Tags,
-  AdditionalInfoBlock,
-  ArrowIcon,
+  StyledSeries,
+  StyledTitle,
+  StyledDescription,
+  StyledButtonsBlock,
+  StyledWatchNow,
+  StyledDetail,
+  StyledAdditionalInfo,
+  StyledTag,
+  StyledTags,
+  StyledAdditionalInfoBlock,
+  StyledArrowIcon,
 } from './CarouselItemStyles';
 
 import { useMediaQuery } from '@/hooks';
@@ -47,47 +47,49 @@ const CarouselItem: FC<HomePageApiResponse> = ({
 
   return (
     <StyledCarouselItem imageUrl={image as string}>
-      <Series>
+      <StyledSeries>
         #{+id + 1} {t('spotilight')}
-      </Series>
-      <Title>{title}</Title>
+      </StyledSeries>
+      <StyledTitle>{title}</StyledTitle>
       {!querySM && (
         <>
-          <AdditionalInfo>
-            <AdditionalInfoBlock>
+          <StyledAdditionalInfo>
+            <StyledAdditionalInfoBlock>
               <PlayCircleFill size="0.8rem" />
               {placement}
-            </AdditionalInfoBlock>
-            <AdditionalInfoBlock>
+            </StyledAdditionalInfoBlock>
+            <StyledAdditionalInfoBlock>
               <ClockFill size="0.8rem" />
               {duration}
-            </AdditionalInfoBlock>
-            <AdditionalInfoBlock>
+            </StyledAdditionalInfoBlock>
+            <StyledAdditionalInfoBlock>
               <CalendarFill size="0.8rem" />
               {formattedDate}
-            </AdditionalInfoBlock>
-          </AdditionalInfo>
-          <Tags>
+            </StyledAdditionalInfoBlock>
+          </StyledAdditionalInfo>
+          <StyledTags>
             {tags.map((tag, index) => (
-              <Tag key={index} name={tag}>
+              <StyledTag key={index} name={tag}>
                 {tag}
-              </Tag>
+              </StyledTag>
             ))}
-          </Tags>
+          </StyledTags>
         </>
       )}
-      <Description lines={!querySM ? 3 : 6}>{description}</Description>
-      <ButtonsBlock>
-        <WatchNow>
+      <StyledDescription lines={!querySM ? 3 : 6}>
+        {description}
+      </StyledDescription>
+      <StyledButtonsBlock>
+        <StyledWatchNow>
           <PlayCircleFill size="1rem" />
           {t('watch_now')}
-        </WatchNow>
-        <Detail>
+        </StyledWatchNow>
+        <StyledDetail>
           {t('details')}
 
-          <ArrowIcon size="3rem" />
-        </Detail>
-      </ButtonsBlock>
+          <StyledArrowIcon size="3rem" />
+        </StyledDetail>
+      </StyledButtonsBlock>
     </StyledCarouselItem>
   );
 };

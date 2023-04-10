@@ -6,11 +6,11 @@ export const StyledSpotlightsCarousel = styled.div`
   display: flex;
   overflow: hidden;
   width: 100%;
-  height: calc(100vh - 4.5rem); /* set your desired height */
+  height: calc(100vh - 4.5rem);
   z-index: 0;
 `;
 
-export const StyledSpotlightButton = styled(Button)`
+export const StyledButton = styled(Button)`
   aspect-ratio: 1;
   padding: 0;
   width: 3rem;
@@ -21,7 +21,7 @@ export const StyledSpotlightButton = styled(Button)`
   align-items: center;
 `;
 
-export const StyledSpotlightControlButtons = styled.div`
+export const StyledControlButtons = styled.div`
   position: absolute;
   bottom: 1.5rem;
   right: 3rem;
@@ -34,7 +34,7 @@ export const StyledSpotlightControlButtons = styled.div`
   gap: 0.5rem;
 `;
 
-export const StyledSpotlightsSlices = styled.div<{
+export const StyledSlices = styled.div<{
   total: number;
   current: number;
   showAnimtion: boolean;

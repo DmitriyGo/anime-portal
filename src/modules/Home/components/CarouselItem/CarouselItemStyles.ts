@@ -58,21 +58,21 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
   }
 `;
 
-export const Series = styled.div`
+export const StyledSeries = styled.div`
   font-size: 1.2rem;
   line-height: 1.3em;
   margin-bottom: 1.5rem;
   color: ${COLORS.LIGHT_GREEN};
 `;
 
-export const Title = styled.div`
+export const StyledTitle = styled.div`
   font-size: 2rem;
   line-height: 1.1em;
   margin-bottom: 1.5rem;
   width: 70%;
 `;
 
-export const Description = styled.p<{ lines: number }>`
+export const StyledDescription = styled.p<{ lines: number }>`
   display: -webkit-box;
   text-align: justify;
   -webkit-box-orient: vertical;
@@ -85,12 +85,13 @@ export const Description = styled.p<{ lines: number }>`
   margin-bottom: 2.5rem;
 `;
 
-export const ButtonsBlock = styled.div`
+export const StyledButtonsBlock = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 `;
 
-export const WatchNow = styled(Button)`
+export const StyledWatchNow = styled(Button)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -105,7 +106,7 @@ export const WatchNow = styled(Button)`
   }
 `;
 
-export const Detail = styled(Button)`
+export const StyledDetail = styled(Button)`
   background: ${COLORS.GREY[900]};
   border-color: ${COLORS.GREY[900]};
   color: ${COLORS.WHITE};
@@ -116,26 +117,26 @@ export const Detail = styled(Button)`
   padding: 0.5rem 2rem;
 `;
 
-export const ArrowIcon = styled(ArrowRight)`
+export const StyledArrowIcon = styled(ArrowRight)`
   margin-top: -1rem;
   margin-bottom: -1rem;
   margin-right: -1rem;
 `;
 
-export const AdditionalInfo = styled.div`
+export const StyledAdditionalInfo = styled.div`
   display: flex;
   gap: 1rem;
 
   margin-bottom: 20px;
 `;
 
-export const AdditionalInfoBlock = styled.div`
+export const StyledAdditionalInfoBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
 `;
 
-export const Tag = styled.div<{ name: string }>`
+export const StyledTag = styled.div<{ name: string }>`
   padding: 3px 4px;
   background: ${({ name }) =>
     name === 'HD' ? COLORS.LIGHT_GREEN : COLORS.WHITE};
@@ -145,7 +146,7 @@ export const Tag = styled.div<{ name: string }>`
   font-size: 12px;
 `;
 
-export const Tags = styled.div`
+export const StyledTags = styled.div`
   display: flex;
   gap: 0.5rem;
 `;

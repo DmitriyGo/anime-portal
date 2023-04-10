@@ -1,1 +1,1 @@
-export { default as SpotlightsContainer } from '@/modules/Home/containers/SpotlightsContainer/SpotlightsContainer';
+export { default as SpotlightsContainer } from '@/modules/Home/containers/SpotlightsContainer';

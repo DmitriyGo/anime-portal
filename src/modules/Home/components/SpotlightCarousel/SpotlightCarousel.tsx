@@ -2,17 +2,17 @@ import { ArrowLeft, ArrowRight } from '@styled-icons/material-rounded/';
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import {
-  StyledSpotlightButton,
-  StyledSpotlightControlButtons,
+  StyledButton,
+  StyledControlButtons,
   StyledSpotlightsCarousel,
-  StyledSpotlightsSlices,
+  StyledSlices,
 } from './SpotlightCarouselStyles';
 import CarouselItem from '../CarouselItem/CarouselItem';
 
 import { useThrottle } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
 
-const autoNextDelay = 70000;
+const autoNextDelay = 7000;
 
 interface SpotlightCarouselProps {
   homePageData: HomePageApiResponse[];
@@ -92,21 +92,21 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
 
   return (
     <StyledSpotlightsCarousel>
-      <StyledSpotlightsSlices
+      <StyledSlices
         showAnimtion={withAnimation}
         current={currentSlide}
         total={totalSlides}
       >
         {carouselItems}
-      </StyledSpotlightsSlices>
-      <StyledSpotlightControlButtons>
-        <StyledSpotlightButton onClick={handlePrev}>
+      </StyledSlices>
+      <StyledControlButtons>
+        <StyledButton onClick={handlePrev}>
           <ArrowLeft size="3rem" />
-        </StyledSpotlightButton>
-        <StyledSpotlightButton onClick={handleNext}>
+        </StyledButton>
+        <StyledButton onClick={handleNext}>
           <ArrowRight size="3rem" />
-        </StyledSpotlightButton>
-      </StyledSpotlightControlButtons>
+        </StyledButton>
+      </StyledControlButtons>
     </StyledSpotlightsCarousel>
   );
 };

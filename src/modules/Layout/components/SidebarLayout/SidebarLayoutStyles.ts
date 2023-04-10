@@ -20,12 +20,12 @@ export const StyledSidebarLayout = styled.div`
   gap: 2rem;
 `;
 
-export const StyledSidebarBlock = styled.div`
+export const StyledBlock = styled.div`
   display: flex;
   gap: 2rem;
 `;
 
-export const StyledSidebarCloseButton = styled(Button)`
+export const StyledButton = styled(Button)`
   display: flex;
   flex-grow: 1;
 `;

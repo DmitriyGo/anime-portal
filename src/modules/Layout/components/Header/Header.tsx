@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   StyledHeader,
-  StyledHeaderBlock,
-  StyledHeaderListBlock,
-  StyledHeaderListItem,
+  StyledBlock,
+  StyledListBlock,
+  StyledListItem,
 } from './HeaderStyles';
 
 import logo from '/logo.png';
@@ -48,8 +48,8 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   return (
     <StyledHeader>
-      <StyledHeaderBlock>
-        <StyledHeaderBlock>
+      <StyledBlock>
+        <StyledBlock>
           <StyledIconButton onClick={onMenuClick}>
             <Menu size={30} />
           </StyledIconButton>
@@ -61,11 +61,11 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
             show={showExtendedSearch}
             mode={queryMD ? SearchFormMode.extended : SearchFormMode.small}
           />
-        </StyledHeaderBlock>
+        </StyledBlock>
 
-        <StyledHeaderListBlock>
+        <StyledListBlock>
           {queryMD && (
-            <StyledHeaderListItem>
+            <StyledListItem>
               <StyledIconButton onClick={handleSearchClick}>
                 <Search
                   // TODO Icon button wrapper
@@ -73,28 +73,28 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
                   size="1.5rem"
                 />
               </StyledIconButton>
-            </StyledHeaderListItem>
+            </StyledListItem>
           )}
 
-          <StyledHeaderListItem>
+          <StyledListItem>
             <StyledIconButton>
               <Notifications size="1.5rem" />
             </StyledIconButton>
-          </StyledHeaderListItem>
+          </StyledListItem>
 
           {!queryXS && (
-            <StyledHeaderListItem>
+            <StyledListItem>
               <LanguageSelector />
-            </StyledHeaderListItem>
+            </StyledListItem>
           )}
 
-          <StyledHeaderListItem>
+          <StyledListItem>
             <StyledIconButton>
               <AccountCircle size="1.5rem" />
             </StyledIconButton>
-          </StyledHeaderListItem>
-        </StyledHeaderListBlock>
-      </StyledHeaderBlock>
+          </StyledListItem>
+        </StyledListBlock>
+      </StyledBlock>
     </StyledHeader>
   );
 };
