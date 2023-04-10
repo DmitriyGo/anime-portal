@@ -8,9 +8,13 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
   position: relative;
   height: 100%;
   width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   flex: 1 0 100%;
 
-  padding: 6rem 4rem;
+  padding: 0 4rem 4rem;
   z-index: 0;
 
   background-image: url(${({ imageUrl }) => imageUrl});

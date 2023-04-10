@@ -5,7 +5,7 @@ import { Button } from '@/components';
 export const StyledSpotlightsCarousel = styled.div`
   display: flex;
   overflow: hidden;
-  width: 100%;
+  width: 100vw;
   height: calc(100vh - 4.5rem);
   z-index: 0;
 `;
@@ -34,19 +34,14 @@ export const StyledControlButtons = styled.div`
   gap: 0.5rem;
 `;
 
-export const StyledSlices = styled.div<{
-  total: number;
-  current: number;
-  showAnimtion: boolean;
-}>`
+export const StyledSlices = styled.div`
   z-index: 1;
   height: 100%;
 
-  display: grid;
-  grid-template-columns: repeat(${({ total }) => total}, 100%);
-  width: ${({ total }) => total * 100}%;
-  transform: translateX(-${({ current }) => current * 100}%);
+  user-select: none;
 
-  ${({ showAnimtion }) =>
-    showAnimtion && 'transition: transform 0.25s ease-in-out;'}
+  display: flex;
+  width: 100vw;
+
+  transition: transform 0.25s ease-in-out;
 `;

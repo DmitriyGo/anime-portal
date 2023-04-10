@@ -1,5 +1,5 @@
 import { ArrowLeft, ArrowRight } from '@styled-icons/material-rounded/';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState, MouseEvent } from 'react';
 
 import {
   StyledButton,
@@ -9,19 +9,21 @@ import {
 } from './SpotlightCarouselStyles';
 import CarouselItem from '../CarouselItem/CarouselItem';
 
-import { useThrottle } from '@/hooks';
+import { useMousePosition, useThrottle } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
 
-const autoNextDelay = 7000;
-
+const autoNextDelay = 70000;
 interface SpotlightCarouselProps {
   homePageData: HomePageApiResponse[];
 }
 
 const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
-  const [withAnimation, setWithAnimation] = useState<boolean>(true);
+  const [mouseDown, setMouseDown] = useState<boolean>(false);
   const [currentSlide, setCurrentSlide] = useState<number>(1);
   const intervalIdRef = useRef<NodeJS.Timeout>();
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [startX, setClickX] = useState<number>(0);
 
   homePageData = [
     homePageData[homePageData.length - 1],
@@ -31,6 +33,12 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
 
   const totalSlides = homePageData.length;
 
+  const translate = (x: number, anim: string) => {
+    ref.current!.style.transitionDuration = anim;
+
+    ref.current!.style.transform = `translateX(-${x}px)`;
+  };
+
   const resetInterval = () => {
     clearInterval(intervalIdRef.current!);
     intervalIdRef.current = setInterval(() => {
@@ -39,12 +47,18 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
   };
 
   const handlePrev = useThrottle(() => {
-    setCurrentSlide((prevSlide) => prevSlide - 1);
+    setCurrentSlide((prevSlide) => {
+      translate((prevSlide - 1) * window.innerWidth, '300ms');
+      return prevSlide - 1;
+    });
     resetInterval();
   }, 300);
 
   const handleNext = useThrottle(() => {
-    setCurrentSlide((prevSlide) => prevSlide + 1);
+    setCurrentSlide((prevSlide) => {
+      translate((prevSlide + 1) * window.innerWidth, '300ms');
+      return prevSlide + 1;
+    });
     resetInterval();
   }, 300);
 
@@ -73,15 +87,13 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
   useEffect(() => {
     if (currentSlide === totalSlides - 1) {
       setTimeout(() => {
-        setWithAnimation(false);
         setCurrentSlide(1);
-        setTimeout(() => setWithAnimation(true), 50);
+        translate(1 * window.innerWidth, '0ms');
       }, 250); //TODO refactor
     } else if (currentSlide === 0) {
       setTimeout(() => {
-        setWithAnimation(false);
         setCurrentSlide(totalSlides - 2);
-        setTimeout(() => setWithAnimation(true), 50);
+        translate((totalSlides - 2) * window.innerWidth, '0ms');
       }, 250);
     }
   }, [currentSlide, totalSlides]);
@@ -90,12 +102,43 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
     <CarouselItem key={index} {...data} />
   ));
 
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    setMouseDown(true);
+    setClickX(event.clientX);
+  };
+
+  const handleMouseUp = (event: MouseEvent<HTMLDivElement>) => {
+    setMouseDown(false);
+
+    const width = window.innerWidth;
+    const move = event.clientX - startX;
+
+    if (Math.abs(move / width) < 0.3) {
+      translate(currentSlide * width, '300ms');
+    } else {
+      setCurrentSlide((prev) => {
+        translate((prev - Math.sign(move / width)) * width, '300ms');
+        return prev - Math.sign(move / width);
+      });
+    }
+  };
+
+  const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (mouseDown) {
+      const width = window.innerWidth;
+      const move = event.clientX - startX;
+
+      translate(currentSlide * width - move, '0ms');
+    }
+  };
+
   return (
     <StyledSpotlightsCarousel>
       <StyledSlices
-        showAnimtion={withAnimation}
-        current={currentSlide}
-        total={totalSlides}
+        ref={ref}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
       >
         {carouselItems}
       </StyledSlices>
