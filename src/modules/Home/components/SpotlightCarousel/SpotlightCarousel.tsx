@@ -9,58 +9,28 @@ import {
 } from './SpotlightCarouselStyles';
 import CarouselItem from '../CarouselItem/CarouselItem';
 
-import { useMousePosition, useThrottle } from '@/hooks';
+import { useThrottle } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
 
-const autoNextDelay = 70000;
+const autoNextDelay = 2000;
 interface SpotlightCarouselProps {
   homePageData: HomePageApiResponse[];
 }
 
 const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
-  const [mouseDown, setMouseDown] = useState<boolean>(false);
-  const [currentSlide, setCurrentSlide] = useState<number>(1);
+  const [mouseDown, setMouseDown] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(1);
   const intervalIdRef = useRef<NodeJS.Timeout>();
-  const ref = useRef<HTMLDivElement>(null);
+  const slicesRef = useRef<HTMLDivElement>(null);
+  const startXRef = useRef(0);
 
-  const [startX, setClickX] = useState<number>(0);
-
-  homePageData = [
+  const modifiedHomePageData = [
     homePageData[homePageData.length - 1],
     ...homePageData,
     homePageData[0],
   ];
 
-  const totalSlides = homePageData.length;
-
-  const translate = (x: number, anim: string) => {
-    ref.current!.style.transitionDuration = anim;
-
-    ref.current!.style.transform = `translateX(-${x}px)`;
-  };
-
-  const resetInterval = () => {
-    clearInterval(intervalIdRef.current!);
-    intervalIdRef.current = setInterval(() => {
-      handleNext();
-    }, autoNextDelay);
-  };
-
-  const handlePrev = useThrottle(() => {
-    setCurrentSlide((prevSlide) => {
-      translate((prevSlide - 1) * window.innerWidth, '300ms');
-      return prevSlide - 1;
-    });
-    resetInterval();
-  }, 300);
-
-  const handleNext = useThrottle(() => {
-    setCurrentSlide((prevSlide) => {
-      translate((prevSlide + 1) * window.innerWidth, '300ms');
-      return prevSlide + 1;
-    });
-    resetInterval();
-  }, 300);
+  const totalSlides = modifiedHomePageData.length;
 
   useEffect(() => {
     intervalIdRef.current = setInterval(() => {
@@ -88,7 +58,7 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
     if (currentSlide === totalSlides - 1) {
       setTimeout(() => {
         setCurrentSlide(1);
-        translate(1 * window.innerWidth, '0ms');
+        translate(window.innerWidth, '0ms');
       }, 250); //TODO refactor
     } else if (currentSlide === 0) {
       setTimeout(() => {
@@ -98,44 +68,82 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
     }
   }, [currentSlide, totalSlides]);
 
-  const carouselItems = homePageData.map((data, index) => (
-    <CarouselItem key={index} {...data} />
-  ));
+  //* HELPERS *//
 
-  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
-    setMouseDown(true);
-    setClickX(event.clientX);
+  const translate = (x: number, anim: string) => {
+    requestAnimationFrame(() => {
+      slicesRef.current!.style.transitionDuration = anim;
+      slicesRef.current!.style.transform = `translateX(-${x}px)`;
+    });
   };
 
-  const handleMouseUp = (event: MouseEvent<HTMLDivElement>) => {
-    setMouseDown(false);
+  const resetInterval = () => {
+    clearInterval(intervalIdRef.current!);
+    intervalIdRef.current = setInterval(() => {
+      handleNext();
+    }, autoNextDelay);
+  };
 
-    const width = window.innerWidth;
-    const move = event.clientX - startX;
+  //* CAROUSEL HANDLERS *//
 
-    if (Math.abs(move / width) < 0.3) {
-      translate(currentSlide * width, '300ms');
-    } else {
-      setCurrentSlide((prev) => {
-        translate((prev - Math.sign(move / width)) * width, '300ms');
-        return prev - Math.sign(move / width);
-      });
+  const handlePrev = useThrottle(() => {
+    setCurrentSlide((prevSlide) => {
+      translate((prevSlide - 1) * window.innerWidth, '300ms');
+      return prevSlide - 1;
+    });
+    resetInterval();
+  }, 300);
+
+  const handleNext = useThrottle(() => {
+    setCurrentSlide((prevSlide) => {
+      translate((prevSlide + 1) * window.innerWidth, '300ms');
+      return prevSlide + 1;
+    });
+    resetInterval();
+  }, 300);
+
+  //* DRAG AND DROP HANDLERS *//
+
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    //* Check if the event was called with the left mouse button *//
+    if (event.button === 0) {
+      setMouseDown(true);
+      startXRef.current = event.clientX;
+      resetInterval();
     }
   };
 
   const handleMouseMove = (event: MouseEvent<HTMLDivElement>) => {
     if (mouseDown) {
-      const width = window.innerWidth;
-      const move = event.clientX - startX;
+      resetInterval();
 
-      translate(currentSlide * width - move, '0ms');
+      const distance = event.clientX - startXRef.current;
+
+      translate(currentSlide * window.innerWidth - distance, '0ms');
     }
   };
+
+  const handleMouseUp = (event: MouseEvent<HTMLDivElement>) => {
+    setMouseDown(false);
+    const distance = startXRef.current - event.clientX;
+
+    if (distance === 0) return;
+
+    const slideTo =
+      currentSlide + Math.round(distance / window.innerWidth / 0.4);
+    setCurrentSlide(slideTo);
+    translate(slideTo * window.innerWidth, '300ms');
+    resetInterval();
+  };
+
+  const carouselItems = modifiedHomePageData.map((data, index) => (
+    <CarouselItem key={index} {...data} />
+  ));
 
   return (
     <StyledSpotlightsCarousel>
       <StyledSlices
-        ref={ref}
+        ref={slicesRef}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
