@@ -3,7 +3,7 @@ import {
   ClockFill,
   PlayCircleFill,
 } from '@styled-icons/bootstrap';
-import { FC } from 'react';
+import { ButtonHTMLAttributes, FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -45,6 +45,11 @@ const CarouselItem: FC<HomePageApiResponse> = ({
     year: 'numeric',
   });
 
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    console.log('hello world');
+  };
+
   return (
     <StyledCarouselItem imageUrl={image as string}>
       <StyledSeries>
@@ -80,11 +85,11 @@ const CarouselItem: FC<HomePageApiResponse> = ({
         {description}
       </StyledDescription>
       <StyledButtonsBlock>
-        <StyledWatchNow>
+        <StyledWatchNow onClick={handleClick}>
           <PlayCircleFill size="1rem" />
           {t('watch_now')}
         </StyledWatchNow>
-        <StyledDetail>
+        <StyledDetail onClick={handleClick}>
           {t('details')}
 
           <StyledArrowIcon size="3rem" />
