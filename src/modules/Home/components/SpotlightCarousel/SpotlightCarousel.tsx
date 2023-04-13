@@ -80,7 +80,7 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
       setTimeout(() => {
         setCurrentSlide(1);
         translate(window.innerWidth, 0);
-      }, nextSlideDelay); //TODO refactor
+      }, nextSlideDelay);
     } else if (currentSlide === 0) {
       setTimeout(() => {
         setCurrentSlide(totalSlides - 2);
