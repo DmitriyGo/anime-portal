@@ -9,3 +9,5 @@ export { default as appCookiesStorage } from './appCookies';
 export { default as showApiErrors } from './showApiErrors';
 export type { StringMap } from './TypeUtils';
 export { default as calculateBackgroundColor } from './calculateBackgroundColor';
+export { default as createAnimation } from './createAnimation';
+export { parseLengthAndUnit, cssValue } from './unitConverter';

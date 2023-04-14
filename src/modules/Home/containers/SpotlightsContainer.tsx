@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { SpotlightCarousel } from '../components';
 
+import { FullPageLoader } from '@/components';
 import loadImages from '@/mocks/carouselImages';
 import { HomePageApiResponse, getHomePageData } from '@/mocks/homePageApi';
 
@@ -16,6 +17,7 @@ const prepareHomePageData = (images: string[], data: HomePageApiResponse[]) => {
 const SpotlightsContainer = () => {
   const [images, setImages] = useState<string[]>([]);
   const [homePageData, setHomePageData] = useState<HomePageApiResponse[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -24,8 +26,13 @@ const SpotlightsContainer = () => {
 
       setImages(images);
       setHomePageData(data);
+      setLoading(false);
     })();
   }, []);
+
+  if (loading) {
+    return <FullPageLoader />;
+  }
 
   let content;
 
