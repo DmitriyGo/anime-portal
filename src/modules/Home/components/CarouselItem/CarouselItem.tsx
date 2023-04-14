@@ -47,7 +47,7 @@ const CarouselItem: FC<HomePageApiResponse> = ({
 
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
-    console.log('hello world');
+    alert('click');
   };
 
   return (

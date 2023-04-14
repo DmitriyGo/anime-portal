@@ -8,10 +8,12 @@ import { calculateBackgroundColor } from '@/utils';
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rounded?: 'none' | 'light' | 'strong';
   color?: string;
+  fontColor?: string;
 }
 
 const Button: FC<ButtonProps> = ({
   color = COLORS.DARK_GREY[300],
+  fontColor = COLORS.BACKGROUND.LIGHT,
   rounded = 'light',
   children,
   ...rest
@@ -34,6 +36,7 @@ const Button: FC<ButtonProps> = ({
       bgHover={bgHover}
       bgActive={bgActive}
       bRadius={radiusValues[rounded]}
+      color={fontColor}
       {...rest}
     >
       {children}

@@ -10,14 +10,14 @@ export const StyledSidebarLayout = styled.div`
   bottom: 0;
   overflow-y: auto;
 
-  width: 260px;
+  width: 16.5rem;
   padding: 1rem;
 
   background: ${({ theme }) => theme.backGroundColor};
 
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 `;
 
 export const StyledBlock = styled.div`

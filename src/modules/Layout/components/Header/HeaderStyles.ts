@@ -25,14 +25,24 @@ export const StyledBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   gap: 1.5rem;
+
+  @media ${DEVICES.XS} {
+    gap: 1rem;
+  }
 `;
 
 export const StyledListBlock = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   gap: 1.5rem;
+
+  @media ${DEVICES.XS} {
+    gap: 1rem;
+  }
 `;
 
 export const StyledListItem = styled.li`

@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-import { COLORS } from '@/theme';
-
 interface StyledButtonProps {
-  bg?: string;
-  bgHover?: string;
-  bgActive?: string;
-  bRadius?: string;
+  bg: string;
+  bgHover: string;
+  bgActive: string;
+  bRadius: string;
+  color: string;
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -32,7 +31,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
   line-height: 1.5;
   font-size: 1rem;
 
-  color: ${COLORS.WHITE} !important;
+  color: ${({ color }) => color} !important;
   cursor: pointer;
   transition: all 0.15s ease;
 `;

@@ -31,6 +31,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   const queryMD = useMediaQuery(DEVICES.MD);
   const queryXS = useMediaQuery(DEVICES.XS);
+  const queryXXS = useMediaQuery(DEVICES.XXS);
 
   const handleSearchClick = () => {
     setExtendedSearch((show) => !show);
@@ -53,9 +54,11 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
           <StyledIconButton onClick={onMenuClick}>
             <Menu size={30} />
           </StyledIconButton>
-          <StyledIconButton onClick={handleLogoClick}>
-            <img src={logo} height="30px" alt="logo.png" />
-          </StyledIconButton>
+          {!queryXXS && (
+            <StyledIconButton onClick={handleLogoClick}>
+              <img src={logo} height="30px" alt="logo.png" />
+            </StyledIconButton>
+          )}
 
           <SearchForm
             show={showExtendedSearch}
@@ -84,7 +87,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
           {!queryXS && (
             <StyledListItem>
-              <LanguageSelector />
+              <LanguageSelector top="2rem" left="-2.5rem" />
             </StyledListItem>
           )}
 

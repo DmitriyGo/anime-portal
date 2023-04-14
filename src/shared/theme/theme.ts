@@ -1,6 +1,14 @@
 export const COLORS = {
   WHITE: '#FFFFFF',
   BLACK: '#121212',
+  LIGHT_GREEN: '#CAE962',
+  EMERALD: '#00FFB7',
+  PRIMARY: '#674299',
+  SECONDARY: '#7F5A83',
+  BACKGROUND: {
+    LIGHT: '#FBFEF9',
+    DARK: '#202125',
+  },
   DARK_GREY: {
     100: '#222222',
     150: '#1e1e1f',
@@ -36,18 +44,6 @@ export const COLORS = {
     800: '#23202f',
     900: '#0a0715',
   },
-  LIGHT_GREEN: '#CAE962',
-  EMERALD: '#00FFB7',
-  DIVIDER: '#BDBDBD',
-  BACKGROUND: {
-    LIGHT: '#FBFEF9',
-    DARK: '#202125',
-  },
-  PRIMARY: '#674299',
-  SECONDARY: '#A4506C',
-  LINK: '#AE8CD3',
-  LINK_HOVER: '#9661A6',
-  LINK_ACTIVE: '#774982',
 };
 
 export const FONT_SIZES = {
@@ -71,6 +67,7 @@ export const FONT_SIZES = {
 };
 
 const SCREEN_SIZES = {
+  XXS: '376px',
   XS: '576px',
   SM: '768px',
   MD: '992px',
@@ -80,6 +77,7 @@ const SCREEN_SIZES = {
 };
 
 export const DEVICES = {
+  XXS: `(max-width: ${SCREEN_SIZES.XXS})`,
   XS: `(max-width: ${SCREEN_SIZES.XS})`,
   SM: `(max-width: ${SCREEN_SIZES.SM})`,
   MD: `(max-width: ${SCREEN_SIZES.MD})`,

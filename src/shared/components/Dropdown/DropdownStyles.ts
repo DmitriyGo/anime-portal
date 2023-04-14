@@ -9,10 +9,10 @@ export const StyledDropdown = styled.div<{ zindex?: number }>`
   z-index: ${({ zindex }) => zindex ?? 0};
 `;
 
-export const StyledDropdownContent = styled.div`
+export const StyledDropdownContent = styled.div<{ top: string; left: string }>`
   position: absolute;
-  top: 32px;
-  left: -40px;
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
   background-color: ${({ theme }) => theme.backGroundColor};
   border: 1px solid ${COLORS.GREY[800]};
   box-shadow: 5px 5px 10px ${COLORS.BACKGROUND.DARK};

@@ -7,9 +7,6 @@ declare module 'styled-components' {
     dividerColor: string;
     colorPrimary: string;
     colorSecondary: string;
-    colorLink: string;
-    colorLinkHover: string;
-    colorLinkActive: string;
     backGroundColor: string;
     fontColor: string;
   }

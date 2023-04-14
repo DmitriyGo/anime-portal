@@ -27,15 +27,17 @@ const SpotlightsContainer = () => {
     })();
   }, []);
 
-  return (
-    <>
-      {images.length && (
-        <SpotlightCarousel
-          homePageData={prepareHomePageData(images, homePageData)}
-        />
-      )}
-    </>
-  );
+  let content;
+
+  if (images.length) {
+    content = (
+      <SpotlightCarousel
+        homePageData={prepareHomePageData(images, homePageData)}
+      />
+    );
+  }
+
+  return <>{content}</>;
 };
 
 export default SpotlightsContainer;
