@@ -45,11 +45,6 @@ const CarouselItem: FC<HomePageApiResponse> = ({
     year: 'numeric',
   });
 
-  const handleClick = (e: MouseEvent) => {
-    e.preventDefault();
-    alert('click');
-  };
-
   return (
     <StyledCarouselItem imageUrl={image as string}>
       <StyledSeries>
@@ -85,11 +80,11 @@ const CarouselItem: FC<HomePageApiResponse> = ({
         {description}
       </StyledDescription>
       <StyledButtonsBlock>
-        <StyledWatchNow onClick={handleClick}>
+        <StyledWatchNow>
           <PlayCircleFill size="1rem" />
           {t('watch_now')}
         </StyledWatchNow>
-        <StyledDetail onClick={handleClick}>
+        <StyledDetail>
           {t('details')}
 
           <StyledArrowIcon size="3rem" />
