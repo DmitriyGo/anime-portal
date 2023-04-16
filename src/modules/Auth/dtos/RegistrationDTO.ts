@@ -4,13 +4,13 @@ import { IRegistrationDTO } from '@/models/auth.model';
 import { UserRole } from '@/models/user.model';
 
 class RegistrationDTO implements IRegistrationDTO {
-  role;
-  firstName;
-  lastName;
-  email;
-  password;
-  passwordConfirmation;
-  emailSubscription;
+  role: UserRole;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+  emailSubscription: boolean;
 
   constructor(values: TRegisterFormValues & { role: UserRole }) {
     this.role = values.role;

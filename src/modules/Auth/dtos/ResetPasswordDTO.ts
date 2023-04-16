@@ -3,10 +3,10 @@ import { AuthFieldsNames, TResetPasswordFormValues } from '../helpers/types';
 import { IResetPasswordDTO } from '@/models/auth.model';
 
 class ResetPasswordDTO implements IResetPasswordDTO {
-  email;
-  token;
-  password;
-  password_confirmed;
+  email: string;
+  token: string;
+  password: string;
+  password_confirmed: string;
 
   constructor(
     values: TResetPasswordFormValues & { email: string; token: string },

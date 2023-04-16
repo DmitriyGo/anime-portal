@@ -6,14 +6,14 @@ import { StyledIconButton } from '../IconButton/IconButton';
 import { useOutsideDetect } from '@/hooks';
 
 interface DropdownProps {
-  zindex?: number;
+  zIndex?: number;
   top: string;
   left: string;
   icon?: ReactNode;
   children?: ReactNode;
 }
 
-const Dropdown: FC<DropdownProps> = ({ children, icon, zindex, top, left }) => {
+const Dropdown: FC<DropdownProps> = ({ children, icon, zIndex, top, left }) => {
   const [open, setOpen] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +27,7 @@ const Dropdown: FC<DropdownProps> = ({ children, icon, zindex, top, left }) => {
   };
 
   return (
-    <StyledDropdown ref={dropdownRef} zindex={zindex}>
+    <StyledDropdown ref={dropdownRef} zIndex={zIndex}>
       <StyledIconButton onClick={handleButtonClick}>{icon}</StyledIconButton>
       {open && (
         <StyledDropdownContent

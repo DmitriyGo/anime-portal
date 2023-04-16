@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 import { COLORS } from '@/theme';
 
-export const StyledDropdown = styled.div<{ zindex?: number }>`
+export const StyledDropdown = styled.div<{ zIndex?: number }>`
   position: relative;
   display: flex;
   padding: 0;
-  z-index: ${({ zindex }) => zindex ?? 0};
+  z-index: ${({ zIndex }) => zIndex ?? 0};
 `;
 
 export const StyledDropdownContent = styled.div<{ top: string; left: string }>`

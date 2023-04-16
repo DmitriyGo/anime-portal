@@ -140,10 +140,7 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
   const handleDragStart = (
     event: MouseEvent<HTMLDivElement> & TouchEvent<HTMLDivElement>,
   ) => {
-    if (
-      ('button' in event && event.button === 0) ||
-      event.type === 'touchstart'
-    ) {
+    if (event['button'] === 0 || event.type === 'touchstart') {
       setMouseDown(true);
       startXRef.current =
         event.type === 'mousedown' ? event.clientX : event.touches[0].clientX;

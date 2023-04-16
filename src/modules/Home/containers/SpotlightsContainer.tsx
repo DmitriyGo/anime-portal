@@ -34,17 +34,15 @@ const SpotlightsContainer = () => {
     return <FullPageLoader />;
   }
 
-  let content;
-
-  if (images.length) {
-    content = (
-      <SpotlightCarousel
-        homePageData={prepareHomePageData(images, homePageData)}
-      />
-    );
-  }
-
-  return <>{content}</>;
+  return (
+    <>
+      {images.length !== 0 ? (
+        <SpotlightCarousel
+          homePageData={prepareHomePageData(images, homePageData)}
+        />
+      ) : null}
+    </>
+  );
 };
 
 export default SpotlightsContainer;

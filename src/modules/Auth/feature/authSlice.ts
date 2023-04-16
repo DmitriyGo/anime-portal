@@ -30,12 +30,12 @@ export const authSlice = createSlice({
       state.isAuthorized = action.payload;
     },
     resetAuthState() {
-      return { ...initialState };
+      return initialState;
     },
     logOut() {
       appCookiesStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
-      localStorage.clear();
-      return { ...initialState };
+
+      return initialState;
     },
   },
   extraReducers: (builder) => {

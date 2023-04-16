@@ -17,7 +17,7 @@ const LanguageSelector: FC<LanguageSelectorProps> = ({ top, left }) => {
   };
 
   return (
-    <Dropdown icon={<Globe size="1.5rem" />} zindex={15} top={top} left={left}>
+    <Dropdown icon={<Globe size="1.5rem" />} zIndex={15} top={top} left={left}>
       <Button onClick={() => handleClick('en')}>English</Button>
       <Button onClick={() => handleClick('uk')}>Українська</Button>
     </Dropdown>
