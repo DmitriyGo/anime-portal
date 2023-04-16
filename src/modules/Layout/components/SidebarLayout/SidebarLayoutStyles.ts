@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Button } from '@/components';
+
 export const StyledSidebarLayout = styled.div`
   position: fixed;
   z-index: 20;
@@ -8,18 +10,22 @@ export const StyledSidebarLayout = styled.div`
   bottom: 0;
   overflow-y: auto;
 
-  width: 260px;
+  width: 16.5rem;
   padding: 1rem;
 
   background: ${({ theme }) => theme.backGroundColor};
 
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+`;
+
+export const StyledBlock = styled.div`
+  display: flex;
   gap: 2rem;
 `;
 
-export const StyledSidebarBlock = styled.div`
+export const StyledButton = styled(Button)`
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-grow: 1;
 `;

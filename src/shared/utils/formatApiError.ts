@@ -2,7 +2,7 @@ import { isHttpClientError } from './httpClient';
 
 import { ResponseStatusCode } from '@/constants/common';
 import { IApiError, IApiResponseError } from '@/models/apiError.model';
-import { StringMap } from '@/modules/Home/helpers';
+import { StringMap } from '@/utils';
 
 const formatApiError = (err: unknown): IApiError => {
   const error: IApiError = {

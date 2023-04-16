@@ -1,5 +1,5 @@
 import { ResponseStatusCode } from '@/constants/common';
-import { StringMap } from '@/modules/Home/helpers';
+import { StringMap } from '@/utils';
 
 export type TApiFieldErrors = StringMap<string[]>;
 

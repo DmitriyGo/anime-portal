@@ -1,18 +1,24 @@
-import { Globe, Menu, Search } from '@styled-icons/boxicons-regular';
+import { Menu, Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { StyledHeader, StyledHeaderBlock } from './HeaderStyles';
+import {
+  StyledHeader,
+  StyledBlock,
+  StyledListBlock,
+  StyledListItem,
+} from './HeaderStyles';
 
 import logo from '/logo.png';
 
-import { LanguageSelector, SearchForm, ThemeSelector } from '..';
 import { SearchFormMode } from '../../helpers/types';
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
+import SearchForm from '../SearchForm/SearchForm';
 
 import { StyledIconButton } from '@/components';
+import { useMediaQuery } from '@/hooks';
 import { COLORS, DEVICES } from '@/theme';
-import { useMediaQuery } from '@/utils';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -23,8 +29,9 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   const navigate = useNavigate();
 
-  const queryLG = useMediaQuery(DEVICES.LG);
   const queryMD = useMediaQuery(DEVICES.MD);
+  const queryXS = useMediaQuery(DEVICES.XS);
+  const queryXXS = useMediaQuery(DEVICES.XXS);
 
   const handleSearchClick = () => {
     setExtendedSearch((show) => !show);
@@ -42,50 +49,55 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   return (
     <StyledHeader>
-      <StyledHeaderBlock>
-        <StyledHeaderBlock>
+      <StyledBlock>
+        <StyledBlock>
           <StyledIconButton onClick={onMenuClick}>
             <Menu size={30} />
           </StyledIconButton>
-          <StyledIconButton onClick={handleLogoClick}>
-            <img src={logo} height={'30px'} alt="logo.png" />
-          </StyledIconButton>
+          {!queryXXS && (
+            <StyledIconButton onClick={handleLogoClick}>
+              <img src={logo} height="30px" alt="logo.png" />
+            </StyledIconButton>
+          )}
 
           <SearchForm
             show={showExtendedSearch}
             mode={queryMD ? SearchFormMode.extended : SearchFormMode.small}
           />
-        </StyledHeaderBlock>
+        </StyledBlock>
 
-        {!queryLG && (
-          <StyledHeaderBlock>
-            <ThemeSelector />
-            <LanguageSelector />
-          </StyledHeaderBlock>
-        )}
-
-        <StyledHeaderBlock>
+        <StyledListBlock>
           {queryMD && (
-            <StyledIconButton onClick={handleSearchClick}>
-              <Search
-                // TODO Icon button wrapper
-                color={showExtendedSearch ? COLORS.EMERALD : ''}
-                size={'1.5rem'}
-              />
-            </StyledIconButton>
+            <StyledListItem>
+              <StyledIconButton onClick={handleSearchClick}>
+                <Search
+                  // TODO Icon button wrapper
+                  color={showExtendedSearch ? COLORS.EMERALD : ''}
+                  size="1.5rem"
+                />
+              </StyledIconButton>
+            </StyledListItem>
           )}
 
-          <StyledIconButton>
-            <Notifications size={'1.5rem'} />
-          </StyledIconButton>
-          <StyledIconButton>
-            <Globe size={'1.5rem'} />
-          </StyledIconButton>
-          <StyledIconButton>
-            <AccountCircle size={'1.5rem'} />
-          </StyledIconButton>
-        </StyledHeaderBlock>
-      </StyledHeaderBlock>
+          <StyledListItem>
+            <StyledIconButton>
+              <Notifications size="1.5rem" />
+            </StyledIconButton>
+          </StyledListItem>
+
+          {!queryXS && (
+            <StyledListItem>
+              <LanguageSelector top="2rem" left="-2.5rem" />
+            </StyledListItem>
+          )}
+
+          <StyledListItem>
+            <StyledIconButton>
+              <AccountCircle size="1.5rem" />
+            </StyledIconButton>
+          </StyledListItem>
+        </StyledListBlock>
+      </StyledBlock>
     </StyledHeader>
   );
 };

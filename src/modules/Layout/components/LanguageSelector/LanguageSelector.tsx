@@ -1,10 +1,15 @@
+import { Globe } from '@styled-icons/boxicons-regular';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { StyledLanguageSelector } from './LanguageSelectorStyles';
+import { Button, Dropdown } from '@/components';
 
-import { Button } from '@/components';
+interface LanguageSelectorProps {
+  top: string;
+  left: string;
+}
 
-const LanguageSelector = () => {
+const LanguageSelector: FC<LanguageSelectorProps> = ({ top, left }) => {
   const { i18n } = useTranslation();
 
   const handleClick = async (lang: string) => {
@@ -12,10 +17,10 @@ const LanguageSelector = () => {
   };
 
   return (
-    <StyledLanguageSelector>
-      <Button onClick={() => handleClick('uk')}>uk</Button>
-      <Button onClick={() => handleClick('en')}>en</Button>
-    </StyledLanguageSelector>
+    <Dropdown icon={<Globe size="1.5rem" />} zIndex={15} top={top} left={left}>
+      <Button onClick={() => handleClick('en')}>English</Button>
+      <Button onClick={() => handleClick('uk')}>Українська</Button>
+    </Dropdown>
   );
 };
 

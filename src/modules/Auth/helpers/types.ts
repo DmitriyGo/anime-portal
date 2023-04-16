@@ -7,19 +7,21 @@ export enum AuthFieldsNames {
   CREATE_PASSWORD = 'create_password',
   CONFIRM_PASSWORD = 'confirm_password',
   CURRENT_PASSWORD = 'current_password',
+  SUBSCRIPTION = 'subscription',
 }
 
-export type TLogInFormValues = {
+export type TLoginFormValues = {
   [AuthFieldsNames.EMAIL]: string;
   [AuthFieldsNames.PASSWORD]: string;
 };
 
-export type TSignUpFormValues = {
+export type TRegisterFormValues = {
   [AuthFieldsNames.FIRST_NAME]: string;
   [AuthFieldsNames.LAST_NAME]: string;
   [AuthFieldsNames.EMAIL]: string;
   [AuthFieldsNames.CREATE_PASSWORD]: string;
   [AuthFieldsNames.CONFIRM_PASSWORD]: string;
+  [AuthFieldsNames.SUBSCRIPTION]: boolean;
 };
 
 export type TForgotPasswordFormValues = {

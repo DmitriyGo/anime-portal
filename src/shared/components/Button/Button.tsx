@@ -1,22 +1,28 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 
 import { StyledButton } from './ButtonStyles';
-import useBackgroundColor from '../../utils/useBackgroundColor';
 
 import { COLORS } from '@/theme';
+import { calculateBackgroundColor } from '@/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   rounded?: 'none' | 'light' | 'strong';
   color?: string;
+  fontColor?: string;
 }
 
 const Button: FC<ButtonProps> = ({
   color = COLORS.DARK_GREY[300],
+  fontColor = COLORS.BACKGROUND.LIGHT,
   rounded = 'light',
   children,
   ...rest
 }) => {
-  const [bgColor, bgHover, bgActive] = useBackgroundColor(color, -10, -15);
+  const [bgColor, bgHover, bgActive] = calculateBackgroundColor(
+    color,
+    -10,
+    -15,
+  );
 
   const radiusValues = {
     none: '0',
@@ -30,6 +36,7 @@ const Button: FC<ButtonProps> = ({
       bgHover={bgHover}
       bgActive={bgActive}
       bRadius={radiusValues[rounded]}
+      color={fontColor}
       {...rest}
     >
       {children}

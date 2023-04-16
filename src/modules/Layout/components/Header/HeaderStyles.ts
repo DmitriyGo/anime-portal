@@ -17,13 +17,34 @@ export const StyledHeader = styled.header`
   justify-content: center;
   gap: 1rem;
   flex-direction: column;
-  padding: 0.75rem 2.5rem;
+  padding: 0.75rem 2rem;
   background-color: ${({ theme }) => theme.backGroundColor};
 `;
 
-export const StyledHeaderBlock = styled.div`
+export const StyledBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   gap: 1.5rem;
+
+  @media ${DEVICES.XS} {
+    gap: 1rem;
+  }
+`;
+
+export const StyledListBlock = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 1.5rem;
+
+  @media ${DEVICES.XS} {
+    gap: 1rem;
+  }
+`;
+
+export const StyledListItem = styled.li`
+  list-style-type: none;
 `;

@@ -1,11 +1,11 @@
 import Cookies, { CookieAttributes } from 'js-cookie';
 
-import { StringMap } from '@/modules/Home/helpers';
+import { StringMap } from '@/utils';
 
 interface IAppCookies {
   setItem(name: string, value: string, options?: CookieAttributes): void;
   getItem(name: string): string | undefined;
-  getAll(): { [key: string]: string };
+  getAll(): StringMap<string>;
   removeItem(name: string, options?: CookieAttributes): void;
 }
 

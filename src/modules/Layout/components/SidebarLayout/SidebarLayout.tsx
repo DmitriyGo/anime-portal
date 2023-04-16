@@ -1,12 +1,17 @@
-import { FC, Fragment, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
-import { StyledSidebarBlock, StyledSidebarLayout } from './SidebarLayoutStyles';
-import { LanguageSelector, ThemeSelector } from '../';
+import {
+  StyledBlock,
+  StyledButton,
+  StyledSidebarLayout,
+} from './SidebarLayoutStyles';
+import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 import { Button } from '@/components';
+import { useMediaQuery } from '@/hooks';
 import { DEVICES } from '@/theme';
-import { useMediaQuery } from '@/utils';
 
 interface SideBarLayoutProps {
   onClose: () => void;
@@ -14,35 +19,44 @@ interface SideBarLayoutProps {
 
 const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
   const theme = useTheme();
-  const queryLG = useMediaQuery(DEVICES.LG);
+  const queryXS = useMediaQuery(DEVICES.XS);
+  const navigate = useNavigate();
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
 
+  const handleNavigateClick = (to: string) => {
+    navigate(to);
+    onClose();
+  };
+
   return (
     <StyledSidebarLayout onClick={handleClick}>
-      <StyledSidebarBlock>
-        <Button color={theme.colorPrimary} onClick={onClose}>
+      <StyledBlock>
+        <StyledButton color={theme.colorPrimary} onClick={onClose}>
           Close Menu
-        </Button>
-      </StyledSidebarBlock>
+        </StyledButton>
+      </StyledBlock>
 
-      {queryLG && (
-        <StyledSidebarBlock>
-          <ThemeSelector />
-          <LanguageSelector />
-        </StyledSidebarBlock>
+      {queryXS && (
+        <StyledBlock>
+          <LanguageSelector top="-2rem" left="6.25rem" />
+        </StyledBlock>
       )}
 
-      <StyledSidebarBlock>
-        {new Array(15).fill(1).map((_, i) => (
-          <Fragment key={i}>
-            <p>Hello!</p>
-            <div>aboba</div>
-          </Fragment>
-        ))}
-      </StyledSidebarBlock>
+      <Button
+        color={theme.colorSecondary}
+        onClick={() => handleNavigateClick('/')}
+      >
+        Home
+      </Button>
+      <Button
+        color={theme.colorSecondary}
+        onClick={() => handleNavigateClick('/todos')}
+      >
+        Todos
+      </Button>
     </StyledSidebarLayout>
   );
 };
