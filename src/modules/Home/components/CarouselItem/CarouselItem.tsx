@@ -3,7 +3,7 @@ import {
   ClockFill,
   PlayCircleFill,
 } from '@styled-icons/bootstrap';
-import { ButtonHTMLAttributes, FC, MouseEvent } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -76,9 +76,7 @@ const CarouselItem: FC<HomePageApiResponse> = ({
           </StyledTags>
         </>
       )}
-      <StyledDescription lines={!querySM ? 3 : 6}>
-        {description}
-      </StyledDescription>
+      <StyledDescription>{description}</StyledDescription>
       <StyledButtonsBlock>
         <StyledWatchNow>
           <PlayCircleFill size="1rem" />
@@ -86,7 +84,6 @@ const CarouselItem: FC<HomePageApiResponse> = ({
         </StyledWatchNow>
         <StyledDetail>
           {t('details')}
-
           <StyledArrowIcon size="3rem" />
         </StyledDetail>
       </StyledButtonsBlock>

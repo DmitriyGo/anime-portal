@@ -1,4 +1,5 @@
 import { FC, MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 
@@ -21,6 +22,7 @@ const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
   const theme = useTheme();
   const queryXS = useMediaQuery(DEVICES.XS);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -35,7 +37,7 @@ const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
     <StyledSidebarLayout onClick={handleClick}>
       <StyledBlock>
         <StyledButton color={theme.colorPrimary} onClick={onClose}>
-          Close Menu
+          {t('close_menu')}
         </StyledButton>
       </StyledBlock>
 
@@ -49,13 +51,13 @@ const SidebarLayout: FC<SideBarLayoutProps> = ({ onClose }) => {
         color={theme.colorSecondary}
         onClick={() => handleNavigateClick('/')}
       >
-        Home
+        {t('home')}
       </Button>
       <Button
         color={theme.colorSecondary}
         onClick={() => handleNavigateClick('/todos')}
       >
-        Todos
+        {t('todos')}
       </Button>
     </StyledSidebarLayout>
   );
