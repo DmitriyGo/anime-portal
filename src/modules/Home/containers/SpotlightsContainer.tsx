@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
+import {
+  StyledFutureContent,
+  StyledSpotlightsContainer,
+} from './SpotlightsContainerStyles';
 import { SpotlightCarousel } from '../components';
 
 import { FullPageLoader } from '@/components';
@@ -19,6 +24,8 @@ const SpotlightsContainer = () => {
   const [homePageData, setHomePageData] = useState<HomePageApiResponse[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     (async () => {
       const images = await loadImages();
@@ -35,13 +42,14 @@ const SpotlightsContainer = () => {
   }
 
   return (
-    <>
+    <StyledSpotlightsContainer>
       {images.length !== 0 ? (
         <SpotlightCarousel
           homePageData={prepareHomePageData(images, homePageData)}
         />
       ) : null}
-    </>
+      <StyledFutureContent>{t('future_content')}</StyledFutureContent>
+    </StyledSpotlightsContainer>
   );
 };
 

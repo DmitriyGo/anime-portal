@@ -1,13 +1,19 @@
 import styled from 'styled-components';
 
 import { Button } from '@/components';
+import { DEVICES } from '@/theme';
 
 export const StyledSpotlightsCarousel = styled.div`
   display: flex;
   overflow: hidden;
   width: 100vw;
   height: calc(100vh - 4.5rem);
+
   z-index: 0;
+
+  @media ${DEVICES.SM} {
+    height: calc(60vh - 4.5rem);
+  }
 `;
 
 export const StyledButton = styled(Button)`
@@ -32,6 +38,10 @@ export const StyledControlButtons = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
+  @media ${DEVICES.SM} {
+    display: none;
+  }
 `;
 
 export const StyledSlices = styled.div`

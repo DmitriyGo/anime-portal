@@ -2,7 +2,7 @@ import { ArrowRight } from '@styled-icons/material-rounded';
 import styled from 'styled-components';
 
 import { Button } from '@/components';
-import { COLORS } from '@/theme';
+import { COLORS, DEVICES } from '@/theme';
 
 export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
   position: relative;
@@ -32,9 +32,9 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
     background: linear-gradient(
       90deg,
       #202125 0,
-      rgba(32, 33, 37, 0.6) 10%,
-      rgba(32, 33, 37, 0) 30%,
-      rgba(32, 33, 37, 0) 80%,
+      rgba(32, 33, 37, 0.6) 20%,
+      rgba(32, 33, 37, 0.3) 30%,
+      rgba(32, 33, 37, 0.1) 80%,
       #202125 100%
     );
     z-index: 1;
@@ -50,7 +50,7 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
     background: linear-gradient(
       0deg,
       #202125 0,
-      rgba(32, 33, 37, 0) 50%,
+      rgba(32, 33, 37, 0.15) 50%,
       #202125 100%
     );
     z-index: 1;
@@ -60,6 +60,10 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
     position: relative;
     z-index: 2;
   }
+
+  @media ${DEVICES.SM} {
+    padding: 0 2.5rem 2.5rem;
+  }
 `;
 
 export const StyledSeries = styled.div`
@@ -67,6 +71,11 @@ export const StyledSeries = styled.div`
   line-height: 1.3em;
   margin-bottom: 1.5rem;
   color: ${COLORS.LIGHT_GREEN};
+
+  @media ${DEVICES.SM} {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const StyledTitle = styled.div`
@@ -74,19 +83,30 @@ export const StyledTitle = styled.div`
   line-height: 1.1em;
   margin-bottom: 1.5rem;
   width: 70%;
+
+  @media ${DEVICES.SM} {
+    font-size: 1.25rem;
+  }
 `;
 
-export const StyledDescription = styled.p<{ lines: number }>`
+export const StyledDescription = styled.p`
+  overflow: hidden;
   display: -webkit-box;
   text-align: justify;
   -webkit-box-orient: vertical;
-  overflow: hidden;
 
   width: 75%;
 
-  -webkit-line-clamp: ${({ lines }) => lines};
-  font-size: 1rem;
+  -webkit-line-clamp: 3;
   margin-bottom: 2.5rem;
+  font-size: 1.25rem;
+
+  @media ${DEVICES.SM} {
+    font-size: 1rem;
+    -webkit-line-clamp: 6;
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 export const StyledButtonsBlock = styled.div`
@@ -105,6 +125,11 @@ export const StyledWatchNow = styled(Button)`
   border-radius: 2.5rem;
   padding: 0.5rem 2rem;
 
+  @media ${DEVICES.SM} {
+    font-size: 0.7rem;
+    padding: 0.5rem 1.5rem;
+  }
+
   :hover {
     color: ${COLORS.WHITE} !important;
   }
@@ -119,6 +144,11 @@ export const StyledDetail = styled(Button)`
 
   border-radius: 30px;
   padding: 0.5rem 2rem;
+
+  @media ${DEVICES.SM} {
+    font-size: 0.7rem;
+    padding: 0.5rem 1.5rem;
+  }
 `;
 
 export const StyledArrowIcon = styled(ArrowRight)`
@@ -147,7 +177,7 @@ export const StyledTag = styled.div<{ name: string }>`
   color: ${COLORS.BLACK};
   border-radius: 5px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 0.8rem;
 `;
 
 export const StyledTags = styled.div`
