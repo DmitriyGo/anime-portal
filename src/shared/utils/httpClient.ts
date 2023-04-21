@@ -8,6 +8,8 @@ import axios, {
 
 import appCookiesStorage from './appCookies';
 
+import { API_URL } from '@/constants/common';
+
 type AccessToken = string | null;
 type RefreshToken = string | null;
 
@@ -16,7 +18,7 @@ interface TokenRefreshResponse {
 }
 
 const defaultConfig: AxiosRequestConfig = {
-  baseURL: import.meta.env.VITE_PUBLIC_API_URL,
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -52,6 +54,7 @@ httpClient.interceptors.response.use(
             `${import.meta.env.VITE_PUBLIC_API_URL}/auth/refresh`,
             { refreshToken },
           );
+
         const newAccessToken: string = refreshResponse.data.accessToken;
         appCookiesStorage.setItem('accessToken', newAccessToken);
 

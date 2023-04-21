@@ -1,6 +1,7 @@
 import { Menu, Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
 import { FC, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
@@ -16,22 +17,28 @@ import { SearchFormMode } from '../../helpers/types';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import SearchForm from '../SearchForm/SearchForm';
 
-import { StyledIconButton } from '@/components';
+import { Button, StyledIconButton } from '@/components';
 import { useMediaQuery } from '@/hooks';
+import { selectIsAuthorized } from '@/modules/Auth/feature/selectors';
+import { useSelector } from '@/store';
 import { COLORS, DEVICES } from '@/theme';
 
 interface HeaderProps {
   onMenuClick: () => void;
+  onLoginClick: () => void;
 }
 
-const Header: FC<HeaderProps> = ({ onMenuClick }) => {
+const Header: FC<HeaderProps> = ({ onMenuClick, onLoginClick }) => {
   const [showExtendedSearch, setExtendedSearch] = useState<boolean>(false);
 
-  const navigate = useNavigate();
+  const isAuthorized = useSelector(selectIsAuthorized);
 
   const queryMD = useMediaQuery(DEVICES.MD);
   const queryXS = useMediaQuery(DEVICES.XS);
   const queryXXS = useMediaQuery(DEVICES.XXS);
+
+  const navigate = useNavigate();
+  const { t: tAuth } = useTranslation('auth');
 
   const handleSearchClick = () => {
     setExtendedSearch((show) => !show);
@@ -68,6 +75,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
         <StyledListBlock>
           {queryMD && (
+            // Icons
             <StyledListItem>
               <StyledIconButton onClick={handleSearchClick}>
                 <Search
@@ -79,23 +87,39 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
             </StyledListItem>
           )}
 
-          <StyledListItem>
-            <StyledIconButton>
-              <Notifications size="1.5rem" />
-            </StyledIconButton>
-          </StyledListItem>
-
           {!queryXS && (
             <StyledListItem>
               <LanguageSelector top="2rem" left="-2.5rem" />
             </StyledListItem>
           )}
 
-          <StyledListItem>
-            <StyledIconButton>
-              <AccountCircle size="1.5rem" />
-            </StyledIconButton>
-          </StyledListItem>
+          {isAuthorized && (
+            <>
+              <StyledListItem>
+                <StyledIconButton>
+                  <Notifications size="1.5rem" />
+                </StyledIconButton>
+              </StyledListItem>
+
+              <StyledListItem>
+                <StyledIconButton>
+                  <AccountCircle size="1.5rem" />
+                </StyledIconButton>
+              </StyledListItem>
+            </>
+          )}
+
+          {!isAuthorized && (
+            <>
+              <Button
+                color={COLORS.LIGHT_GREEN}
+                fontColor={COLORS.BLACK}
+                onClick={onLoginClick}
+              >
+                {`${tAuth('login')}`}
+              </Button>
+            </>
+          )}
         </StyledListBlock>
       </StyledBlock>
     </StyledHeader>

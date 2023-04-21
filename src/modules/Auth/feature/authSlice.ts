@@ -40,7 +40,6 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-
       .addMatcher(isFulfilled(loginUser), (state: AuthState, action) => {
         const { payload } = action;
 

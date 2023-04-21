@@ -1,11 +1,31 @@
 import styled from 'styled-components';
 
-export const StyledSidebarBackdrop = styled.div`
+import { Button } from '@/components';
+
+export const StyledSidebarLayout = styled.div`
   position: fixed;
-  top: 0;
+  z-index: 20;
   left: 0;
-  right: 0;
+  top: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 10;
+  overflow-y: auto;
+
+  width: 16.5rem;
+  padding: 1rem;
+
+  background: ${({ theme }) => theme.backGroundColor};
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+export const StyledBlock = styled.div`
+  display: flex;
+  gap: 2rem;
+`;
+
+export const StyledButton = styled(Button)`
+  display: flex;
+  flex-grow: 1;
 `;
