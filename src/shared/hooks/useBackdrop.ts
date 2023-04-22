@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export const useBackdrop = (onClose: () => void): void => {
+function useBackdrop(onClose: () => void): void {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -14,4 +14,6 @@ export const useBackdrop = (onClose: () => void): void => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
-};
+}
+
+export default useBackdrop;

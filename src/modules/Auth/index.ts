@@ -12,3 +12,4 @@ export {
   resetAuthState,
   setIsAuthorized,
 } from './feature/authSlice';
+export { LoginContainer } from './containers';

@@ -25,10 +25,9 @@ import { COLORS, DEVICES } from '@/theme';
 
 interface HeaderProps {
   onMenuClick: () => void;
-  onLoginClick: () => void;
 }
 
-const Header: FC<HeaderProps> = ({ onMenuClick, onLoginClick }) => {
+const Header: FC<HeaderProps> = ({ onMenuClick }) => {
   const [showExtendedSearch, setExtendedSearch] = useState<boolean>(false);
 
   const isAuthorized = useSelector(selectIsAuthorized);
@@ -46,6 +45,10 @@ const Header: FC<HeaderProps> = ({ onMenuClick, onLoginClick }) => {
 
   const handleLogoClick = () => {
     navigate('/');
+  };
+
+  const handleLoginClick = () => {
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -114,7 +117,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick, onLoginClick }) => {
               <Button
                 color={COLORS.LIGHT_GREEN}
                 fontColor={COLORS.BLACK}
-                onClick={onLoginClick}
+                onClick={handleLoginClick}
               >
                 {`${tAuth('login')}`}
               </Button>

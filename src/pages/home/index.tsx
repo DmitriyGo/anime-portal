@@ -1,4 +1,4 @@
-import { SpotlightsContainer } from '@/modules/Home/containers';
+import { SpotlightsContainer } from '@/modules/Home';
 
 const Home = () => {
   return <SpotlightsContainer />;

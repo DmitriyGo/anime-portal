@@ -69,23 +69,22 @@ export const StyledCarouselItem = styled.div<{ imageUrl: string }>`
 export const StyledSeries = styled.div`
   font-size: 1.2rem;
   line-height: 1.3em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   color: ${COLORS.LIGHT_GREEN};
 
   @media ${DEVICES.SM} {
     font-size: 0.8rem;
-    margin-bottom: 1rem;
   }
 `;
 
 export const StyledTitle = styled.div`
   font-size: 2rem;
   line-height: 1.1em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   width: 70%;
 
   @media ${DEVICES.SM} {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -103,9 +102,9 @@ export const StyledDescription = styled.p`
 
   @media ${DEVICES.SM} {
     font-size: 1rem;
-    -webkit-line-clamp: 6;
-    width: 100%;
-    margin-bottom: 1.5rem;
+    -webkit-line-clamp: 4;
+    width: 80%;
+    margin-bottom: 1.25rem;
   }
 `;
 
@@ -113,6 +112,8 @@ export const StyledButtonsBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+
+  margin: 1rem 0 1rem;
 `;
 
 export const StyledWatchNow = styled(Button)`

@@ -1,0 +1,1 @@
+export { SpotlightsContainer } from './containers';

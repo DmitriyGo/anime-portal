@@ -20,7 +20,7 @@ import CarouselItem from '../CarouselItem/CarouselItem';
 import { useCursorLeave, useThrottle } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
 
-const AUTO_NEXT_DELAY = 7000;
+const AUTO_NEXT_DELAY = 70000;
 const NEXT_SLIDE_DELAY = 300;
 const MOVE_SLIDE_COEFFICIENT = 0.2;
 

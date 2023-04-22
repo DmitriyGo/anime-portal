@@ -1,7 +1,6 @@
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useBackdrop } from 'src/shared/hooks/useBackdrop';
 import { useTheme } from 'styled-components';
 
 import {
@@ -12,7 +11,7 @@ import {
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 import { Backdrop, Button } from '@/components';
-import { useMediaQuery } from '@/hooks';
+import { useBackdrop, useMediaQuery } from '@/hooks';
 import { DEVICES } from '@/theme';
 
 interface SidebarProps {

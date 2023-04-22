@@ -11,7 +11,7 @@ interface StyledButtonProps {
 export const StyledButton = styled.button<StyledButtonProps>`
   all: unset;
   display: flex;
-  padding: 6px 20px;
+  padding: 0.35rem 1.5rem;
 
   background: ${({ bg }) => bg};
 

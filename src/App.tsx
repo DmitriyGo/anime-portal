@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { LayoutContainer } from './modules/Layout';
 import { defaultTheme } from './modules/Theme';
-import { Home, Todos } from './pages';
+import { Home, Login, Todos } from './pages';
 import GlobalStyles from './styles/globals';
 
 const App = () => {
@@ -17,6 +17,7 @@ const App = () => {
             <Route path="/" element={<LayoutContainer />}>
               <Route index element={<Home />} />
               <Route path="/todos" element={<Todos />} />
+              <Route path="/login" element={<Login />} />
             </Route>
           </Routes>
         </ThemeProvider>
