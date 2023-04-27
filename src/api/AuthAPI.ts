@@ -13,11 +13,14 @@ import { httpClient, ApiResponse } from '@/utils';
 
 class AuthAPI {
   static login(data: ILoginDTO): ApiResponse<IAuthResponse> {
-    return httpClient.post<IAuthResponse>(AuthEndpoints.LOGIN, data);
+    const asd = { name: data.email, password: data.password };
+    return httpClient.post<IAuthResponse>(AuthEndpoints.LOGIN, asd);
   }
 
-  static register(data: IRegistrationDTO): ApiResponse<IRegistrationResponse> {
-    return httpClient.post<IRegistrationResponse>(AuthEndpoints.REGISTER, data);
+  static register(data: ILoginDTO): ApiResponse<IRegistrationResponse> {
+    //IRegistrationDTO
+    const asd = { name: data.email, password: data.password };
+    return httpClient.post<IRegistrationResponse>(AuthEndpoints.REGISTER, asd);
   }
 
   static verifyEmail(data: IVerifyEmailDTO): ApiResponse<IAuthResponse> {

@@ -19,8 +19,9 @@ import SearchForm from '../SearchForm/SearchForm';
 
 import { Button, StyledIconButton } from '@/components';
 import { useMediaQuery } from '@/hooks';
+import { logOut } from '@/modules/Auth';
 import { selectIsAuthorized } from '@/modules/Auth/feature/selectors';
-import { useSelector } from '@/store';
+import { useDispatch, useSelector } from '@/store';
 import { COLORS, DEVICES } from '@/theme';
 
 interface HeaderProps {
@@ -37,6 +38,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
   const queryXXS = useMediaQuery(DEVICES.XXS);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { t: tAuth } = useTranslation('auth');
 
   const handleSearchClick = () => {
@@ -45,6 +47,10 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   const handleLogoClick = () => {
     navigate('/');
+  };
+
+  const handleAccountClick = () => {
+    dispatch(logOut());
   };
 
   const handleLoginClick = () => {
@@ -105,7 +111,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
               </StyledListItem>
 
               <StyledListItem>
-                <StyledIconButton>
+                <StyledIconButton onClick={handleAccountClick}>
                   <AccountCircle size="1.5rem" />
                 </StyledIconButton>
               </StyledListItem>

@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { Button } from '@/components';
 import { COLORS, DEVICES } from '@/theme';
 
-export const LoginContainerStyles = styled.div`
+export const RegisterContainerStyled = styled.div`
   width: 100%;
-  height: calc(100vh - 4.5rem);
+  min-height: calc(100vh - 4.5rem);
+  padding-top: -4.5rem;
 
   display: flex;
   justify-content: center;
@@ -51,4 +52,10 @@ export const StyledError = styled.p`
   font-size: 0.9rem;
   margin: 0 0 1.25rem;
   color: ${COLORS.RED};
+`;
+
+export const StyledIntroduction = styled.p`
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0 0 2rem;
 `;

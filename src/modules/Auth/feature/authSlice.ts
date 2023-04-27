@@ -20,17 +20,22 @@ import {
   ResponseStatusCode,
 } from '@/constants/common';
 import { IApiError } from '@/models/apiError.model';
+import { IAuthResponse } from '@/models/auth.model';
 import { appCookiesStorage, showApiErrors } from '@/utils';
 
 export const authSlice = createSlice({
   name: AUTH_SLICE_NAME,
   initialState,
   reducers: {
-    setIsAuthorized(state, action: PayloadAction<boolean>) {
-      state.isAuthorized = action.payload;
+    setIsAuthorized(state, { payload }: PayloadAction<boolean>) {
+      state.isAuthorized = payload;
     },
     resetAuthState() {
       return initialState;
+    },
+    logIn(state, { payload }: PayloadAction<string>) {
+      state.isAuthorized = true;
+      state.authToken = payload;
     },
     logOut() {
       appCookiesStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
@@ -40,21 +45,19 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(isFulfilled(loginUser), (state: AuthState, action) => {
-        const { payload } = action;
-
-        if (!payload.data.token) {
+      .addMatcher(isFulfilled(loginUser), (state: AuthState, { payload }) => {
+        if (!payload.token) {
           return;
         }
 
         state.isLoading = false;
         state.isAuthorized = true;
-        state.user = payload.data.user;
-        state.authToken = payload.data.token;
+        state.user = payload.user;
+        state.authToken = payload.token;
 
         appCookiesStorage.setItem(
           AUTHORIZATION_TOKEN_STORAGE_KEY,
-          payload.data.token,
+          payload.token,
           { expires: AUTHORIZATION_TOKEN_EXPIRES },
         );
       })
@@ -95,6 +98,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setIsAuthorized, logOut, resetAuthState } = authSlice.actions;
+export const { setIsAuthorized, logOut, resetAuthState, logIn } =
+  authSlice.actions;
 
 export default authSlice.reducer;

@@ -65,10 +65,10 @@ export interface IRegistrationResponse {
 }
 
 export interface IAuthResponse {
-  data: {
-    token: string;
-    user: IUser;
-  };
+  // data: {
+  token: string;
+  user: IUser;
+  // };
 }
 
 export interface IVerifyEmailResponse {

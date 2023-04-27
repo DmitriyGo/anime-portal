@@ -9,6 +9,7 @@ export { AUTH_SLICE_NAME } from './feature/models';
 export {
   default as authReducer,
   logOut,
+  logIn,
   resetAuthState,
   setIsAuthorized,
 } from './feature/authSlice';

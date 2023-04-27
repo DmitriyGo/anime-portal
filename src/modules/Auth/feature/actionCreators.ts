@@ -16,11 +16,12 @@ import { formatApiError } from '@/utils';
 
 export const registerUser = createAsyncThunk<
   IRegistrationResponse,
-  IRegistrationDTO,
+  ILoginDTO,
   { serializedErrorType: IApiError }
 >(
   `${AUTH_SLICE_NAME}/register`,
-  async (data: IRegistrationDTO) => {
+  async (data: ILoginDTO) => {
+    // IRegistrationDTO
     const response = await AuthAPI.register(data);
     return response.data;
   },

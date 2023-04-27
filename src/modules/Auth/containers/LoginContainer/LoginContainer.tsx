@@ -6,14 +6,21 @@ import { useTheme } from 'styled-components';
 import * as yup from 'yup';
 
 import {
-  LoginContainerStyles,
+  LoginContainerStyled,
   StyledBlock,
   StyledButton,
   StyledError,
   StyledForm,
   StyledInput,
+  StyledIntroduction,
   StyledLabel,
 } from './LoginContainerStyles';
+import { loginUser } from '../../feature/actionCreators';
+import { selectAuthIsLoading } from '../../feature/selectors';
+
+import { FullPageLoader } from '@/components';
+import { useDispatch, useSelector } from '@/store';
+import { COLORS } from '@/theme';
 
 type Inputs = {
   email: string;
@@ -22,15 +29,18 @@ type Inputs = {
 
 const schema = yup
   .object({
-    email: yup.string().email().required(),
+    email: yup.string().required(),
     password: yup.string().required(),
   })
   .required();
 
 const LoginContainer = () => {
   const { t } = useTranslation('auth');
-  const theme = useTheme();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const theme = useTheme();
+
+  const loading = useSelector(selectAuthIsLoading);
 
   const {
     register,
@@ -40,34 +50,50 @@ const LoginContainer = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    // console.log(data);
+    await dispatch(loginUser(data));
+    // console.log(res);
 
     navigate('/', { replace: true });
-
-    // e?.target.reset();
   };
 
+  const onRegister = () => {
+    navigate('/register');
+  };
+
+  if (loading) {
+    return <FullPageLoader />;
+  }
+
   return (
-    <LoginContainerStyles>
+    <LoginContainerStyled>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <StyledIntroduction>{t('login_greeting')}</StyledIntroduction>
+
         <StyledBlock>
-          <StyledLabel htmlFor="email">Email</StyledLabel>
+          <StyledLabel htmlFor="email">{t('email')}</StyledLabel>
           <StyledInput {...register('email')} />
           <StyledError>{errors.email?.message}</StyledError>
         </StyledBlock>
 
         <StyledBlock>
-          <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">{t('password')}</StyledLabel>
           <StyledInput {...register('password')} />
           <StyledError>{errors.password?.message}</StyledError>
         </StyledBlock>
 
-        <StyledButton type="submit" color={theme.colorSecondary}>
-          {t('login')}
-        </StyledButton>
+        <StyledBlock>
+          <StyledButton type="submit" color={theme.colorSecondary}>
+            {t('login')}
+          </StyledButton>
+
+          <StyledButton onClick={onRegister} color={COLORS.PRIMARY}>
+            {t('do_not_have_account')}
+          </StyledButton>
+        </StyledBlock>
       </StyledForm>
-    </LoginContainerStyles>
+    </LoginContainerStyled>
   );
 };
 
