@@ -1,9 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { COLORS } from '@/theme';
+
 const GlobalStyles = createGlobalStyle`
   body {
-    background: ${({ theme }) => theme.backGroundColor};
-    color: ${({ theme }) => theme.fontColor};
+    background: ${COLORS.BACKGROUND};
+    color: ${COLORS.FONT};
     margin: 0;
     padding: 0;
   }
@@ -25,18 +27,18 @@ const GlobalStyles = createGlobalStyle`
 
   ::-webkit-scrollbar-track {
     all: unset;
-    background-color: ${({ theme }) => theme.backGroundColor};
+    background-color: ${COLORS.BACKGROUND};
   }
 
   ::-webkit-scrollbar {
     all: unset;
-    width: 10px;
-    background-color: ${({ theme }) => theme.backGroundColor};
+    width: 0.7rem;
+    background-color: ${COLORS.BACKGROUND};
   }
 
   ::-webkit-scrollbar-thumb {
     all: unset;
-    background-color: ${({ theme }) => theme.colorPrimary};
+    background-color: ${COLORS.PRIMARY};
   }
 `;
 

@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
 import * as yup from 'yup';
 
 import {
@@ -18,6 +17,7 @@ import {
 import { registerUser } from '../../feature/actionCreators';
 
 import { useDispatch } from '@/store';
+import { COLORS } from '@/theme';
 
 type Inputs = {
   email: string;
@@ -33,7 +33,6 @@ const schema = yup
 
 const RegisterContainer = () => {
   const { t } = useTranslation('auth');
-  const theme = useTheme();
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -70,7 +69,7 @@ const RegisterContainer = () => {
           <StyledError>{errors.password?.message}</StyledError>
         </StyledBlock>
 
-        <StyledButton type="submit" color={theme.colorSecondary}>
+        <StyledButton type="submit" color={COLORS.SECONDARY}>
           {t('register')}
         </StyledButton>
       </StyledForm>

@@ -13,7 +13,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: FC<ButtonProps> = ({
   color = COLORS.DARK_GREY[300],
-  fontColor = COLORS.BACKGROUND.LIGHT,
+  fontColor = COLORS.FONT,
   rounded = 'light',
   children,
   ...rest

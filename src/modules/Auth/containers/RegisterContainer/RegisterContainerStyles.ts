@@ -17,7 +17,7 @@ export const StyledForm = styled.form`
   background-color: ${COLORS.DARK_GREY[450]};
   padding: 2rem;
 
-  border-radius: 5px;
+  border-radius: 0.5px;
 
   width: 35rem;
 

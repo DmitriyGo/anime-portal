@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Button } from '@/components';
+import { COLORS } from '@/theme';
 
 export const StyledSidebarLayout = styled.div`
   position: fixed;
@@ -13,7 +14,7 @@ export const StyledSidebarLayout = styled.div`
   width: 16.5rem;
   padding: 1rem;
 
-  background: ${({ theme }) => theme.backGroundColor};
+  background: ${COLORS.BACKGROUND};
 
   display: flex;
   flex-direction: column;

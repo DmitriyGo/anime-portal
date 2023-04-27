@@ -143,7 +143,7 @@ export const StyledDetail = styled(Button)`
   display: flex;
   align-items: center;
 
-  border-radius: 30px;
+  border-radius: 2rem;
   padding: 0.5rem 2rem;
 
   @media ${DEVICES.SM} {
@@ -162,7 +162,7 @@ export const StyledAdditionalInfo = styled.div`
   display: flex;
   gap: 1rem;
 
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 `;
 
 export const StyledAdditionalInfoBlock = styled.div`
@@ -176,7 +176,7 @@ export const StyledTag = styled.div<{ name: string }>`
   background: ${({ name }) =>
     name === 'HD' ? COLORS.LIGHT_GREEN : COLORS.WHITE};
   color: ${COLORS.BLACK};
-  border-radius: 5px;
+  border-radius: 0.5px;
   font-weight: 600;
   font-size: 0.8rem;
 `;

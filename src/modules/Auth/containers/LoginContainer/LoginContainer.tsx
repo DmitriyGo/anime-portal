@@ -38,7 +38,6 @@ const LoginContainer = () => {
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const theme = useTheme();
 
   const loading = useSelector(selectAuthIsLoading);
 
@@ -84,7 +83,7 @@ const LoginContainer = () => {
         </StyledBlock>
 
         <StyledBlock>
-          <StyledButton type="submit" color={theme.colorSecondary}>
+          <StyledButton type="submit" color={COLORS.SECONDARY}>
             {t('login')}
           </StyledButton>
 

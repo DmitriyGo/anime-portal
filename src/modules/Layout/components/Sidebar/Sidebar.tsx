@@ -1,7 +1,6 @@
 import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
 
 import {
   StyledBlock,
@@ -12,7 +11,7 @@ import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 import { Backdrop, Button } from '@/components';
 import { useBackdrop, useMediaQuery } from '@/hooks';
-import { DEVICES } from '@/theme';
+import { COLORS, DEVICES } from '@/theme';
 
 interface SidebarProps {
   onClose: () => void;
@@ -22,7 +21,6 @@ const Sidebar: FC<SidebarProps> = ({ onClose }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const theme = useTheme();
   const queryXS = useMediaQuery(DEVICES.XS);
 
   useBackdrop(onClose);
@@ -40,7 +38,7 @@ const Sidebar: FC<SidebarProps> = ({ onClose }) => {
     <Backdrop onClick={onClose}>
       <StyledSidebarLayout onClick={handleClick}>
         <StyledBlock>
-          <StyledButton color={theme.colorPrimary} onClick={onClose}>
+          <StyledButton color={COLORS.PRIMARY} onClick={onClose}>
             {t('close_menu')}
           </StyledButton>
         </StyledBlock>
@@ -52,13 +50,13 @@ const Sidebar: FC<SidebarProps> = ({ onClose }) => {
         )}
 
         <Button
-          color={theme.colorSecondary}
+          color={COLORS.SECONDARY}
           onClick={() => handleNavigateClick('/')}
         >
           {t('home')}
         </Button>
         <Button
-          color={theme.colorSecondary}
+          color={COLORS.SECONDARY}
           onClick={() => handleNavigateClick('/todos')}
         >
           {t('todos')}
