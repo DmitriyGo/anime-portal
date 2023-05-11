@@ -10,13 +10,13 @@ export enum AuthForms {
 }
 
 export enum AuthEndpoints {
-  REGISTER = '/auth/register',
-  REGISTER_VERIFY = '/auth/verification/register',
-  NEW_EMAIL_VERIFY = '/auth/verification/profile',
-  LOGIN = '/auth/login',
-  LOGOUT = '/auth/logout',
-  FORGOT_PASSWORD = '/auth/reset_password/send',
-  RESET_PASSWORD = '/auth/reset_password/reset',
+  REGISTER = '/jwt-auth/register',
+  REGISTER_VERIFY = '/jwt-auth/verification/register',
+  NEW_EMAIL_VERIFY = '/jwt-auth/verification/profile',
+  LOGIN = '/jwt-auth/login',
+  LOGOUT = '/jwt-auth/logout',
+  FORGOT_PASSWORD = '/jwt-auth/reset_password/send',
+  RESET_PASSWORD = '/jwt-auth/reset_password/reset',
 }
 
 // ============== DTO ==============
@@ -26,18 +26,14 @@ export interface IAuthorizedRequestDTO {
 }
 
 export interface ILoginDTO {
-  email: string;
+  login: string;
   password: string;
 }
 
 export interface IRegistrationDTO {
-  firstName: string;
-  lastName: string;
   email: string;
+  name: string;
   password: string;
-  passwordConfirmation: string;
-  role: UserRole;
-  emailSubscription: boolean;
 }
 
 export interface IForgotPasswordDTO {
@@ -59,16 +55,11 @@ export interface IVerifyEmailDTO {
 // ============== Response ==============
 
 export interface IRegistrationResponse {
-  data: {
-    email: string;
-  };
+  token: string;
 }
 
 export interface IAuthResponse {
-  // data: {
   token: string;
-  user: IUser;
-  // };
 }
 
 export interface IVerifyEmailResponse {

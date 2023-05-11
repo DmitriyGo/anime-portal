@@ -1,3 +1,4 @@
+export { default as httpClientAuth } from './httpClientAuth';
 export {
   default as httpClient,
   type ApiResponse,

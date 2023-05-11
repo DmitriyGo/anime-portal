@@ -1,1 +1,2 @@
-export { default as SpotlightsContainer } from '@/modules/Home/containers/SpotlightsContainer';
+export { default as SpotlightsContainer } from './SpotlightsContainer/SpotlightsContainer';
+export { default as TrendingsContainer } from './TrendingsContainer/TrendingsContainer';

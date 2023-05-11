@@ -1,7 +1,12 @@
-import { SpotlightsContainer } from '@/modules/Home';
+import { SpotlightsContainer, TrendingsContainer } from '@/modules/Home';
 
 const Home = () => {
-  return <SpotlightsContainer />;
+  return (
+    <>
+      <SpotlightsContainer />
+      <TrendingsContainer />
+    </>
+  );
 };
 
 export default Home;

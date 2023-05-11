@@ -21,12 +21,14 @@ import { COLORS } from '@/theme';
 
 type Inputs = {
   email: string;
+  name: string;
   password: string;
 };
 
 const schema = yup
   .object({
-    email: yup.string().required(),
+    email: yup.string().email().required(),
+    name: yup.string().required(),
     password: yup.string().required(),
   })
   .required();
@@ -46,11 +48,9 @@ const RegisterContainer = () => {
   });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data);
     const res = await dispatch(registerUser(data));
-    console.log(res);
 
-    // navigate('/', { replace: true });
+    navigate('/', { replace: true });
   };
 
   return (
@@ -61,6 +61,12 @@ const RegisterContainer = () => {
           <StyledLabel htmlFor="email">{t('email')}</StyledLabel>
           <StyledInput {...register('email')} />
           <StyledError>{errors.email?.message}</StyledError>
+        </StyledBlock>
+
+        <StyledBlock>
+          <StyledLabel htmlFor="name">{t('name')}</StyledLabel>
+          <StyledInput {...register('name')} />
+          <StyledError>{errors.name?.message}</StyledError>
         </StyledBlock>
 
         <StyledBlock>

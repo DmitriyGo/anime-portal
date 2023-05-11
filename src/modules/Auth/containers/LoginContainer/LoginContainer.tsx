@@ -17,19 +17,15 @@ import {
 } from './LoginContainerStyles';
 import { loginUser } from '../../feature/actionCreators';
 import { selectAuthIsLoading } from '../../feature/selectors';
+import { TLoginFormValues } from '../../helpers/types';
 
 import { FullPageLoader } from '@/components';
 import { useDispatch, useSelector } from '@/store';
 import { COLORS } from '@/theme';
 
-type Inputs = {
-  email: string;
-  password: string;
-};
-
 const schema = yup
   .object({
-    email: yup.string().required(),
+    login: yup.string().required(),
     password: yup.string().required(),
   })
   .required();
@@ -45,14 +41,12 @@ const LoginContainer = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<TLoginFormValues>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    // console.log(data);
+  const onSubmit: SubmitHandler<TLoginFormValues> = async (data) => {
     await dispatch(loginUser(data));
-    // console.log(res);
 
     navigate('/', { replace: true });
   };
@@ -71,9 +65,9 @@ const LoginContainer = () => {
         <StyledIntroduction>{t('login_greeting')}</StyledIntroduction>
 
         <StyledBlock>
-          <StyledLabel htmlFor="email">{t('email')}</StyledLabel>
-          <StyledInput {...register('email')} />
-          <StyledError>{errors.email?.message}</StyledError>
+          <StyledLabel htmlFor="login">{t('login_label')}</StyledLabel>
+          <StyledInput {...register('login')} />
+          <StyledError>{errors.login?.message}</StyledError>
         </StyledBlock>
 
         <StyledBlock>

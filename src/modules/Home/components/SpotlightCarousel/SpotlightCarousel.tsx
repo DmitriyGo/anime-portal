@@ -15,7 +15,7 @@ import {
   StyledSpotlightsCarousel,
   StyledSlices,
 } from './SpotlightCarouselStyles';
-import CarouselItem from '../CarouselItem/CarouselItem';
+import SpotlightlItem from '../SpotlightlItem/SpotlightlItem';
 
 import { useCursorLeave, useThrottle } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
@@ -190,7 +190,7 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
   };
 
   const carouselItems = modifiedHomePageData.map((data, index) => (
-    <CarouselItem key={index} {...data} />
+    <SpotlightlItem key={index} {...data} />
   ));
 
   return (

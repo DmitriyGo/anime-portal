@@ -1,0 +1,16 @@
+import styled from 'styled-components';
+
+import { COLORS } from '@/theme';
+
+export const Styled404 = styled.section`
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 4.5rem);
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledErrorText = styled.p`
+  font-size: 3rem;
+  color: ${COLORS.RED};
+`;

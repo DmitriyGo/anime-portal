@@ -1,1 +1,1 @@
-export { SpotlightsContainer } from './containers';
+export { SpotlightsContainer, TrendingsContainer } from './containers';

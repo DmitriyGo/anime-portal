@@ -50,7 +50,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
   };
 
   const handleAccountClick = () => {
-    dispatch(logOut());
+    navigate('/user');
   };
 
   const handleLoginClick = () => {

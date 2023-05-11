@@ -52,7 +52,6 @@ export const authSlice = createSlice({
 
         state.isLoading = false;
         state.isAuthorized = true;
-        state.user = payload.user;
         state.authToken = payload.token;
 
         appCookiesStorage.setItem(
@@ -61,6 +60,24 @@ export const authSlice = createSlice({
           { expires: AUTHORIZATION_TOKEN_EXPIRES },
         );
       })
+      .addMatcher(
+        isFulfilled(registerUser),
+        (state: AuthState, { payload }) => {
+          if (!payload.token) {
+            return;
+          }
+
+          state.isLoading = false;
+          state.isAuthorized = true;
+          state.authToken = payload.token;
+
+          appCookiesStorage.setItem(
+            AUTHORIZATION_TOKEN_STORAGE_KEY,
+            payload.token,
+            { expires: AUTHORIZATION_TOKEN_EXPIRES },
+          );
+        },
+      )
       .addMatcher(
         isFulfilled(forgotPassword, registerUser, resetPassword),
         (state: AuthState) => {

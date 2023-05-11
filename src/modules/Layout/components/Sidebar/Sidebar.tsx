@@ -55,12 +55,6 @@ const Sidebar: FC<SidebarProps> = ({ onClose }) => {
         >
           {t('home')}
         </Button>
-        <Button
-          color={COLORS.SECONDARY}
-          onClick={() => handleNavigateClick('/todos')}
-        >
-          {t('todos')}
-        </Button>
       </StyledSidebarLayout>
     </Backdrop>
   );

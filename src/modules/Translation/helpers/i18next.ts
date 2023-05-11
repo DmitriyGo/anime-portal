@@ -18,4 +18,14 @@ i18n
     },
   });
 
+i18n.on('failedLoading', (lng) => {
+  const languageParts = lng.split('_');
+
+  if (languageParts.length > 1) {
+    i18n.changeLanguage(languageParts[0]);
+  } else {
+    i18n.changeLanguage('en');
+  }
+});
+
 export default i18n;
