@@ -8,8 +8,8 @@ export const StyledInput = styled.input`
   border: 0;
   background: #15161a !important;
   color: inherit;
-  border-radius: 6px;
-  margin: 8px 0;
+  border-radius: 0.75rem;
+  margin: 0.5rem 0;
   font-family: inherit;
   text-align: left;
   font-size: 1.125rem;

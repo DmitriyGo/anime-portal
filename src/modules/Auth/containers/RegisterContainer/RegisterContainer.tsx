@@ -12,13 +12,20 @@ import {
   Form,
   Heading,
   SubmitButton,
+  HaveAccountText,
+  SignInButton,
+  Subheading,
+  CopyrightText,
+  ForgotPasswordButton,
 } from './RegisterContainerStyles';
 import signupImage from '../../../../assets/sign/signup.jpg';
 import { Control, ValidationControl } from '../../components';
 
-import { registerUser } from '@/modules/Auth';
-import RegistrationDTO from '@/modules/Auth/dtos/RegistrationDTO';
-import { TRegisterFormValues } from '@/modules/Auth/helpers/types';
+import {
+  registerUser,
+  RegistrationDTO,
+  TRegisterFormValues,
+} from '@/modules/Auth';
 import { useDispatch } from '@/store';
 
 //TODO add translations to validation
@@ -71,7 +78,10 @@ const RegisterContainer = () => {
         <ProfilePicture src={signupImage} alt="Profile Picture" />
       </PictureSection>
       <FormSection>
-        <Heading>Sign Up</Heading>
+        <Heading>{"Let's create your account"}</Heading>
+        <Subheading>
+          {"We'd love to have you Join to our lovely community"}
+        </Subheading>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <ValidationControl
             id="email"
@@ -110,7 +120,14 @@ const RegisterContainer = () => {
           />
 
           <SubmitButton type="submit">{t('register')}</SubmitButton>
+
+          <HaveAccountText>
+            {t('already_have_account')}{' '}
+            <SignInButton>{t('sign_in')}</SignInButton>
+          </HaveAccountText>
+          <ForgotPasswordButton>{t('forgot_password')}</ForgotPasswordButton>
         </Form>
+        <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>
       </FormSection>
     </RegistrationFormWrapper>
   );

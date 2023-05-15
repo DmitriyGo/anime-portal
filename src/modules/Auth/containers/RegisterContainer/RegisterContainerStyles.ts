@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { COLORS } from '@/theme';
+
 export const RegistrationFormWrapper = styled.div`
   display: flex;
   height: 100vh;
@@ -35,21 +37,29 @@ export const ProfilePicture = styled.img`
 export const FormSection = styled.div`
   width: 33.33333%;
   margin-top: 4rem;
-  padding: 1rem;
+  padding: 1.5rem;
 `;
 
 export const Heading = styled.h2`
-  margin-bottom: 20px;
+  margin-bottom: 0.75rem;
   text-align: center;
+  letter-spacing: 0.4px;
+`;
+
+export const Subheading = styled.h5`
+  text-align: center;
+  font-weight: 400;
+  color: aliceblue;
+  letter-spacing: 0.5px;
 `;
 
 export const SubmitButton = styled.button`
   cursor: pointer;
   width: 100%;
   height: 3rem;
-  margin-top: 1rem;
+  margin: 0.75rem 0 0.5rem;
   padding: 0 16px;
-  background: #f76975;
+  background: #ff5566;
   color: #f7f7f7;
   border: 0;
   font-family: inherit;
@@ -58,7 +68,7 @@ export const SubmitButton = styled.button`
   text-align: center;
   letter-spacing: 1px;
   transition: all 0.375s;
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
 
   &:hover {
     background-color: #964145;
@@ -74,4 +84,32 @@ export const Form = styled.form`
   flex-direction: column;
   padding: 0.5rem;
   backface-visibility: hidden;
+`;
+
+export const ForgotPasswordButton = styled.button`
+  all: unset;
+  color: ${COLORS.PRIMARY};
+  cursor: pointer;
+  align-self: center;
+`;
+
+export const HaveAccountText = styled.p`
+  align-self: center;
+  color: ${COLORS.FONT};
+`;
+
+export const SignInButton = styled.button`
+  all: unset;
+  color: ${COLORS.PRIMARY};
+  cursor: pointer;
+`;
+
+export const CopyrightText = styled.p`
+  position: absolute;
+  right: 2rem;
+  bottom: 0;
+  opacity: 0.5;
+  pointer-events: none;
+  color: #a0a6b0;
+  font-family: sans-serif !important;
 `;
