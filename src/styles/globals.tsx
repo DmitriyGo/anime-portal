@@ -24,7 +24,6 @@ const GlobalStyles = createGlobalStyle`
     all: unset;
   }
 
-
   ::-webkit-scrollbar-track {
     all: unset;
     background-color: ${COLORS.BACKGROUND};

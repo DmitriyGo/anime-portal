@@ -2,7 +2,6 @@ export enum AuthFieldsNames {
   AVATAR = 'avatar',
   FIRST_NAME = 'first_name',
   LAST_NAME = 'last_name',
-  NAME = 'name',
   LOGIN = 'login',
   EMAIL = 'email',
   PASSWORD = 'password',
@@ -18,9 +17,10 @@ export type TLoginFormValues = {
 };
 
 export type TRegisterFormValues = {
-  [AuthFieldsNames.NAME]: string;
+  [AuthFieldsNames.LOGIN]: string;
   [AuthFieldsNames.EMAIL]: string;
   [AuthFieldsNames.PASSWORD]: string;
+  [AuthFieldsNames.CONFIRM_PASSWORD]: string;
 };
 
 export type TForgotPasswordFormValues = {

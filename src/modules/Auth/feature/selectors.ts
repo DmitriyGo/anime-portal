@@ -7,9 +7,9 @@ import { RootState } from '@/store';
 
 const authSelector = (state: RootState): AuthState => state[AUTH_SLICE_NAME];
 
-export const selectIsAuthorized = createSelector(
+export const selectAccessToken = createSelector(
   authSelector,
-  (state: AuthState) => state.isAuthorized,
+  (state: AuthState) => state.accessToken,
 );
 
 export const selectAuthIsLoading = createSelector(

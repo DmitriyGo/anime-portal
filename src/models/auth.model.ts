@@ -1,4 +1,4 @@
-import { IUser, UserRole } from './user.model';
+import { IUser } from './user.model';
 
 import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
 
@@ -9,15 +9,18 @@ export enum AuthForms {
   RESET_PASSWORD = 'reset',
 }
 
-export enum AuthEndpoints {
-  REGISTER = '/jwt-auth/register',
-  REGISTER_VERIFY = '/jwt-auth/verification/register',
-  NEW_EMAIL_VERIFY = '/jwt-auth/verification/profile',
-  LOGIN = '/jwt-auth/login',
-  LOGOUT = '/jwt-auth/logout',
-  FORGOT_PASSWORD = '/jwt-auth/reset_password/send',
-  RESET_PASSWORD = '/jwt-auth/reset_password/reset',
-}
+const JWT_AUTH_PREFIX = '/jwt-auth';
+
+export const AuthEndpoints = {
+  REGISTER: `${JWT_AUTH_PREFIX}/register`,
+  REGISTER_VERIFY: `${JWT_AUTH_PREFIX}/verification/register`,
+  NEW_EMAIL_VERIFY: `${JWT_AUTH_PREFIX}/verification/profile`,
+  LOGIN: `${JWT_AUTH_PREFIX}/login`,
+  LOGOUT: `${JWT_AUTH_PREFIX}/logout`,
+  FORGOT_PASSWORD: `${JWT_AUTH_PREFIX}/reset_password/send`,
+  RESET_PASSWORD: `${JWT_AUTH_PREFIX}/reset_password/reset`,
+  REFRESH: `${JWT_AUTH_PREFIX}/refresh`,
+} as const;
 
 // ============== DTO ==============
 
@@ -32,7 +35,7 @@ export interface ILoginDTO {
 
 export interface IRegistrationDTO {
   email: string;
-  name: string;
+  login: string;
   password: string;
 }
 

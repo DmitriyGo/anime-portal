@@ -1,4 +1,4 @@
-import { LoginContainer } from '@/modules/Auth';
+import { LoginContainer } from '@/modules/Auth/containers';
 
 const Login = () => {
   return <LoginContainer />;

@@ -8,9 +8,22 @@ export {
 export { AUTH_SLICE_NAME } from './feature/models';
 export {
   default as authReducer,
+  setAccessToken,
   logOut,
   logIn,
-  resetAuthState,
-  setIsAuthorized,
 } from './feature/authSlice';
-export { LoginContainer } from './containers';
+export {
+  selectAccessToken,
+  selectAuthIsLoading,
+  selectAuthError,
+  selectUserId,
+  selectUserData,
+  selectUserRole,
+} from './feature/selectors';
+export {
+  checkAuth,
+  resetPassword,
+  forgotPassword,
+  loginUser,
+  registerUser,
+} from './feature/actionCreators';

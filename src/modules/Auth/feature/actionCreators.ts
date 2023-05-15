@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AUTH_SLICE_NAME } from './models';
+import formatApiError from '../../../shared/utils/formatApiError';
 
 import AuthAPI from '@/api/AuthAPI';
 import { IApiError } from '@/models/apiError.model';
@@ -12,7 +13,6 @@ import {
   IRegistrationResponse,
   IResetPasswordDTO,
 } from '@/models/auth.model';
-import { formatApiError } from '@/utils';
 
 export const registerUser = createAsyncThunk<
   IRegistrationResponse,
@@ -61,6 +61,19 @@ export const resetPassword = createAsyncThunk<
   `${AUTH_SLICE_NAME}/resetPassword`,
   async (data: IResetPasswordDTO) => {
     const response = await AuthAPI.resetPassword(data);
+    return response.data;
+  },
+  { serializeError: formatApiError },
+);
+
+export const checkAuth = createAsyncThunk<
+  unknown,
+  never,
+  { serializedErrorType: IApiError }
+>(
+  `${AUTH_SLICE_NAME}/checkAuth`,
+  async () => {
+    const response = await AuthAPI.checkAuth();
     return response.data;
   },
   { serializeError: formatApiError },

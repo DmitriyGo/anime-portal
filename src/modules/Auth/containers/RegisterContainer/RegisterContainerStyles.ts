@@ -1,61 +1,77 @@
 import styled from 'styled-components';
 
-import { Button } from '@/components';
-import { COLORS, DEVICES } from '@/theme';
-
-export const RegisterContainerStyled = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 4.5rem);
-  padding-top: -4.5rem;
-
+export const RegistrationFormWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 `;
 
-export const StyledForm = styled.form`
-  background-color: ${COLORS.DARK_GREY[450]};
-  padding: 2rem;
+export const PictureSection = styled.div`
+  width: 66.66666%;
+  position: relative;
+  z-index: 0;
 
-  border-radius: 0.5px;
-
-  width: 35rem;
-
-  @media ${DEVICES.SM} {
-    width: 80%;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.15;
+    z-index: 2;
   }
 `;
 
-export const StyledBlock = styled.div`
+export const ProfilePicture = styled.img`
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: 90%;
+`;
+
+export const FormSection = styled.div`
+  width: 33.33333%;
+  margin-top: 4rem;
+  padding: 1rem;
+`;
+
+export const Heading = styled.h2`
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+export const SubmitButton = styled.button`
+  cursor: pointer;
+  width: 100%;
+  height: 3rem;
+  margin-top: 1rem;
+  padding: 0 16px;
+  background: #f76975;
+  color: #f7f7f7;
+  border: 0;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+  transition: all 0.375s;
+  border-radius: 0.25rem;
+
+  &:hover {
+    background-color: #964145;
+  }
+
+  &:disabled {
+    opacity: 0.25;
+  }
+`;
+
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-`;
-
-export const StyledButton = styled(Button)`
-  width: calc(100% - 3rem);
-`;
-
-export const StyledLabel = styled.label`
-  font-size: 1.25rem;
-  color: ${COLORS.GREY[300]};
-`;
-
-export const StyledInput = styled.input`
-  width: 100%;
-
-  font-size: 1rem;
   padding: 0.5rem;
-`;
-
-export const StyledError = styled.p`
-  font-size: 0.9rem;
-  margin: 0 0 1.25rem;
-  color: ${COLORS.RED};
-`;
-
-export const StyledIntroduction = styled.p`
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 0 0 2rem;
+  backface-visibility: hidden;
 `;

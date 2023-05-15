@@ -10,7 +10,6 @@ const Layout = () => {
     setSidebarShown((show) => !show);
   }, []);
 
-  // Applies "overflow: hidden" to the body element when the sidebar is shown
   useEffect(() => {
     if (sidebarShown) {
       document.body.style.overflow = 'hidden';
@@ -21,8 +20,9 @@ const Layout = () => {
 
   return (
     <>
-      <Header onMenuClick={toggleSidebar} />
-      {sidebarShown && <SideBar onClose={toggleSidebar} />}
+      {/* TODO parametrize routes so header displays only on certain pages*/}
+      {/*<Header onMenuClick={toggleSidebar} />*/}
+      {/*{sidebarShown && <SideBar onClose={toggleSidebar} />}*/}
       <Outlet />
       {/* TODO footer */}
     </>

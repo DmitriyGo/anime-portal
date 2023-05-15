@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { StyledUserContainer } from './UserContainerStyles';
 
 import { Button } from '@/components';
+import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
 import { logOut } from '@/modules/Auth';
-import { selectUserData } from '@/modules/Auth/feature/selectors';
-import { selectIsAuthorized } from '@/modules/Auth/feature/selectors';
+import { selectUserData } from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
 
 interface UserContainerProps {
@@ -15,7 +15,7 @@ interface UserContainerProps {
 
 const UserContainer: FC<UserContainerProps> = () => {
   const user = useSelector(selectUserData);
-  const isAutorized = useSelector(selectIsAuthorized);
+  const isAuthorized = localStorage.getItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,8 +28,8 @@ const UserContainer: FC<UserContainerProps> = () => {
   return (
     <StyledUserContainer>
       <div>
-        <pre>is autorized - {JSON.stringify(isAutorized, null, ' ')}</pre>
-        <pre>user - {JSON.stringify(user, null, ' ')}</pre>
+        <pre>Is authorized - {JSON.stringify(isAuthorized, null, 2)}</pre>
+        <pre>User - {JSON.stringify(user, null, 2)}</pre>
         <Button onClick={handleLogOutClick}>Log Out</Button>
       </div>
     </StyledUserContainer>

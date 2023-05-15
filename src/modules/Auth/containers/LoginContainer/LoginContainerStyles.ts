@@ -6,7 +6,6 @@ import { COLORS, DEVICES } from '@/theme';
 export const LoginContainerStyled = styled.div`
   width: 100%;
   min-height: calc(100vh - 4.5rem);
-  /* margin-top: -4.5rem; */
 
   display: flex;
   justify-content: center;

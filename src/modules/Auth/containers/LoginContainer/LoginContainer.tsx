@@ -2,7 +2,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from 'styled-components';
 import * as yup from 'yup';
 
 import {
@@ -15,11 +14,11 @@ import {
   StyledIntroduction,
   StyledLabel,
 } from './LoginContainerStyles';
-import { loginUser } from '../../feature/actionCreators';
-import { selectAuthIsLoading } from '../../feature/selectors';
 import { TLoginFormValues } from '../../helpers/types';
 
 import { FullPageLoader } from '@/components';
+import { loginUser } from '@/modules/Auth';
+import { selectAuthIsLoading } from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
 import { COLORS } from '@/theme';
 
