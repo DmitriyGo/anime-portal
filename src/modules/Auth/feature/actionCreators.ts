@@ -4,6 +4,7 @@ import { AUTH_SLICE_NAME } from './models';
 import formatApiError from '../../../shared/utils/formatApiError';
 
 import AuthAPI from '@/api/AuthAPI';
+import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
 import { IApiError } from '@/models/apiError.model';
 import {
   IAuthResponse,
@@ -14,7 +15,7 @@ import {
   IResetPasswordDTO,
 } from '@/models/auth.model';
 
-export const registerUser = createAsyncThunk<
+export const signUpUser = createAsyncThunk<
   IRegistrationResponse,
   IRegistrationDTO,
   { serializedErrorType: IApiError }
@@ -27,7 +28,7 @@ export const registerUser = createAsyncThunk<
   { serializeError: formatApiError },
 );
 
-export const loginUser = createAsyncThunk<
+export const signInUser = createAsyncThunk<
   IAuthResponse,
   ILoginDTO,
   { serializedErrorType: IApiError }
@@ -75,6 +76,18 @@ export const checkAuth = createAsyncThunk<
   async () => {
     const response = await AuthAPI.checkAuth();
     return response.data;
+  },
+  { serializeError: formatApiError },
+);
+
+export const logout = createAsyncThunk<
+  unknown,
+  never,
+  { serializedErrorType: IApiError }
+>(
+  `${AUTH_SLICE_NAME}/logout`,
+  async () => {
+    localStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
   },
   { serializeError: formatApiError },
 );

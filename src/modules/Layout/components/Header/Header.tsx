@@ -19,6 +19,7 @@ import SearchForm from '../SearchForm/SearchForm';
 
 import { Button, StyledIconButton } from '@/components';
 import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
+import { ROUTES } from '@/constants/routes';
 import { useMediaQuery } from '@/hooks';
 import { COLORS, DEVICES } from '@/theme';
 
@@ -43,15 +44,15 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
   };
 
   const handleLogoClick = () => {
-    navigate('/');
+    navigate(ROUTES.HOME);
   };
 
   const handleAccountClick = () => {
-    navigate('/user');
+    navigate(ROUTES.PROFILE);
   };
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate(ROUTES.SIGN_IN);
   };
 
   useEffect(() => {

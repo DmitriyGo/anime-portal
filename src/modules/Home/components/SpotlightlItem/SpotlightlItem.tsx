@@ -22,6 +22,7 @@ import {
   StyledArrowIcon,
 } from './SpotlightItemStyles';
 
+import { ROUTES } from '@/constants/routes';
 import { useMediaQuery } from '@/hooks';
 import { HomePageApiResponse } from '@/mocks/homePageApi';
 import { DEVICES } from '@/theme';
@@ -80,11 +81,11 @@ const SpotlightlItem: FC<HomePageApiResponse> = ({
       )}
       <StyledDescription>{description}</StyledDescription>
       <StyledButtonsBlock>
-        <StyledWatchNow onClick={() => navigate(`/watch/${id}`)}>
+        <StyledWatchNow onClick={() => navigate(`${ROUTES.WATCH}/${id}`)}>
           <PlayCircleFill size="1rem" />
           {t('watch_now')}
         </StyledWatchNow>
-        <StyledDetail onClick={() => navigate(`/details/${id}`)}>
+        <StyledDetail onClick={() => navigate(`${ROUTES.DETAILS}/${id}`)}>
           {t('details')}
           <StyledArrowIcon size="3rem" />
         </StyledDetail>

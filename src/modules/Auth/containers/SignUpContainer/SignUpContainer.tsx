@@ -16,7 +16,7 @@ import {
   Heading,
   PictureSection,
   ProfilePicture,
-  RegistrationFormWrapper,
+  SignUpFormWrapper,
   SignInButton,
   Subheading,
   SubmitButton,
@@ -29,10 +29,11 @@ import {
 
 import AuthAPI from '@/api/AuthAPI';
 import googleSvg from '@/assets/sign/google.svg';
+import { ROUTES } from '@/constants/routes';
 import {
-  registerUser,
   RegistrationDTO,
   selectAccessToken,
+  signUpUser,
   TRegisterFormValues,
 } from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
@@ -54,7 +55,7 @@ const schema = yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-const RegisterContainer = () => {
+const SignUpContainer = () => {
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ const RegisterContainer = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate('/');
+      navigate(ROUTES.HOME);
     }
   }, [navigate, accessToken]);
 
@@ -77,7 +78,7 @@ const RegisterContainer = () => {
   });
 
   const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
-    dispatch(registerUser(new RegistrationDTO(data)));
+    dispatch(signUpUser(new RegistrationDTO(data)));
 
     reset();
   };
@@ -91,11 +92,11 @@ const RegisterContainer = () => {
   };
 
   const handleSignInButtonClick = () => {
-    navigate('/login');
+    navigate(ROUTES.SIGN_IN);
   };
 
   return (
-    <RegistrationFormWrapper>
+    <SignUpFormWrapper>
       <PictureSection>
         <ProfilePicture src={signupImage} alt="Profile Picture" />
       </PictureSection>
@@ -106,10 +107,12 @@ const RegisterContainer = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <GoogleSignInButton href="#">
             <GoogleLogo src={googleSvg} alt="" />
-            <GoogleSignInButtonText>Sign up with Google</GoogleSignInButtonText>
+            <GoogleSignInButtonText>
+              {t('sign_up_with_google')}
+            </GoogleSignInButtonText>
           </GoogleSignInButton>
 
-          <OrText>or</OrText>
+          <OrText>{t('or')}</OrText>
 
           <ValidationControl
             id="email"
@@ -157,8 +160,8 @@ const RegisterContainer = () => {
         </Form>
         <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>
       </FormSection>
-    </RegistrationFormWrapper>
+    </SignUpFormWrapper>
   );
 };
 
-export default RegisterContainer;
+export default SignUpContainer;

@@ -1,6 +1,9 @@
-export enum Routes {
+export const enum ROUTES {
   HOME = '/',
-  AUTH = '/auth/[type]',
+  SIGN_IN = '/signin',
+  SIGN_UP = '/signup',
+  DETAILS = '/details',
+  WATCH = '/watch',
   PROFILE = '/profile',
-  PRIVACY = '/privacy',
+  PAGE_NOT_FOUND = '/404',
 }

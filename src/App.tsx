@@ -1,34 +1,41 @@
 import { SnackbarProvider } from 'notistack';
+import { Details, Home, Page404, Profile, SignIn, SignUp, Watch } from 'pages';
+import { useEffect } from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import { Details, Home, Login, Page404, Register, User, Watch } from './pages';
 import GlobalStyles from './styles/globals';
 
+import { ROUTES } from '@/constants/routes';
 import { checkAuth, selectAccessToken } from '@/modules/Auth';
 import { LayoutContainer } from '@/modules/Layout';
 import { useDispatch, useSelector } from '@/store';
 
 const App = () => {
   const dispatch = useDispatch();
-
   const token = useSelector(selectAccessToken);
 
-  if (token) {
-    dispatch(checkAuth());
-  }
+  useEffect(() => {
+    const checkAutorization = async () => {
+      if (token) {
+        await dispatch(checkAuth());
+      }
+    };
+
+    checkAutorization();
+  }, []);
 
   return (
     <HashRouter>
       <SnackbarProvider>
         <GlobalStyles />
         <Routes>
-          <Route path="/" element={<LayoutContainer />}>
+          <Route path={ROUTES.HOME} element={<LayoutContainer />}>
             <Route index element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/details/:id" element={<Details />} />
-            <Route path="/watch/:id" element={<Watch />} />
-            <Route path="/user/*" element={<User />} />
+            <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
+            <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+            <Route path={`${ROUTES.DETAILS}/:id`} element={<Details />} />
+            <Route path={`${ROUTES.WATCH}/:id`} element={<Watch />} />
+            <Route path={`${ROUTES.PROFILE}/*`} element={<Profile />} />
             <Route path="/*" element={<Page404 />} />
           </Route>
         </Routes>

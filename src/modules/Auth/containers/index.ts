@@ -1,2 +1,2 @@
-export { default as LoginContainer } from './LoginContainer/LoginContainer';
-export { default as RegisterContainer } from './RegisterContainer/RegisterContainer';
+export { default as SignInContainer } from './SignInContainer/SignInContainer';
+export { default as SignUpContainer } from './SignUpContainer/SignUpContainer';

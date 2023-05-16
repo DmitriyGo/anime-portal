@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Control } from '@/modules/Auth/components';
 import { COLORS } from '@/theme';
 
-export const RegistrationFormWrapper = styled.div`
+export const SignUpFormWrapper = styled.div`
   display: flex;
   height: 100vh;
   overflow: hidden;
@@ -28,6 +28,7 @@ export const PictureSection = styled.div`
 `;
 
 export const ProfilePicture = styled.img`
+  /* transform: scaleX(-1); */
   height: 100%;
   width: auto;
   max-width: 100%;

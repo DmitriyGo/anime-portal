@@ -1,1 +1,1 @@
-export { UserContainer } from './containers';
+export { ProfileContainer } from './containers';

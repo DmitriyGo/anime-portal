@@ -1,11 +1,6 @@
-import { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC, useState } from 'react';
 
 import { StyledDetailsContainer } from './DetailsContainerStyles';
-
-import AnimeAPI from '@/api/AnimeAPI';
-import { FullPageLoader } from '@/components';
-import { IAnime } from '@/models/anime.model';
 
 interface DetailsContainerProps {
   animeId: string;
@@ -76,7 +71,7 @@ const DetailsContainer: FC<DetailsContainerProps> = ({ animeId }) => {
   //       setAnime(response.data);
   //       setLoading(false);
   //     } catch (error) {
-  //       navigate('/404');
+  //       navigate(ROUTES.PAGE_NOT_FOUND);
   //     }
   //   };
 

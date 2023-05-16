@@ -1,10 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { Header, SideBar } from '../../components';
 
+import { HEADER_EXCLUDED_ROUTES } from '@/models/layout.model';
+
 const Layout = () => {
   const [sidebarShown, setSidebarShown] = useState(false);
+  const [headerShown, setHeaderShown] = useState(false);
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setHeaderShown(
+      !HEADER_EXCLUDED_ROUTES.some((path) => pathname.includes(path)),
+    );
+  }, [pathname]);
 
   const toggleSidebar = useCallback(() => {
     setSidebarShown((show) => !show);
@@ -20,9 +31,8 @@ const Layout = () => {
 
   return (
     <>
-      {/* TODO parametrize routes so header displays only on certain pages*/}
-      {/*<Header onMenuClick={toggleSidebar} />*/}
-      {/*{sidebarShown && <SideBar onClose={toggleSidebar} />}*/}
+      {headerShown && <Header onMenuClick={toggleSidebar} />}
+      {sidebarShown && <SideBar onClose={toggleSidebar} />}
       <Outlet />
       {/* TODO footer */}
     </>

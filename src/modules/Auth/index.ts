@@ -14,12 +14,7 @@ export { default as LoginDTO } from './dtos/LoginDTO';
 export { default as ResetPasswordDTO } from './dtos/ResetPasswordDTO';
 export { default as ForgotPasswordDTO } from './dtos/ForgotPasswordDTO';
 
-export {
-  default as authReducer,
-  setAccessToken,
-  logOut,
-  logIn,
-} from './feature/authSlice';
+export { default as authReducer, setAccessToken } from './feature/authSlice';
 export {
   selectAccessToken,
   selectAuthIsLoading,
@@ -32,6 +27,7 @@ export {
   checkAuth,
   resetPassword,
   forgotPassword,
-  loginUser,
-  registerUser,
+  signInUser,
+  signUpUser,
+  logout,
 } from './feature/actionCreators';

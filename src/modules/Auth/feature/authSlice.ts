@@ -8,9 +8,10 @@ import {
 
 import {
   forgotPassword,
-  loginUser,
-  registerUser,
+  signInUser,
+  signUpUser,
   resetPassword,
+  logout,
 } from './actionCreators';
 import { AuthState, AUTH_SLICE_NAME, initialState } from './models';
 
@@ -19,7 +20,6 @@ import {
   ResponseStatusCode,
 } from '@/constants/common';
 import { IApiError } from '@/models/apiError.model';
-import { IUser } from '@/models/user.model';
 import { showApiErrors } from '@/utils';
 
 export const authSlice = createSlice({
@@ -29,21 +29,11 @@ export const authSlice = createSlice({
     setAccessToken: (state, action: PayloadAction<string>) => {
       state.accessToken = action.payload;
     },
-    logIn(
-      state,
-      { payload }: PayloadAction<{ user: IUser; accessToken: string }>,
-    ) {
-      state.accessToken = payload.accessToken;
-      state.user = payload.user;
-    },
-    logOut() {
-      return initialState;
-    },
   },
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        isFulfilled(loginUser, registerUser),
+        isFulfilled(signInUser, signUpUser),
         (state: AuthState, { payload }) => {
           if (!payload.token) {
             return;
@@ -55,21 +45,36 @@ export const authSlice = createSlice({
           state.accessToken = payload.token;
         },
       )
+      .addMatcher(isFulfilled(logout), () => {
+        return initialState;
+      })
       .addMatcher(
-        isFulfilled(forgotPassword, registerUser, resetPassword),
+        isFulfilled(forgotPassword, resetPassword, logout),
         (state: AuthState) => {
           state.isLoading = false;
         },
       )
       .addMatcher(
-        isPending(registerUser, loginUser, forgotPassword, resetPassword),
+        isPending(
+          signUpUser,
+          signInUser,
+          forgotPassword,
+          resetPassword,
+          logout,
+        ),
         (state: AuthState) => {
           state.isLoading = true;
           state.error = null;
         },
       )
       .addMatcher(
-        isRejected(registerUser, loginUser, forgotPassword, resetPassword),
+        isRejected(
+          signUpUser,
+          signInUser,
+          forgotPassword,
+          resetPassword,
+          logout,
+        ),
         (state: AuthState, action) => {
           const { error } = action;
           state.isLoading = false;
@@ -92,6 +97,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setAccessToken, logOut, logIn } = authSlice.actions;
+export const { setAccessToken } = authSlice.actions;
 
 export default authSlice.reducer;

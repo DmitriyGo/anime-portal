@@ -5,6 +5,7 @@ import { StyledWatchContainer } from './WatchContainerStyles';
 
 import AnimeAPI from '@/api/AnimeAPI';
 import { FullPageLoader } from '@/components';
+import { ROUTES } from '@/constants/routes';
 import { IAnime } from '@/models/anime.model';
 
 interface WatchContainerProps {
@@ -25,7 +26,7 @@ const WatchContainer: FC<WatchContainerProps> = ({ animeId }) => {
         setAnime(response.data);
         setLoading(false);
       } catch (error) {
-        navigate('/404');
+        navigate(ROUTES.PAGE_NOT_FOUND);
       }
     };
 

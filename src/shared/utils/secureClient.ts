@@ -6,8 +6,8 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios';
 
-import { API_URL, AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
-import { logOut, setAccessToken } from '@/modules/Auth';
+import { API_URL } from '@/constants/common';
+import { logout, setAccessToken } from '@/modules/Auth';
 import { AppStore } from '@/store';
 
 type AccessToken = string | null;
@@ -63,8 +63,7 @@ export const setupHttpClient = (store: AppStore) => {
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
           return axios(originalRequest);
         } catch (error) {
-          localStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
-          store.dispatch(logOut());
+          store.dispatch(logout());
           throw new Error('User is not authenticated');
         }
       } else {

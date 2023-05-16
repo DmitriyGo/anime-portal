@@ -16,7 +16,7 @@ import {
   Heading,
   PictureSection,
   ProfilePicture,
-  RegistrationFormWrapper,
+  SignUpFormWrapper,
   SignInButton,
   Subheading,
   SubmitButton,
@@ -28,10 +28,11 @@ import {
 } from '../styles';
 
 import googleSvg from '@/assets/sign/google.svg';
+import { ROUTES } from '@/constants/routes';
 import {
   LoginDTO,
-  loginUser,
   selectAccessToken,
+  signInUser,
   TLoginFormValues,
 } from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
@@ -45,7 +46,7 @@ const schema = yup.object().shape({
     .required('Password is required'),
 });
 
-const RegisterContainer = () => {
+const SignInContainer = () => {
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const RegisterContainer = () => {
 
   useEffect(() => {
     if (accessToken) {
-      navigate('/');
+      navigate(ROUTES.HOME);
     }
   }, [navigate, accessToken]);
 
@@ -67,17 +68,17 @@ const RegisterContainer = () => {
   });
 
   const onSubmit: SubmitHandler<TLoginFormValues> = (data) => {
-    dispatch(loginUser(new LoginDTO(data)));
+    dispatch(signInUser(new LoginDTO(data)));
 
     reset();
   };
 
   const handleSignUpButtonClick = () => {
-    navigate('/register');
+    navigate(ROUTES.SIGN_UP);
   };
 
   return (
-    <RegistrationFormWrapper>
+    <SignUpFormWrapper>
       <PictureSection>
         <ProfilePicture src={signinImage} alt="Profile Picture" />
       </PictureSection>
@@ -88,10 +89,12 @@ const RegisterContainer = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <GoogleSignInButton href="#">
             <GoogleLogo src={googleSvg} alt="" />
-            <GoogleSignInButtonText>Sign in with Google</GoogleSignInButtonText>
+            <GoogleSignInButtonText>
+              {t('sign_in_with_google')}
+            </GoogleSignInButtonText>
           </GoogleSignInButton>
 
-          <OrText>or</OrText>
+          <OrText>{t('or')}</OrText>
 
           <StyledControl
             id="email_or_login"
@@ -119,13 +122,15 @@ const RegisterContainer = () => {
                 {t('sign_up')}
               </SignInButton>
             </HaveAccountText>
-            <ForgotPasswordButton>{t('forgot_password')}</ForgotPasswordButton>
+            <ForgotPasswordButton type="button">
+              {t('forgot_password')}
+            </ForgotPasswordButton>
           </FormFooter>
         </Form>
         <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>
       </FormSection>
-    </RegistrationFormWrapper>
+    </SignUpFormWrapper>
   );
 };
 
-export default RegisterContainer;
+export default SignInContainer;

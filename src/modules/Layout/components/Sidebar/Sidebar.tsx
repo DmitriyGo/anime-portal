@@ -10,6 +10,7 @@ import {
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
 import { Backdrop, Button } from '@/components';
+import { ROUTES } from '@/constants/routes';
 import { useBackdrop, useMediaQuery } from '@/hooks';
 import { COLORS, DEVICES } from '@/theme';
 
@@ -51,7 +52,7 @@ const Sidebar: FC<SidebarProps> = ({ onClose }) => {
 
         <Button
           color={COLORS.SECONDARY}
-          onClick={() => handleNavigateClick('/')}
+          onClick={() => handleNavigateClick(ROUTES.HOME)}
         >
           {t('home')}
         </Button>
