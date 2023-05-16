@@ -3,11 +3,11 @@ import { AuthFieldsNames, TLoginFormValues } from '../helpers/types';
 import { ILoginDTO } from '@/models/auth.model';
 
 class LoginDTO implements ILoginDTO {
-  login: string;
+  email_or_login: string;
   password: string;
 
   constructor(values: TLoginFormValues) {
-    this.login = values[AuthFieldsNames.LOGIN];
+    this.email_or_login = values[AuthFieldsNames.EMAIL_OR_LOGIN];
     this.password = values[AuthFieldsNames.PASSWORD];
   }
 }

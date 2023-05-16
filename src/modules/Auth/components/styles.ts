@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 export const UsernameWrapper = styled.div`
   position: relative;
+  margin: 0 0 1rem;
 `;
 
 const spinAnimation = keyframes`
@@ -37,6 +38,8 @@ export const ValidationMessage = styled.div`
   padding-left: 0.25rem;
 
   &.invalid {
+    margin: -0.5rem 0 0.5rem;
+
     height: 30px;
   }
 `;

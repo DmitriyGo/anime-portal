@@ -10,15 +10,18 @@ import {
   IVerifyEmailDTO,
   IVerifyEmailResponse,
 } from '@/models/auth.model';
-import { secureClient, ApiResponse, httpClient } from '@/utils';
+import { ApiResponse, httpClient } from '@/utils';
 
 class AuthAPI {
   static login(data: ILoginDTO): ApiResponse<IAuthResponse> {
-    return secureClient.post<IAuthResponse>(AuthEndpoints.LOGIN, data);
+    return httpClient.post<IAuthResponse>(AuthEndpoints.LOGIN, {
+      NameOrEmail: data.email_or_login,
+      password: data.password,
+    });
   }
 
   static register(data: IRegistrationDTO): ApiResponse<IRegistrationResponse> {
-    return secureClient.post<IRegistrationResponse>(AuthEndpoints.REGISTER, {
+    return httpClient.post<IRegistrationResponse>(AuthEndpoints.REGISTER, {
       //TODO replace back to data
       name: data.login,
       email: data.email,
@@ -33,31 +36,28 @@ class AuthAPI {
   }
 
   static verifyEmail(data: IVerifyEmailDTO): ApiResponse<IAuthResponse> {
-    return secureClient.post<IAuthResponse>(
-      AuthEndpoints.REGISTER_VERIFY,
-      data,
-    );
+    return httpClient.post<IAuthResponse>(AuthEndpoints.REGISTER_VERIFY, data);
   }
 
   static verifyNewEmail(
     data: IVerifyEmailDTO,
   ): ApiResponse<IVerifyEmailResponse> {
-    return secureClient.post<IVerifyEmailResponse>(
+    return httpClient.post<IVerifyEmailResponse>(
       AuthEndpoints.NEW_EMAIL_VERIFY,
       data,
     );
   }
 
   static forgotPassword(data: IForgotPasswordDTO): ApiResponse<unknown> {
-    return secureClient.post<unknown>(AuthEndpoints.FORGOT_PASSWORD, data);
+    return httpClient.post<unknown>(AuthEndpoints.FORGOT_PASSWORD, data);
   }
 
   static resetPassword(data: IResetPasswordDTO): ApiResponse<unknown> {
-    return secureClient.post<unknown>(AuthEndpoints.RESET_PASSWORD, data);
+    return httpClient.post<unknown>(AuthEndpoints.RESET_PASSWORD, data);
   }
 
   static checkAuth() {
-    return secureClient.get(AuthEndpoints.REFRESH);
+    return httpClient.get(AuthEndpoints.REFRESH);
   }
 }
 

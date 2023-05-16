@@ -29,7 +29,7 @@ export interface IAuthorizedRequestDTO {
 }
 
 export interface ILoginDTO {
-  login: string;
+  email_or_login: string;
   password: string;
 }
 

@@ -4,7 +4,6 @@ export const StyledInput = styled.input`
   outline: none;
   width: 100%;
   height: 3rem;
-  margin: 0 0 1rem;
   padding: 0 1rem;
   border: 0;
   background: #15161a !important;

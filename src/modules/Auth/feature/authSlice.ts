@@ -42,18 +42,8 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(isFulfilled(loginUser), (state: AuthState, { payload }) => {
-        if (!payload.token) {
-          return;
-        }
-
-        localStorage.setItem(AUTHORIZATION_TOKEN_STORAGE_KEY, 'true');
-
-        state.isLoading = false;
-        state.accessToken = payload.token;
-      })
       .addMatcher(
-        isFulfilled(registerUser),
+        isFulfilled(loginUser, registerUser),
         (state: AuthState, { payload }) => {
           if (!payload.token) {
             return;

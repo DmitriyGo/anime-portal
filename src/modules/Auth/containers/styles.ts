@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { Control } from '@/modules/Auth/components';
 import { COLORS } from '@/theme';
 
 export const RegistrationFormWrapper = styled.div`
@@ -42,6 +43,10 @@ export const FormSection = styled.div`
   justify-content: center;
 `;
 
+export const StyledControl = styled(Control)`
+  margin: 0 0 1rem;
+`;
+
 export const Heading = styled.h2`
   margin: 0 0 1rem;
   text-align: center;
@@ -56,13 +61,15 @@ export const Subheading = styled.h5`
   letter-spacing: 0.5px;
 `;
 
-export const SubmitButton = styled.button`
+export const SubmitButton = styled.button<{ bgtype: 'signin' | 'signup' }>`
   cursor: pointer;
   width: 100%;
   height: 3rem;
   margin: 0.75rem 0 0.5rem;
   padding: 0 16px;
-  background: #ff5566;
+  ${({ bgtype }) =>
+    `background ${bgtype === 'signup' ? '#ff5566' : '#0b63da'}`};
+
   color: #f7f7f7;
   border: 0;
   font-family: inherit;
@@ -72,9 +79,9 @@ export const SubmitButton = styled.button`
   letter-spacing: 1px;
   transition: all 0.375s;
   border-radius: 0.75rem;
-
   &:hover {
-    background-color: #964145;
+    ${({ bgtype }) =>
+      `background ${bgtype === 'signup' ? '#964145' : '#084ba5'}`};
   }
 
   &:disabled {

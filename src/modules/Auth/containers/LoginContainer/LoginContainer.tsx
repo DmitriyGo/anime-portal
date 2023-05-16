@@ -1,92 +1,131 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
+import signinImage from '../../../../assets/sign/signin.jpg';
 import {
-  LoginContainerStyled,
-  StyledBlock,
-  StyledButton,
-  StyledError,
-  StyledForm,
-  StyledInput,
-  StyledIntroduction,
-  StyledLabel,
-} from './LoginContainerStyles';
-import { TLoginFormValues } from '../../helpers/types';
+  CopyrightText,
+  ForgotPasswordButton,
+  Form,
+  FormFooter,
+  FormSection,
+  HaveAccountText,
+  Heading,
+  PictureSection,
+  ProfilePicture,
+  RegistrationFormWrapper,
+  SignInButton,
+  Subheading,
+  SubmitButton,
+  OrText,
+  GoogleSignInButton,
+  GoogleSignInButtonText,
+  GoogleLogo,
+  StyledControl,
+} from '../styles';
 
-import { FullPageLoader } from '@/components';
-import { loginUser } from '@/modules/Auth';
-import { selectAuthIsLoading } from '@/modules/Auth';
+import googleSvg from '@/assets/sign/google.svg';
+import {
+  LoginDTO,
+  loginUser,
+  selectAccessToken,
+  TLoginFormValues,
+} from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
-import { COLORS } from '@/theme';
 
-const schema = yup
-  .object({
-    login: yup.string().required(),
-    password: yup.string().required(),
-  })
-  .required();
+//TODO add translations to validation
+const schema = yup.object().shape({
+  email_or_login: yup.string().required('This field is required'),
+  password: yup
+    .string()
+    .min(6, 'Min length 6 characters')
+    .required('Password is required'),
+});
 
-const LoginContainer = () => {
+const RegisterContainer = () => {
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const accessToken = useSelector(selectAccessToken);
 
-  const loading = useSelector(selectAuthIsLoading);
+  useEffect(() => {
+    if (accessToken) {
+      navigate('/');
+    }
+  }, [navigate, accessToken]);
 
   const {
-    register,
+    register: formRegister,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<TLoginFormValues>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<TLoginFormValues> = async (data) => {
-    await dispatch(loginUser(data));
+  const onSubmit: SubmitHandler<TLoginFormValues> = (data) => {
+    dispatch(loginUser(new LoginDTO(data)));
 
-    navigate('/', { replace: true });
+    reset();
   };
 
-  const onRegister = () => {
+  const handleSignUpButtonClick = () => {
     navigate('/register');
   };
 
-  if (loading) {
-    return <FullPageLoader />;
-  }
-
   return (
-    <LoginContainerStyled>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <StyledIntroduction>{t('login_greeting')}</StyledIntroduction>
+    <RegistrationFormWrapper>
+      <PictureSection>
+        <ProfilePicture src={signinImage} alt="Profile Picture" />
+      </PictureSection>
+      <FormSection>
+        <Heading>{t('sign_in_heading')}</Heading>
+        <Subheading>{t('sign_in_subheading')}</Subheading>
 
-        <StyledBlock>
-          <StyledLabel htmlFor="login">{t('login_label')}</StyledLabel>
-          <StyledInput {...register('login')} />
-          <StyledError>{errors.login?.message}</StyledError>
-        </StyledBlock>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <GoogleSignInButton href="#">
+            <GoogleLogo src={googleSvg} alt="" />
+            <GoogleSignInButtonText>Sign in with Google</GoogleSignInButtonText>
+          </GoogleSignInButton>
 
-        <StyledBlock>
-          <StyledLabel htmlFor="password">{t('password')}</StyledLabel>
-          <StyledInput {...register('password')} />
-          <StyledError>{errors.password?.message}</StyledError>
-        </StyledBlock>
+          <OrText>or</OrText>
 
-        <StyledBlock>
-          <StyledButton type="submit" color={COLORS.SECONDARY}>
+          <StyledControl
+            id="email_or_login"
+            type="string"
+            placeholder={t('email_login_placeholder')}
+            errorMessage={errors?.email_or_login?.message}
+            {...formRegister('email_or_login')}
+          />
+
+          <StyledControl
+            id="password"
+            type="password"
+            placeholder={t('password_placeholder')}
+            errorMessage={errors?.password?.message}
+            {...formRegister('password')}
+          />
+
+          <SubmitButton bgtype="signin" type="submit">
             {t('login')}
-          </StyledButton>
-
-          <StyledButton onClick={onRegister} color={COLORS.PRIMARY}>
-            {t('do_not_have_account')}
-          </StyledButton>
-        </StyledBlock>
-      </StyledForm>
-    </LoginContainerStyled>
+          </SubmitButton>
+          <FormFooter>
+            <HaveAccountText>
+              {t('do_not_have_account')}{' '}
+              <SignInButton onClick={handleSignUpButtonClick}>
+                {t('sign_up')}
+              </SignInButton>
+            </HaveAccountText>
+            <ForgotPasswordButton>{t('forgot_password')}</ForgotPasswordButton>
+          </FormFooter>
+        </Form>
+        <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>
+      </FormSection>
+    </RegistrationFormWrapper>
   );
 };
 
-export default LoginContainer;
+export default RegisterContainer;

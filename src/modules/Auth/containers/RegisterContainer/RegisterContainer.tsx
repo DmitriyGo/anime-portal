@@ -1,12 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
+import signupImage from '../../../../assets/sign/signup.jpg';
+import { ValidationControl } from '../../components';
 import {
   CopyrightText,
-  ForgotPasswordButton,
   Form,
   FormFooter,
   FormSection,
@@ -22,18 +24,18 @@ import {
   GoogleSignInButton,
   GoogleSignInButtonText,
   GoogleLogo,
-} from './RegisterContainerStyles';
-import signupImage from '../../../../assets/sign/signup.jpg';
-import { Control, ValidationControl } from '../../components';
+  StyledControl,
+} from '../styles';
 
 import AuthAPI from '@/api/AuthAPI';
 import googleSvg from '@/assets/sign/google.svg';
 import {
   registerUser,
   RegistrationDTO,
+  selectAccessToken,
   TRegisterFormValues,
 } from '@/modules/Auth';
-import { useDispatch } from '@/store';
+import { useDispatch, useSelector } from '@/store';
 
 //TODO add translations to validation
 const schema = yup.object().shape({
@@ -56,6 +58,13 @@ const RegisterContainer = () => {
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const accessToken = useSelector(selectAccessToken);
+
+  useEffect(() => {
+    if (accessToken) {
+      navigate('/');
+    }
+  }, [navigate, accessToken]);
 
   const {
     register: formRegister,
@@ -74,6 +83,8 @@ const RegisterContainer = () => {
   };
 
   const handleLoginCheck = async (loginOrEmail: string) => {
+    if (!loginOrEmail.trim()) return false;
+
     const response = await AuthAPI.checkUserExists(loginOrEmail);
 
     return response.data.checkStatus;
@@ -95,7 +106,7 @@ const RegisterContainer = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <GoogleSignInButton href="#">
             <GoogleLogo src={googleSvg} alt="" />
-            <GoogleSignInButtonText>Sign in with Google</GoogleSignInButtonText>
+            <GoogleSignInButtonText>Sign up with Google</GoogleSignInButtonText>
           </GoogleSignInButton>
 
           <OrText>or</OrText>
@@ -118,21 +129,23 @@ const RegisterContainer = () => {
             onCheck={() => handleLoginCheck(getValues().login)}
             {...formRegister('login')}
           />
-          <Control
+          <StyledControl
             id="password"
             type="password"
             placeholder={t('password_placeholder')}
             errorMessage={errors?.password?.message}
             {...formRegister('password')}
           />
-          <Control
+          <StyledControl
             id="confirm_password"
             type="password"
             placeholder={t('confirm_password_placeholder')}
             errorMessage={errors?.confirm_password?.message}
             {...formRegister('confirm_password')}
           />
-          <SubmitButton type="submit">{t('register')}</SubmitButton>
+          <SubmitButton bgtype="signup" type="submit">
+            {t('register')}
+          </SubmitButton>
           <FormFooter>
             <HaveAccountText>
               {t('already_have_account')}{' '}
@@ -140,7 +153,6 @@ const RegisterContainer = () => {
                 {t('sign_in')}
               </SignInButton>
             </HaveAccountText>
-            <ForgotPasswordButton>{t('forgot_password')}</ForgotPasswordButton>
           </FormFooter>
         </Form>
         <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>

@@ -4,6 +4,7 @@ export enum AuthFieldsNames {
   LAST_NAME = 'last_name',
   LOGIN = 'login',
   EMAIL = 'email',
+  EMAIL_OR_LOGIN = 'email_or_login',
   PASSWORD = 'password',
   CREATE_PASSWORD = 'create_password',
   CONFIRM_PASSWORD = 'confirm_password',
@@ -12,7 +13,7 @@ export enum AuthFieldsNames {
 }
 
 export type TLoginFormValues = {
-  [AuthFieldsNames.LOGIN]: string;
+  [AuthFieldsNames.EMAIL_OR_LOGIN]: string;
   [AuthFieldsNames.PASSWORD]: string;
 };
 
