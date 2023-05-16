@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
+import { Button } from '@/components';
 import { Control } from '@/modules/Auth/components';
 import { COLORS } from '@/theme';
 
-export const SignUpFormWrapper = styled.div`
+export const SignPageWrapper = styled.div`
   display: flex;
   height: 100vh;
   overflow: hidden;
@@ -27,8 +28,7 @@ export const PictureSection = styled.div`
   }
 `;
 
-export const ProfilePicture = styled.img`
-  /* transform: scaleX(-1); */
+export const Picture = styled.img`
   height: 100%;
   width: auto;
   max-width: 100%;
@@ -37,26 +37,49 @@ export const ProfilePicture = styled.img`
 `;
 
 export const FormSection = styled.div`
+  position: relative;
   width: 33.33333%;
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+`;
+
+export const FormContentWrapper = styled.div`
+  margin-top: 10rem;
 `;
 
 export const StyledControl = styled(Control)`
   margin: 0 0 1rem;
 `;
 
+export const BackButton = styled(Button)`
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1;
+
+  &:hover {
+    background-color: #34363c;
+  }
+`;
+
 export const Heading = styled.h2`
   margin: 0 0 1rem;
   text-align: center;
   letter-spacing: 0.4px;
+  font-size: 1.75rem;
 `;
 
 export const Subheading = styled.h5`
   margin: 0 0 1rem;
   text-align: center;
+  font-size: 0.9rem;
   font-weight: 400;
   color: aliceblue;
   letter-spacing: 0.5px;

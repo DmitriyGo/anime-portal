@@ -1,11 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
+import { ArrowLeft } from '@styled-icons/material-rounded';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import signinImage from '../../../../assets/sign/signin.jpg';
+import signInImage from '../../../../assets/sign/signin.jpg';
 import {
   CopyrightText,
   ForgotPasswordButton,
@@ -15,8 +16,8 @@ import {
   HaveAccountText,
   Heading,
   PictureSection,
-  ProfilePicture,
-  SignUpFormWrapper,
+  Picture,
+  SignPageWrapper,
   SignInButton,
   Subheading,
   SubmitButton,
@@ -25,6 +26,8 @@ import {
   GoogleSignInButtonText,
   GoogleLogo,
   StyledControl,
+  BackButton,
+  FormContentWrapper,
 } from '../styles';
 
 import googleSvg from '@/assets/sign/google.svg';
@@ -53,6 +56,14 @@ const SignInContainer = () => {
   const accessToken = useSelector(selectAccessToken);
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
+  useEffect(() => {
     if (accessToken) {
       navigate(ROUTES.HOME);
     }
@@ -73,63 +84,73 @@ const SignInContainer = () => {
     reset();
   };
 
+  const handleBackButtonClick = () => {
+    navigate(ROUTES.HOME);
+  };
+
   const handleSignUpButtonClick = () => {
     navigate(ROUTES.SIGN_UP);
   };
 
   return (
-    <SignUpFormWrapper>
+    <SignPageWrapper>
       <PictureSection>
-        <ProfilePicture src={signinImage} alt="Profile Picture" />
+        <Picture src={signInImage} alt="Profile Picture" />
       </PictureSection>
       <FormSection>
-        <Heading>{t('sign_in_heading')}</Heading>
-        <Subheading>{t('sign_in_subheading')}</Subheading>
+        <BackButton onClick={handleBackButtonClick}>
+          <ArrowLeft size="3rem" />
+        </BackButton>
 
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <GoogleSignInButton href="#">
-            <GoogleLogo src={googleSvg} alt="" />
-            <GoogleSignInButtonText>
-              {t('sign_in_with_google')}
-            </GoogleSignInButtonText>
-          </GoogleSignInButton>
+        <FormContentWrapper>
+          <Heading>{t('sign_in_heading')}</Heading>
+          <Subheading>{t('sign_in_subheading')}</Subheading>
 
-          <OrText>{t('or')}</OrText>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <GoogleSignInButton href="#">
+              <GoogleLogo src={googleSvg} alt="" />
+              <GoogleSignInButtonText>
+                {t('sign_in_with_google')}
+              </GoogleSignInButtonText>
+            </GoogleSignInButton>
 
-          <StyledControl
-            id="email_or_login"
-            type="string"
-            placeholder={t('email_login_placeholder')}
-            errorMessage={errors?.email_or_login?.message}
-            {...formRegister('email_or_login')}
-          />
+            <OrText>{t('or')}</OrText>
 
-          <StyledControl
-            id="password"
-            type="password"
-            placeholder={t('password_placeholder')}
-            errorMessage={errors?.password?.message}
-            {...formRegister('password')}
-          />
+            <StyledControl
+              id="email_or_login"
+              type="string"
+              placeholder={t('email_login_placeholder')}
+              errorMessage={errors?.email_or_login?.message}
+              {...formRegister('email_or_login')}
+            />
 
-          <SubmitButton bgtype="signin" type="submit">
-            {t('login')}
-          </SubmitButton>
-          <FormFooter>
-            <HaveAccountText>
-              {t('do_not_have_account')}{' '}
-              <SignInButton onClick={handleSignUpButtonClick}>
-                {t('sign_up')}
-              </SignInButton>
-            </HaveAccountText>
-            <ForgotPasswordButton type="button">
-              {t('forgot_password')}
-            </ForgotPasswordButton>
-          </FormFooter>
-        </Form>
-        <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>
+            <StyledControl
+              id="password"
+              type="password"
+              placeholder={t('password_placeholder')}
+              errorMessage={errors?.password?.message}
+              {...formRegister('password')}
+            />
+
+            <SubmitButton bgtype="signin" type="submit">
+              {t('login')}
+            </SubmitButton>
+            <FormFooter>
+              <HaveAccountText>
+                {t('do_not_have_account')}{' '}
+                <SignInButton onClick={handleSignUpButtonClick}>
+                  {t('sign_up')}
+                </SignInButton>
+              </HaveAccountText>
+              <ForgotPasswordButton type="button">
+                {t('forgot_password')}
+              </ForgotPasswordButton>
+            </FormFooter>
+          </Form>
+          <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>
+        </FormContentWrapper>
       </FormSection>
-    </SignUpFormWrapper>
+    </SignPageWrapper>
   );
 };
 
