@@ -5,22 +5,29 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import {
-  ProfilePicture,
-  PictureSection,
-  RegistrationFormWrapper,
-  FormSection,
-  Form,
-  Heading,
-  SubmitButton,
-  HaveAccountText,
-  SignInButton,
-  Subheading,
   CopyrightText,
   ForgotPasswordButton,
+  Form,
+  FormFooter,
+  FormSection,
+  HaveAccountText,
+  Heading,
+  PictureSection,
+  ProfilePicture,
+  RegistrationFormWrapper,
+  SignInButton,
+  Subheading,
+  SubmitButton,
+  OrText,
+  GoogleSignInButton,
+  GoogleSignInButtonText,
+  GoogleLogo,
 } from './RegisterContainerStyles';
 import signupImage from '../../../../assets/sign/signup.jpg';
 import { Control, ValidationControl } from '../../components';
 
+import AuthAPI from '@/api/AuthAPI';
+import googleSvg from '@/assets/sign/google.svg';
 import {
   registerUser,
   RegistrationDTO,
@@ -55,21 +62,25 @@ const RegisterContainer = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    getValues,
   } = useForm<TRegisterFormValues>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
     dispatch(registerUser(new RegistrationDTO(data)));
+
     reset();
   };
 
-  const handleLoginCheck = () => {
-    // const response = await httpClient.post('/auth/check-login', {
-    //   login: getValues().login,
-    // });
-    // return response.data
-    return false;
+  const handleLoginCheck = async (loginOrEmail: string) => {
+    const response = await AuthAPI.checkUserExists(loginOrEmail);
+
+    return response.data.checkStatus;
+  };
+
+  const handleSignInButtonClick = () => {
+    navigate('/login');
   };
 
   return (
@@ -78,31 +89,35 @@ const RegisterContainer = () => {
         <ProfilePicture src={signupImage} alt="Profile Picture" />
       </PictureSection>
       <FormSection>
-        <Heading>{"Let's create your account"}</Heading>
-        <Subheading>
-          {"We'd love to have you Join to our lovely community"}
-        </Subheading>
+        <Heading>{t('sign_up_heading')}</Heading>
+        <Subheading>{t('sign_up_subheading')}</Subheading>
+
         <Form onSubmit={handleSubmit(onSubmit)}>
+          <GoogleSignInButton href="#">
+            <GoogleLogo src={googleSvg} alt="" />
+            <GoogleSignInButtonText>Sign in with Google</GoogleSignInButtonText>
+          </GoogleSignInButton>
+
+          <OrText>or</OrText>
+
           <ValidationControl
             id="email"
             type="string"
             placeholder={t('email_placeholder')}
             takenMessage={t('email_taken')}
             errorMessage={errors.email?.message}
-            onCheck={handleLoginCheck}
+            onCheck={() => handleLoginCheck(getValues().email)}
             {...formRegister('email')}
           />
-
           <ValidationControl
             id="login"
             type="string"
             placeholder={t('login_placeholder')}
             takenMessage={t('login_taken')}
             errorMessage={errors.login?.message}
-            onCheck={handleLoginCheck}
+            onCheck={() => handleLoginCheck(getValues().login)}
             {...formRegister('login')}
           />
-
           <Control
             id="password"
             type="password"
@@ -110,7 +125,6 @@ const RegisterContainer = () => {
             errorMessage={errors?.password?.message}
             {...formRegister('password')}
           />
-
           <Control
             id="confirm_password"
             type="password"
@@ -118,14 +132,16 @@ const RegisterContainer = () => {
             errorMessage={errors?.confirm_password?.message}
             {...formRegister('confirm_password')}
           />
-
           <SubmitButton type="submit">{t('register')}</SubmitButton>
-
-          <HaveAccountText>
-            {t('already_have_account')}{' '}
-            <SignInButton>{t('sign_in')}</SignInButton>
-          </HaveAccountText>
-          <ForgotPasswordButton>{t('forgot_password')}</ForgotPasswordButton>
+          <FormFooter>
+            <HaveAccountText>
+              {t('already_have_account')}{' '}
+              <SignInButton onClick={handleSignInButtonClick}>
+                {t('sign_in')}
+              </SignInButton>
+            </HaveAccountText>
+            <ForgotPasswordButton>{t('forgot_password')}</ForgotPasswordButton>
+          </FormFooter>
         </Form>
         <CopyrightText>© PZPI-21-5 PseudoTeam</CopyrightText>
       </FormSection>

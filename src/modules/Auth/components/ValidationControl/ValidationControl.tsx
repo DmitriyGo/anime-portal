@@ -17,7 +17,7 @@ interface ValidationControlProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   takenMessage: string;
   errorMessage?: string;
-  onCheck: () => boolean;
+  onCheck: () => Promise<boolean> | boolean;
 }
 
 const ValidationControl = forwardRef(
@@ -37,11 +37,16 @@ const ValidationControl = forwardRef(
     const [loading, setLoading] = useState(false);
 
     const handleKeyUp = debounce(async () => {
-      const taken = onCheck();
+      try {
+        const taken = await onCheck();
 
-      setTaken(taken);
-      setLoading(false);
-    }, 400);
+        setTaken(taken);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    }, 500);
 
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       setLoading(checkIfServiceKey(event));

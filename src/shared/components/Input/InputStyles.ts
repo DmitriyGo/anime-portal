@@ -4,12 +4,12 @@ export const StyledInput = styled.input`
   outline: none;
   width: 100%;
   height: 3rem;
+  margin: 0 0 1rem;
   padding: 0 1rem;
   border: 0;
   background: #15161a !important;
   color: inherit;
   border-radius: 0.75rem;
-  margin: 0.5rem 0;
   font-family: inherit;
   text-align: left;
   font-size: 1.125rem;

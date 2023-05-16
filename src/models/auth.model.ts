@@ -61,6 +61,10 @@ export interface IRegistrationResponse {
   token: string;
 }
 
+export interface IUserExistsResponse {
+  checkStatus: boolean;
+}
+
 export interface IAuthResponse {
   token: string;
 }

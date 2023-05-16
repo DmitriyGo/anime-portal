@@ -36,17 +36,20 @@ export const ProfilePicture = styled.img`
 
 export const FormSection = styled.div`
   width: 33.33333%;
-  margin-top: 4rem;
-  padding: 1.5rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 export const Heading = styled.h2`
-  margin-bottom: 0.75rem;
+  margin: 0 0 1rem;
   text-align: center;
   letter-spacing: 0.4px;
 `;
 
 export const Subheading = styled.h5`
+  margin: 0 0 1rem;
   text-align: center;
   font-weight: 400;
   color: aliceblue;
@@ -86,15 +89,76 @@ export const Form = styled.form`
   backface-visibility: hidden;
 `;
 
+export const GoogleSignInButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  margin: 0 0 1rem;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  color: #737373;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+`;
+
+export const GoogleLogo = styled.img`
+  width: 1.5rem;
+  margin-right: 0.25rem;
+`;
+
+export const GoogleSignInButtonText = styled.span`
+  all: unset;
+  text-transform: none;
+  font-weight: 500;
+`;
+
+export const OrText = styled.p`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 1rem;
+  padding: 0;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    width: 50%;
+    height: 1px;
+    background-color: ${COLORS.DARK_GREY['500']};
+  }
+
+  &::before {
+    margin-right: 10px;
+  }
+
+  &::after {
+    margin-left: 10px;
+  }
+`;
+
 export const ForgotPasswordButton = styled.button`
   all: unset;
   color: ${COLORS.PRIMARY};
   cursor: pointer;
-  align-self: center;
+`;
+
+export const FormFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const HaveAccountText = styled.p`
-  align-self: center;
   color: ${COLORS.FONT};
 `;
 

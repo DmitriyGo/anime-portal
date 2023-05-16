@@ -6,10 +6,11 @@ import {
   IRegistrationDTO,
   IRegistrationResponse,
   IResetPasswordDTO,
+  IUserExistsResponse,
   IVerifyEmailDTO,
   IVerifyEmailResponse,
 } from '@/models/auth.model';
-import { secureClient, ApiResponse } from '@/utils';
+import { secureClient, ApiResponse, httpClient } from '@/utils';
 
 class AuthAPI {
   static login(data: ILoginDTO): ApiResponse<IAuthResponse> {
@@ -17,10 +18,18 @@ class AuthAPI {
   }
 
   static register(data: IRegistrationDTO): ApiResponse<IRegistrationResponse> {
-    return secureClient.post<IRegistrationResponse>(
-      AuthEndpoints.REGISTER,
-      data,
-    );
+    return secureClient.post<IRegistrationResponse>(AuthEndpoints.REGISTER, {
+      //TODO replace back to data
+      name: data.login,
+      email: data.email,
+      password: data.password,
+    });
+  }
+
+  static checkUserExists(loginOrEmail: string) {
+    return httpClient.post<IUserExistsResponse>('jwt-auth/user-exists', {
+      nameOrEmail: loginOrEmail,
+    });
   }
 
   static verifyEmail(data: IVerifyEmailDTO): ApiResponse<IAuthResponse> {
