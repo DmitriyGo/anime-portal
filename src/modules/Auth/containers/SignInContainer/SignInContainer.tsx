@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import signInImage from '../../../../assets/sign/signin.jpg';
+import { GoogleSignButton } from '../../components';
 import {
   CopyrightText,
   ForgotPasswordButton,
@@ -22,15 +22,12 @@ import {
   Subheading,
   SubmitButton,
   OrText,
-  GoogleSignInButton,
-  GoogleSignInButtonText,
-  GoogleLogo,
   StyledControl,
   BackButton,
   FormContentWrapper,
 } from '../styles';
 
-import googleSvg from '@/assets/sign/google.svg';
+import signInImage from '@/assets/sign/signin.jpg';
 import { ROUTES } from '@/constants/routes';
 import {
   LoginDTO,
@@ -80,7 +77,6 @@ const SignInContainer = () => {
 
   const onSubmit: SubmitHandler<TLoginFormValues> = (data) => {
     dispatch(signInUser(new LoginDTO(data)));
-
     reset();
   };
 
@@ -97,6 +93,7 @@ const SignInContainer = () => {
       <PictureSection>
         <Picture src={signInImage} alt="Profile Picture" />
       </PictureSection>
+
       <FormSection>
         <BackButton onClick={handleBackButtonClick}>
           <ArrowLeft size="3rem" />
@@ -107,12 +104,7 @@ const SignInContainer = () => {
           <Subheading>{t('sign_in_subheading')}</Subheading>
 
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <GoogleSignInButton href="#">
-              <GoogleLogo src={googleSvg} alt="" />
-              <GoogleSignInButtonText>
-                {t('sign_in_with_google')}
-              </GoogleSignInButtonText>
-            </GoogleSignInButton>
+            <GoogleSignButton>{t('sign_in_with_google')}</GoogleSignButton>
 
             <OrText>{t('or')}</OrText>
 
@@ -135,6 +127,7 @@ const SignInContainer = () => {
             <SubmitButton bgtype="signin" type="submit">
               {t('login')}
             </SubmitButton>
+
             <FormFooter>
               <HaveAccountText>
                 {t('do_not_have_account')}{' '}
@@ -142,6 +135,7 @@ const SignInContainer = () => {
                   {t('sign_up')}
                 </SignInButton>
               </HaveAccountText>
+
               <ForgotPasswordButton type="button">
                 {t('forgot_password')}
               </ForgotPasswordButton>

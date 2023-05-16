@@ -1,13 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ArrowLeft } from '@styled-icons/material-rounded';
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import signUpImage from '../../../../assets/sign/signup.jpg';
-import { ValidationControl } from '../../components';
+import { GoogleSignButton, ValidationControl } from '../../components';
 import {
   CopyrightText,
   Form,
@@ -22,16 +21,13 @@ import {
   Subheading,
   SubmitButton,
   OrText,
-  GoogleSignInButton,
-  GoogleSignInButtonText,
-  GoogleLogo,
   StyledControl,
   BackButton,
   FormContentWrapper,
 } from '../styles';
 
 import AuthAPI from '@/api/AuthAPI';
-import googleSvg from '@/assets/sign/google.svg';
+import signUpImage from '@/assets/sign/signup.jpg';
 import { ROUTES } from '@/constants/routes';
 import {
   RegistrationDTO,
@@ -90,11 +86,10 @@ const SignUpContainer = () => {
 
   const onSubmit: SubmitHandler<TRegisterFormValues> = (data) => {
     dispatch(signUpUser(new RegistrationDTO(data)));
-
     reset();
   };
 
-  const handleLoginCheck = async (loginOrEmail: string) => {
+  const handleLoginEmailCheck = async (loginOrEmail: string) => {
     if (!loginOrEmail.trim()) return false;
 
     const response = await AuthAPI.checkUserExists(loginOrEmail);
@@ -115,6 +110,7 @@ const SignUpContainer = () => {
       <PictureSection>
         <Picture src={signUpImage} alt="Profile Picture" />
       </PictureSection>
+
       <FormSection>
         <BackButton onClick={handleBackButtonClick}>
           <ArrowLeft size="3rem" />
@@ -125,12 +121,7 @@ const SignUpContainer = () => {
           <Subheading>{t('sign_up_subheading')}</Subheading>
 
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <GoogleSignInButton href="#">
-              <GoogleLogo src={googleSvg} alt="" />
-              <GoogleSignInButtonText>
-                {t('sign_up_with_google')}
-              </GoogleSignInButtonText>
-            </GoogleSignInButton>
+            <GoogleSignButton>{t('sign_up_with_google')}</GoogleSignButton>
 
             <OrText>{t('or')}</OrText>
 
@@ -140,18 +131,20 @@ const SignUpContainer = () => {
               placeholder={t('email_placeholder')}
               takenMessage={t('email_taken')}
               errorMessage={errors.email?.message}
-              onCheck={() => handleLoginCheck(getValues().email)}
+              onCheck={() => handleLoginEmailCheck(getValues().email)}
               {...formRegister('email')}
             />
+
             <ValidationControl
               id="login"
               type="string"
               placeholder={t('login_placeholder')}
               takenMessage={t('login_taken')}
               errorMessage={errors.login?.message}
-              onCheck={() => handleLoginCheck(getValues().login)}
+              onCheck={() => handleLoginEmailCheck(getValues().login)}
               {...formRegister('login')}
             />
+
             <StyledControl
               id="password"
               type="password"
@@ -159,6 +152,7 @@ const SignUpContainer = () => {
               errorMessage={errors?.password?.message}
               {...formRegister('password')}
             />
+
             <StyledControl
               id="confirm_password"
               type="password"
@@ -166,9 +160,11 @@ const SignUpContainer = () => {
               errorMessage={errors?.confirm_password?.message}
               {...formRegister('confirm_password')}
             />
+
             <SubmitButton bgtype="signup" type="submit">
               {t('register')}
             </SubmitButton>
+
             <FormFooter>
               <HaveAccountText>
                 {t('already_have_account')}{' '}

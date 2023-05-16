@@ -2,7 +2,7 @@ import { IUser } from './user.model';
 
 import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
 
-export enum AuthForms {
+export enum AuthForm {
   LOG_IN = 'login',
   REGISTER = 'register',
   FORGOT_PASSWORD = 'forgot',
@@ -11,7 +11,7 @@ export enum AuthForms {
 
 const JWT_AUTH_PREFIX = '/jwt-auth';
 
-export const AuthEndpoints = {
+export const AuthEndpoint = {
   REGISTER: `${JWT_AUTH_PREFIX}/register`,
   REGISTER_VERIFY: `${JWT_AUTH_PREFIX}/verification/register`,
   NEW_EMAIL_VERIFY: `${JWT_AUTH_PREFIX}/verification/profile`,
@@ -20,6 +20,7 @@ export const AuthEndpoints = {
   FORGOT_PASSWORD: `${JWT_AUTH_PREFIX}/reset_password/send`,
   RESET_PASSWORD: `${JWT_AUTH_PREFIX}/reset_password/reset`,
   REFRESH: `${JWT_AUTH_PREFIX}/refresh`,
+  USER_EXISTS: `${JWT_AUTH_PREFIX}/user-exists`,
 } as const;
 
 // ============== DTO ==============

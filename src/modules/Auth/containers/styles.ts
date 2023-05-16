@@ -5,13 +5,13 @@ import { Control } from '@/modules/Auth/components';
 import { COLORS } from '@/theme';
 
 export const SignPageWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   height: 100vh;
   overflow: hidden;
 `;
 
 export const PictureSection = styled.div`
-  width: 66.66666%;
   position: relative;
   z-index: 0;
 
@@ -30,22 +30,20 @@ export const PictureSection = styled.div`
 
 export const Picture = styled.img`
   height: 100%;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: 90%;
 `;
 
 export const FormSection = styled.div`
   position: relative;
-  width: 33.33333%;
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
 `;
 
 export const FormContentWrapper = styled.div`
-  margin-top: 10rem;
+  margin-top: 8rem;
 `;
 
 export const StyledControl = styled(Control)`
@@ -118,39 +116,6 @@ export const Form = styled.form`
   flex-direction: column;
   padding: 0.5rem;
   backface-visibility: hidden;
-`;
-
-export const GoogleSignInButton = styled.a`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 3rem;
-  margin: 0 0 1rem;
-  padding: 0 1rem;
-  border: none;
-  border-radius: 0.75rem;
-  background-color: #fff;
-  color: #737373;
-  font-size: 1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f8f8f8;
-  }
-`;
-
-export const GoogleLogo = styled.img`
-  width: 1.5rem;
-  margin-right: 0.25rem;
-`;
-
-export const GoogleSignInButtonText = styled.span`
-  all: unset;
-  text-transform: none;
-  font-weight: 500;
 `;
 
 export const OrText = styled.p`

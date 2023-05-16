@@ -1,11 +1,11 @@
-enum AnimeEndpoints {
+enum AnimeEndpoint {
   GET_ANIME_BY_ID = '/anime',
   GET_PREVIEW_BY_ID = '/anime/preview',
 }
 
-export const animeEndpoints = {
+export const animeEndpoint = {
   getAnimeById: (id: number) => {
-    return `${AnimeEndpoints.GET_ANIME_BY_ID}/${id}`;
+    return `${AnimeEndpoint.GET_ANIME_BY_ID}/${id}`;
   },
 };
 

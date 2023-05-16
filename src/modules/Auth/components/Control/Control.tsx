@@ -24,9 +24,7 @@ const Control = forwardRef(
           placeholder={placeholder}
           {...rest}
         />
-        <ValidationMessage className={errorMessage ? 'invalid' : ''}>
-          {errorMessage}
-        </ValidationMessage>
+        <ValidationMessage>{errorMessage}</ValidationMessage>
       </>
     );
   },
