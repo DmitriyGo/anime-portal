@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { StyledProfileContainer } from './ProfileContainerStyles';
 
 import { Button } from '@/components';
-import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
+import { AUTHORIZATION_STORAGE_KEY } from '@/constants/common';
 import { ROUTES } from '@/constants/routes';
 import { logout, selectUserData } from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
 
 const ProfileContainer = () => {
   const user = useSelector(selectUserData);
-  const isAuthorized = localStorage.getItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
+  const isAuthorized = localStorage.getItem(AUTHORIZATION_STORAGE_KEY);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

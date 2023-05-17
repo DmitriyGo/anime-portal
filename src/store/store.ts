@@ -4,6 +4,8 @@ import storage from 'redux-persist/lib/storage';
 
 import { rootReducer } from './rootReducer';
 
+import { checkAuth } from '@/modules/Auth';
+
 const persistConfig = {
   key: 'root',
   storage,
@@ -19,6 +21,8 @@ export const store = configureStore({
     });
   },
 });
+
+store.dispatch(checkAuth());
 
 export const persistor = persistStore(store);
 

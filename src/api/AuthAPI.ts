@@ -56,8 +56,12 @@ class AuthAPI {
     return httpClient.post<unknown>(AuthEndpoint.RESET_PASSWORD, data);
   }
 
-  static checkAuth() {
-    return httpClient.get(AuthEndpoint.REFRESH);
+  static checkAuth(): ApiResponse<IAuthResponse> {
+    return httpClient.post(AuthEndpoint.REFRESH);
+  }
+
+  static logout(): ApiResponse<unknown> {
+    return httpClient.post(AuthEndpoint.LOGOUT);
   }
 }
 

@@ -4,7 +4,7 @@ import { AUTH_SLICE_NAME } from './models';
 import formatApiError from '../../../shared/utils/formatApiError';
 
 import AuthAPI from '@/api/AuthAPI';
-import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
+import { AUTHORIZATION_STORAGE_KEY } from '@/constants/common';
 import { IApiError } from '@/models/apiError.model';
 import {
   IAuthResponse,
@@ -68,14 +68,20 @@ export const resetPassword = createAsyncThunk<
 );
 
 export const checkAuth = createAsyncThunk<
-  unknown,
+  IAuthResponse | null,
   never,
   { serializedErrorType: IApiError }
 >(
   `${AUTH_SLICE_NAME}/checkAuth`,
   async () => {
-    const response = await AuthAPI.checkAuth();
-    return response.data;
+    const authorized = localStorage.getItem(AUTHORIZATION_STORAGE_KEY);
+
+    if (authorized) {
+      const response = await AuthAPI.checkAuth();
+      return response.data;
+    }
+
+    return null;
   },
   { serializeError: formatApiError },
 );
@@ -87,7 +93,11 @@ export const logout = createAsyncThunk<
 >(
   `${AUTH_SLICE_NAME}/logout`,
   async () => {
-    localStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
+    const response = await AuthAPI.logout();
+
+    localStorage.removeItem(AUTHORIZATION_STORAGE_KEY);
+
+    return response.data;
   },
   { serializeError: formatApiError },
 );

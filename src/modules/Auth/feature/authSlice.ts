@@ -12,11 +12,12 @@ import {
   signUpUser,
   resetPassword,
   logout,
+  checkAuth,
 } from './actionCreators';
 import { AuthState, AUTH_SLICE_NAME, initialState } from './models';
 
 import {
-  AUTHORIZATION_TOKEN_STORAGE_KEY,
+  AUTHORIZATION_STORAGE_KEY,
   ResponseStatusCode,
 } from '@/constants/common';
 import { IApiError } from '@/models/apiError.model';
@@ -33,13 +34,13 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(
-        isFulfilled(signInUser, signUpUser),
+        isFulfilled(signInUser, signUpUser, checkAuth),
         (state: AuthState, { payload }) => {
-          if (!payload.token) {
+          if (!payload?.token) {
             return;
           }
 
-          localStorage.setItem(AUTHORIZATION_TOKEN_STORAGE_KEY, 'true');
+          localStorage.setItem(AUTHORIZATION_STORAGE_KEY, 'true');
 
           state.isLoading = false;
           state.accessToken = payload.token;
@@ -80,11 +81,14 @@ export const authSlice = createSlice({
           state.isLoading = false;
           state.error = error;
 
-          localStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
+          localStorage.removeItem(AUTHORIZATION_STORAGE_KEY);
 
           showApiErrors(error);
         },
       )
+      .addMatcher(isRejected(logout), () => {
+        return initialState;
+      })
       .addMatcher(isRejected(), (state: AuthState, action) => {
         const { error } = action;
         if (

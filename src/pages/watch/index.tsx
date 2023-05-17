@@ -5,7 +5,7 @@ import { WatchContainer } from '@/modules/Watch';
 const WatchPage = () => {
   const { id } = useParams<{ id: string }>();
 
-  return <WatchContainer animeId={+id!} />;
+  return <WatchContainer id={+id!} />;
 };
 
 export default WatchPage;

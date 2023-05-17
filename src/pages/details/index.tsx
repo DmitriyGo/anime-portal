@@ -5,7 +5,7 @@ import { DetailsContainer } from '@/modules/Details';
 const DetailsPage = () => {
   const { id } = useParams<{ id: string }>();
 
-  return <DetailsContainer animeId={id!} />;
+  return <DetailsContainer id={+id!} />;
 };
 
 export default DetailsPage;

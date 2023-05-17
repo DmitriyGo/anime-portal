@@ -4,6 +4,7 @@ export const FRONT_END_URL = import.meta.env.VITE_PUBLIC_FRONT_END_URL || '';
 export const API_URL = `${BASE_API_URL}/api`;
 export const TODO_API_URL = `https://dummyjson.com/todos`;
 
+export const AUTHORIZATION_STORAGE_KEY = 'authorized';
 export const AUTHORIZATION_TOKEN_STORAGE_KEY = 'auth_token';
 export const REFRESH_TOKEN_STORAGE_KEY = 'refresh_token';
 

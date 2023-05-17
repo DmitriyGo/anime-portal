@@ -1,38 +1,43 @@
-import { useEffect, useState } from 'react';
+import { t } from 'i18next';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { StyledSpotlightsContainer } from './SpotlightsContainerStyles';
 import { SpotlightCarousel } from '../../components';
 
+import AnimeAPI from '@/api/AnimeAPI';
 import { FullPageLoader } from '@/components';
-import loadImages from '@/mocks/carouselImages';
-import { HomePageApiResponse, getHomePageData } from '@/mocks/homePageApi';
-
-const prepareHomePageData = (images: string[], data: HomePageApiResponse[]) => {
-  return data.map((el, index) => ({
-    ...el,
-    id: index,
-    image: images[index],
-  }));
-};
+import { ROUTES } from '@/constants/routes';
+import { IAnimePrewiew } from '@/models/anime.model';
 
 const SpotlightsContainer = () => {
-  const [images, setImages] = useState<string[]>([]);
-  const [homePageData, setHomePageData] = useState<HomePageApiResponse[]>([]);
+  const [previews, setPreviews] = useState<IAnimePrewiew[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const images = await loadImages();
-      const data = await getHomePageData();
+  const navigate = useNavigate();
 
-      setImages(images);
-      setHomePageData(data);
-      setLoading(false);
+  const {
+    i18n: { language },
+  } = useTranslation();
+
+  useLayoutEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const responce = await AnimeAPI.getPreviews(language);
+        setPreviews(responce.data);
+      } catch (e) {
+        console.error(e);
+        navigate(ROUTES.PAGE_NOT_FOUND);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchData();
-  }, []);
+  }, [language]);
 
   if (loading) {
     return <FullPageLoader />;
@@ -40,11 +45,7 @@ const SpotlightsContainer = () => {
 
   return (
     <StyledSpotlightsContainer>
-      {images.length !== 0 ? (
-        <SpotlightCarousel
-          homePageData={prepareHomePageData(images, homePageData)}
-        />
-      ) : null}
+      {previews.length && <SpotlightCarousel prewiews={previews} />}
     </StyledSpotlightsContainer>
   );
 };

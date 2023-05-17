@@ -4,6 +4,7 @@ import {
   PlayCircleFill,
 } from '@styled-icons/bootstrap';
 import { FC } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,17 +25,20 @@ import {
 
 import { ROUTES } from '@/constants/routes';
 import { useMediaQuery } from '@/hooks';
-import { HomePageApiResponse } from '@/mocks/homePageApi';
+import { IAnimePrewiew } from '@/models/anime.model';
 import { DEVICES } from '@/theme';
 
-const SpotlightlItem: FC<HomePageApiResponse> = ({
-  image,
-  id = 0,
-  title,
-  description,
-  placement,
-  duration,
+interface SpotlightlItemProps extends IAnimePrewiew {
+  index: number;
+}
+
+const SpotlightlItem: FC<SpotlightlItemProps> = ({
+  id,
+  index,
+  animeDescription,
   date,
+  duration,
+  spotlight,
   tags,
 }) => {
   const { t } = useTranslation();
@@ -42,28 +46,29 @@ const SpotlightlItem: FC<HomePageApiResponse> = ({
 
   const querySM = useMediaQuery(DEVICES.SM);
 
-  const formattedDate = date.toLocaleDateString('en-US', {
+  const formattedDate = new Date(date).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
   });
 
   return (
-    <StyledSpotlightItem imageUrl={image as string}>
+    <StyledSpotlightItem imageUrl={spotlight}>
       <StyledSeries>
-        #{+id + 1} {t('spotilight')}
+        #{index} {t('spotilight')}
       </StyledSeries>
-      <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>{animeDescription.title}</StyledTitle>
       {!querySM && (
         <>
           <StyledAdditionalInfo>
             <StyledAdditionalInfoBlock>
               <PlayCircleFill size="0.8rem" />
-              {placement}
+              {animeDescription.placement}
             </StyledAdditionalInfoBlock>
             <StyledAdditionalInfoBlock>
               <ClockFill size="0.8rem" />
               {duration}
+              {t('min')}
             </StyledAdditionalInfoBlock>
             <StyledAdditionalInfoBlock>
               <CalendarFill size="0.8rem" />
@@ -71,15 +76,15 @@ const SpotlightlItem: FC<HomePageApiResponse> = ({
             </StyledAdditionalInfoBlock>
           </StyledAdditionalInfo>
           <StyledTags>
-            {tags.map((tag, index) => (
-              <StyledTag key={index} name={tag}>
-                {tag}
+            {tags.map(({ name }, index) => (
+              <StyledTag key={index} name={name}>
+                {name}
               </StyledTag>
             ))}
           </StyledTags>
         </>
       )}
-      <StyledDescription>{description}</StyledDescription>
+      <StyledDescription>{animeDescription.description}</StyledDescription>
       <StyledButtonsBlock>
         <StyledWatchNow onClick={() => navigate(`${ROUTES.WATCH}/${id}`)}>
           <PlayCircleFill size="1rem" />
@@ -94,4 +99,4 @@ const SpotlightlItem: FC<HomePageApiResponse> = ({
   );
 };
 
-export default SpotlightlItem;
+export default React.memo(SpotlightlItem);

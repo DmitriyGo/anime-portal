@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { StyledWatchContainer } from './WatchContainerStyles';
@@ -6,32 +7,38 @@ import { StyledWatchContainer } from './WatchContainerStyles';
 import AnimeAPI from '@/api/AnimeAPI';
 import { FullPageLoader } from '@/components';
 import { ROUTES } from '@/constants/routes';
-import { IAnime } from '@/models/anime.model';
 
 interface WatchContainerProps {
-  animeId: number;
+  id: number;
 }
 
-const WatchContainer: FC<WatchContainerProps> = ({ animeId }) => {
+const WatchContainer: FC<WatchContainerProps> = ({ id }) => {
+  const [anime, setAnime] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
-  const [anime, setAnime] = useState<IAnime>();
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchAnime = async () => {
-      try {
-        const response = await AnimeAPI.getAnimeById(animeId);
+  const {
+    i18n: { language },
+  } = useTranslation();
 
-        setAnime(response.data);
-        setLoading(false);
-      } catch (error) {
+  useLayoutEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+
+        const responce = await AnimeAPI.getDescriptionById(language, id);
+        setAnime(responce.data);
+      } catch (e) {
+        console.error(e);
         navigate(ROUTES.PAGE_NOT_FOUND);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchAnime();
-  }, []);
+    fetchData();
+  }, [language]);
 
   if (loading) {
     return <FullPageLoader />;
@@ -40,7 +47,7 @@ const WatchContainer: FC<WatchContainerProps> = ({ animeId }) => {
   return (
     <StyledWatchContainer>
       <div>
-        <pre>{JSON.stringify(anime, null, ' ')}</pre>
+        <pre>{JSON.stringify(anime, null, '\t')}</pre>
       </div>
     </StyledWatchContainer>
   );

@@ -18,9 +18,10 @@ import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import SearchForm from '../SearchForm/SearchForm';
 
 import { Button, StyledIconButton } from '@/components';
-import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
 import { ROUTES } from '@/constants/routes';
 import { useMediaQuery } from '@/hooks';
+import { selectAccessToken } from '@/modules/Auth';
+import { useSelector } from '@/store';
 import { COLORS, DEVICES } from '@/theme';
 
 interface HeaderProps {
@@ -30,7 +31,7 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ onMenuClick }) => {
   const [showExtendedSearch, setExtendedSearch] = useState<boolean>(false);
 
-  const isAuthorized = localStorage.getItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
+  const isAuthorized = useSelector(selectAccessToken);
 
   const queryMD = useMediaQuery(DEVICES.MD);
   const queryXS = useMediaQuery(DEVICES.XS);

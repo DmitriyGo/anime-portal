@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { StyledDetailsContainer } from './DetailsContainerStyles';
@@ -8,31 +9,36 @@ import { FullPageLoader } from '@/components';
 import { ROUTES } from '@/constants/routes';
 
 interface DetailsContainerProps {
-  animeId: string;
+  id: number;
 }
 
-const DetailsContainer: FC<DetailsContainerProps> = ({ animeId }) => {
+const DetailsContainer: FC<DetailsContainerProps> = ({ id }) => {
+  const [anime, setAnime] = useState<unknown>(null);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
-  const [anime, setAnime] = useState<unknown>(null);
-  const [loading, setLoading] = useState(false);
+  const {
+    i18n: { language },
+  } = useTranslation();
 
-  useEffect(() => {
-    const fetchAnime = async () => {
+  useLayoutEffect(() => {
+    const fetchData = async () => {
       try {
-        const response = await AnimeAPI.getAnimeById(30);
-
         setLoading(true);
-        setAnime(response.data);
-      } catch (error) {
-        // navigate(ROUTES.PAGE_NOT_FOUND);
+
+        const responce = await AnimeAPI.getDescriptionById(language, id);
+        setAnime(responce.data);
+      } catch (e) {
+        console.error(e);
+        navigate(ROUTES.PAGE_NOT_FOUND);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchAnime();
-  }, []);
+    fetchData();
+  }, [language]);
 
   if (loading) {
     return <FullPageLoader />;
@@ -41,7 +47,7 @@ const DetailsContainer: FC<DetailsContainerProps> = ({ animeId }) => {
   return (
     <StyledDetailsContainer>
       <div>
-        <pre>{JSON.stringify(anime, null, ' ')}</pre>
+        <pre>{JSON.stringify(anime, null, '\t')}</pre>
       </div>
     </StyledDetailsContainer>
   );

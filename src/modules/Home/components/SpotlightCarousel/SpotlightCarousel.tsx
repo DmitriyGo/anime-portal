@@ -18,17 +18,17 @@ import {
 import SpotlightlItem from '../SpotlightlItem/SpotlightlItem';
 
 import { useCursorLeave, useThrottle } from '@/hooks';
-import { HomePageApiResponse } from '@/mocks/homePageApi';
+import { IAnimePrewiew } from '@/models/anime.model';
 
 const AUTO_NEXT_DELAY = 70000;
 const NEXT_SLIDE_DELAY = 300;
 const MOVE_SLIDE_COEFFICIENT = 0.2;
 
 interface SpotlightCarouselProps {
-  homePageData: HomePageApiResponse[];
+  prewiews: IAnimePrewiew[];
 }
 
-const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
+const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ prewiews }) => {
   const [mouseDown, setMouseDown] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1);
 
@@ -36,13 +36,13 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
   const slicesRef = useRef<HTMLDivElement>(null);
   const startXRef = useRef(0);
 
-  const modifiedHomePageData = [
-    homePageData[homePageData.length - 1],
-    ...homePageData,
-    homePageData[0],
+  const modifiedPrewiews = [
+    prewiews[prewiews.length - 1],
+    ...prewiews,
+    prewiews[0],
   ];
 
-  const totalSlides = modifiedHomePageData.length;
+  const totalSlides = modifiedPrewiews.length;
 
   useLayoutEffect(() => {
     translate(window.innerWidth, 0);
@@ -189,9 +189,9 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ homePageData }) => {
     resetInterval();
   };
 
-  const carouselItems = modifiedHomePageData.map((data, index) => (
-    <SpotlightlItem key={index} {...data} />
-  ));
+  const carouselItems = modifiedPrewiews.map((data, index) => {
+    return <SpotlightlItem key={index} index={index} {...data} />;
+  });
 
   return (
     <StyledSpotlightsCarousel>
