@@ -15,7 +15,7 @@ import {
   StyledSpotlightsCarousel,
   StyledSlices,
 } from './SpotlightCarouselStyles';
-import SpotlightItem from '../SpotlightlItem/SpotlightlItem';
+import SpotlightItem from '../SpotlightItem/SpotlightItem';
 
 import { useCursorLeave, useThrottle } from '@/hooks';
 import { IAnimePreview } from '@/models/anime.model';
@@ -25,10 +25,10 @@ const NEXT_SLIDE_DELAY = 300;
 const MOVE_SLIDE_COEFFICIENT = 0.2;
 
 interface SpotlightCarouselProps {
-  prewiews: IAnimePreview[];
+  previews: IAnimePreview[];
 }
 
-const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ prewiews }) => {
+const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ previews }) => {
   const [mouseDown, setMouseDown] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1);
 
@@ -36,13 +36,13 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ prewiews }) => {
   const slicesRef = useRef<HTMLDivElement>(null);
   const startXRef = useRef(0);
 
-  const modifiedPrewiews = [
-    prewiews[prewiews.length - 1],
-    ...prewiews,
-    prewiews[0],
+  const modifiedPreviews = [
+    previews[previews.length - 1],
+    ...previews,
+    previews[0],
   ];
 
-  const totalSlides = modifiedPrewiews.length;
+  const totalSlides = modifiedPreviews.length;
 
   useLayoutEffect(() => {
     translate(window.innerWidth, 0);
@@ -189,13 +189,13 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ prewiews }) => {
     resetInterval();
   };
 
-  const carouselItems = modifiedPrewiews.map((data, index) => {
+  const carouselItems = modifiedPreviews.map((data, index) => {
     let position = index;
 
-    if (index == modifiedPrewiews.length - 1) {
+    if (index == modifiedPreviews.length - 1) {
       position = 1;
     } else if (index == 0) {
-      position = modifiedPrewiews.length - 2;
+      position = modifiedPreviews.length - 2;
     }
 
     return <SpotlightItem key={index} position={position} {...data} />;

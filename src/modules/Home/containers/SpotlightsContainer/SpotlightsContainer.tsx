@@ -1,51 +1,48 @@
-import { t } from 'i18next';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'store/hooks';
 
 import { StyledSpotlightsContainer } from './SpotlightsContainerStyles';
 import { SpotlightCarousel } from '../../components';
+import { fetchPreviews } from '../../feature/actionCreators';
+import { resetState } from '../../feature/previewSlice';
+import {
+  selectPreviews,
+  selectPreviewsError,
+  selectPreviewsIsLoading,
+} from '../../feature/selectors';
 
-import AnimeAPI from '@/api/AnimeAPI';
 import { FullPageLoader } from '@/components';
 import { ROUTES } from '@/constants/routes';
-import { IAnimePreview } from '@/models/anime.model';
 
 const SpotlightsContainer = () => {
-  const [previews, setPreviews] = useState<IAnimePreview[]>([]);
-  const [loading, setLoading] = useState(true);
+  const previews = useSelector(selectPreviews);
+  const isLoading = useSelector(selectPreviewsIsLoading);
+  const error = useSelector(selectPreviewsError);
 
-  const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const {
     i18n: { language },
   } = useTranslation();
 
   useLayoutEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-
-        const responce = await AnimeAPI.getPreviews(language);
-        setPreviews(responce.data);
-      } catch (e) {
-        console.error(e);
-        navigate(ROUTES.PAGE_NOT_FOUND);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    dispatch(fetchPreviews(language));
   }, [language]);
 
-  if (loading) {
+  useEffect(() => {
+    if (error) {
+      dispatch(resetState());
+    }
+  }, [error]);
+
+  if (isLoading) {
     return <FullPageLoader />;
   }
 
   return (
     <StyledSpotlightsContainer>
-      {previews.length && <SpotlightCarousel prewiews={previews} />}
+      {previews.length && <SpotlightCarousel previews={previews} />}
     </StyledSpotlightsContainer>
   );
 };
