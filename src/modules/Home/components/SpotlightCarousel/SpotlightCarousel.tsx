@@ -15,17 +15,17 @@ import {
   StyledSpotlightsCarousel,
   StyledSlices,
 } from './SpotlightCarouselStyles';
-import SpotlightlItem from '../SpotlightlItem/SpotlightlItem';
+import SpotlightItem from '../SpotlightlItem/SpotlightlItem';
 
 import { useCursorLeave, useThrottle } from '@/hooks';
-import { IAnimePrewiew } from '@/models/anime.model';
+import { IAnimePreview } from '@/models/anime.model';
 
 const AUTO_NEXT_DELAY = 70000;
 const NEXT_SLIDE_DELAY = 300;
 const MOVE_SLIDE_COEFFICIENT = 0.2;
 
 interface SpotlightCarouselProps {
-  prewiews: IAnimePrewiew[];
+  prewiews: IAnimePreview[];
 }
 
 const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ prewiews }) => {
@@ -198,7 +198,7 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ prewiews }) => {
       position = modifiedPrewiews.length - 2;
     }
 
-    return <SpotlightlItem key={index} position={position} {...data} />;
+    return <SpotlightItem key={index} position={position} {...data} />;
   });
 
   return (

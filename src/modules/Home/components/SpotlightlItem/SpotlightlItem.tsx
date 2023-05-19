@@ -25,14 +25,14 @@ import {
 
 import { ROUTES } from '@/constants/routes';
 import { useMediaQuery } from '@/hooks';
-import { IAnimePrewiew } from '@/models/anime.model';
+import { IAnimePreview } from '@/models/anime.model';
 import { DEVICES } from '@/theme';
 
-interface SpotlightlItemProps extends IAnimePrewiew {
+interface SpotlightItemProps extends IAnimePreview {
   position: number;
 }
 
-const SpotlightlItem: FC<SpotlightlItemProps> = ({
+const SpotlightItem: FC<SpotlightItemProps> = ({
   id,
   position,
   animeDescription,
@@ -55,7 +55,7 @@ const SpotlightlItem: FC<SpotlightlItemProps> = ({
   return (
     <StyledSpotlightItem imageUrl={spotlight}>
       <StyledSeries>
-        #{position} {t('spotilight')}
+        #{position} {t('spotlight')}
       </StyledSeries>
       <StyledTitle>{animeDescription.title}</StyledTitle>
       {!querySM && (
@@ -99,4 +99,4 @@ const SpotlightlItem: FC<SpotlightlItemProps> = ({
   );
 };
 
-export default React.memo(SpotlightlItem);
+export default React.memo(SpotlightItem);

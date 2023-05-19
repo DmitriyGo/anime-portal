@@ -9,10 +9,10 @@ import { SpotlightCarousel } from '../../components';
 import AnimeAPI from '@/api/AnimeAPI';
 import { FullPageLoader } from '@/components';
 import { ROUTES } from '@/constants/routes';
-import { IAnimePrewiew } from '@/models/anime.model';
+import { IAnimePreview } from '@/models/anime.model';
 
 const SpotlightsContainer = () => {
-  const [previews, setPreviews] = useState<IAnimePrewiew[]>([]);
+  const [previews, setPreviews] = useState<IAnimePreview[]>([]);
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();

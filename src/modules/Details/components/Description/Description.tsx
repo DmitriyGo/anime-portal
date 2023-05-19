@@ -1,15 +1,20 @@
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { StyledDescription, StyledExtendButton } from './DescriptionStyles';
 
 interface DescriptionProps {
   text: string;
+  collapsedDetailsLength: number;
 }
 
-const SLICE_END_TEXT = 450;
-
-const Description: FC<DescriptionProps> = ({ text }) => {
+const Description: FC<DescriptionProps> = ({
+  text,
+  collapsedDetailsLength,
+}) => {
   const [extended, setExtended] = useState(false);
+
+  const { t } = useTranslation();
 
   const extendHandle = () => {
     setExtended((prev) => !prev);
@@ -17,10 +22,10 @@ const Description: FC<DescriptionProps> = ({ text }) => {
 
   return (
     <StyledDescription>
-      {extended ? text : `${text.slice(0, SLICE_END_TEXT)}...`}
+      {extended ? text : `${text.slice(0, collapsedDetailsLength)}...`}
       &nbsp;
       <StyledExtendButton onClick={extendHandle}>
-        {extended ? 'Show less' : 'Show more'}
+        {extended ? t('show_less') : t('show_more')}
       </StyledExtendButton>
     </StyledDescription>
   );

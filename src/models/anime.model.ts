@@ -1,26 +1,24 @@
-const Endpoint = {
-  GET_PREWIEWS_BY_ID: (lang: string) => `/anime/${lang}/prewiew`,
-  GET_PREWIEWS_TOP: (lang: string) => `/anime/${lang}/previews/Top`,
-  GET_DETAILS_BY_ID: (lang: string) => `/anime/${lang}/detailed`,
-};
+const ANIME_PREFIX = '/anime';
 
-export const animeEndpoint = {
-  getPrewiewById: (lang: string, id: number) => {
-    return `${Endpoint.GET_PREWIEWS_BY_ID(lang)}/${id}`;
-  },
-  getPrewiews: (lang: string) => {
-    return `${Endpoint.GET_PREWIEWS_TOP(lang)}`;
-  },
-  getDetailsById: (lang: string, id: number) => {
-    return `${Endpoint.GET_DETAILS_BY_ID(lang)}/${id}`;
-  },
+export const getAnimeEndpoints = (lang: string) => {
+  return {
+    previewById: (id: number) => {
+      return `${ANIME_PREFIX}/${lang}/preview/${id}`;
+    },
+    previews: () => {
+      return `${ANIME_PREFIX}/${lang}/previews`;
+    },
+    detailsById: (id: number) => {
+      return `${ANIME_PREFIX}/${lang}/detailed/${id}`;
+    },
+  };
 };
 
 export interface IName {
   name: string;
 }
 
-export interface IAnimePrewiew {
+export interface IAnimePreview {
   id: number;
   date: string;
   rating: number;

@@ -27,7 +27,7 @@ const WatchContainer: FC<WatchContainerProps> = ({ id }) => {
       try {
         setLoading(true);
 
-        const responce = await AnimeAPI.getDescriptionById(language, id);
+        const responce = await AnimeAPI.getAnimeDetailsById(language, id);
         setAnime(responce.data);
       } catch (e) {
         console.error(e);

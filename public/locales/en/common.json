@@ -2,13 +2,14 @@
   "greeting_message": "Hello, this is our very loved future Anime Portal",
   "search_form_placeholder": "Search anime...",
   "search_form_filter": "Filter",
-  "spotilight": "Spotilight",
+  "spotlight": "Spotlight",
   "watch_now": "Watch now",
   "details": "Details",
   "future_content": "Future content will be here",
   "close_menu": "Close Menu",
   "home": "Home",
-  "todos": "Test Page",
   "404": "404 page not found(((",
-  "min": "min"
+  "min": "min",
+  "show_less": "Show less",
+  "show_more": "Show more"
 }
