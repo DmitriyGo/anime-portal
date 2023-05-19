@@ -29,12 +29,12 @@ import { IAnimePrewiew } from '@/models/anime.model';
 import { DEVICES } from '@/theme';
 
 interface SpotlightlItemProps extends IAnimePrewiew {
-  index: number;
+  position: number;
 }
 
 const SpotlightlItem: FC<SpotlightlItemProps> = ({
   id,
-  index,
+  position,
   animeDescription,
   date,
   duration,
@@ -55,7 +55,7 @@ const SpotlightlItem: FC<SpotlightlItemProps> = ({
   return (
     <StyledSpotlightItem imageUrl={spotlight}>
       <StyledSeries>
-        #{index} {t('spotilight')}
+        #{position} {t('spotilight')}
       </StyledSeries>
       <StyledTitle>{animeDescription.title}</StyledTitle>
       {!querySM && (

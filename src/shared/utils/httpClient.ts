@@ -7,6 +7,7 @@ const defaultConfig: AxiosRequestConfig = {
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 };
 
 const httpClient: AxiosInstance = axios.create(defaultConfig);

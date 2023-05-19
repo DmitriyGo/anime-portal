@@ -3,17 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { StyledDetailsContainer } from './DetailsContainerStyles';
+import { AnimeDetails } from '../../components';
 
 import AnimeAPI from '@/api/AnimeAPI';
 import { FullPageLoader } from '@/components';
 import { ROUTES } from '@/constants/routes';
+import { IAnimeDetails } from '@/models/anime.model';
 
 interface DetailsContainerProps {
   id: number;
 }
 
 const DetailsContainer: FC<DetailsContainerProps> = ({ id }) => {
-  const [anime, setAnime] = useState<unknown>(null);
+  const [anime, setAnime] = useState<IAnimeDetails>();
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -46,9 +48,7 @@ const DetailsContainer: FC<DetailsContainerProps> = ({ id }) => {
 
   return (
     <StyledDetailsContainer>
-      <div>
-        <pre>{JSON.stringify(anime, null, '\t')}</pre>
-      </div>
+      {anime && <AnimeDetails animeDetails={anime} id={id} />}
     </StyledDetailsContainer>
   );
 };

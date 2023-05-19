@@ -190,7 +190,15 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ prewiews }) => {
   };
 
   const carouselItems = modifiedPrewiews.map((data, index) => {
-    return <SpotlightlItem key={index} index={index} {...data} />;
+    let position = index;
+
+    if (index == modifiedPrewiews.length - 1) {
+      position = 1;
+    } else if (index == 0) {
+      position = modifiedPrewiews.length - 2;
+    }
+
+    return <SpotlightlItem key={index} position={position} {...data} />;
   });
 
   return (

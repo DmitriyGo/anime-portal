@@ -16,6 +16,10 @@ export const animeEndpoint = {
   },
 };
 
+export interface IName {
+  name: string;
+}
+
 export interface IAnimePrewiew {
   id: number;
   date: string;
@@ -23,11 +27,20 @@ export interface IAnimePrewiew {
   studio: string;
   duration: string;
   spotlight: string;
-  animeDescription: IAnimeDescriptionDto;
+  animeDescription: IAnimeDescription;
   tags: IName[];
 }
 
-export interface IAnimeDescriptionDto {
+export interface IAnimeDetails {
+  animeDescription: IAnimeDescription;
+  screenshots: string[];
+  tags: IName[];
+  poster: string;
+  studio: string;
+  rating: number;
+}
+
+export interface IAnimeDescription {
   language: IName;
   title: string;
   status: string;
@@ -35,8 +48,4 @@ export interface IAnimeDescriptionDto {
   placement: string;
   description: string;
   genres: IName[];
-}
-
-export interface IName {
-  name: string;
 }
