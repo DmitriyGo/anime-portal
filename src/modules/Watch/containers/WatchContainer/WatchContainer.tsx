@@ -27,8 +27,8 @@ const WatchContainer: FC<WatchContainerProps> = ({ id }) => {
       try {
         setLoading(true);
 
-        const responce = await AnimeAPI.getAnimeDetailsById(language, id);
-        setAnime(responce.data);
+        const response = await AnimeAPI.getAnimeDetailsById(language, id);
+        setAnime(response.data);
       } catch (e) {
         console.error(e);
         navigate(ROUTES.PAGE_NOT_FOUND);

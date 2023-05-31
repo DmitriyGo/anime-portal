@@ -4,12 +4,12 @@ import { IRegistrationDTO } from '@/models/auth.model';
 
 class RegistrationDTO implements IRegistrationDTO {
   email: string;
-  login: string;
+  name: string;
   password: string;
 
   constructor(values: TRegisterFormValues) {
     this.email = values[AuthFieldsNames.EMAIL];
-    this.login = values[AuthFieldsNames.LOGIN];
+    this.name = values[AuthFieldsNames.NAME];
     this.password = values[AuthFieldsNames.PASSWORD];
   }
 }

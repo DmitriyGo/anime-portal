@@ -22,7 +22,7 @@ export const store = configureStore({
   },
 });
 
-store.dispatch(checkAuth());
+// store.dispatch(checkAuth());
 
 export const persistor = persistStore(store);
 

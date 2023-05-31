@@ -1,8 +1,7 @@
 export enum AuthFieldsNames {
   AVATAR = 'avatar',
-  FIRST_NAME = 'first_name',
-  LAST_NAME = 'last_name',
   LOGIN = 'login',
+  NAME = 'name',
   EMAIL = 'email',
   EMAIL_OR_LOGIN = 'email_or_login',
   PASSWORD = 'password',
@@ -18,7 +17,7 @@ export type TLoginFormValues = {
 };
 
 export type TRegisterFormValues = {
-  [AuthFieldsNames.LOGIN]: string;
+  [AuthFieldsNames.NAME]: string;
   [AuthFieldsNames.EMAIL]: string;
   [AuthFieldsNames.PASSWORD]: string;
   [AuthFieldsNames.CONFIRM_PASSWORD]: string;
@@ -35,8 +34,7 @@ export type TResetPasswordFormValues = {
 
 export type TUpdateUserDataFormValues = {
   [AuthFieldsNames.AVATAR]: File | string;
-  [AuthFieldsNames.FIRST_NAME]: string;
-  [AuthFieldsNames.LAST_NAME]: string;
+  [AuthFieldsNames.NAME]: string;
   [AuthFieldsNames.EMAIL]: string;
 };
 

@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ArrowLeft } from '@styled-icons/material-rounded';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -37,20 +37,24 @@ import {
 } from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
 
-//TODO add translations to validation
-const schema = yup.object().shape({
-  email_or_login: yup.string().required('This field is required'),
-  password: yup
-    .string()
-    .min(6, 'Min length 6 characters')
-    .required('Password is required'),
-});
-
 const SignInContainer = () => {
-  const { t } = useTranslation('auth');
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation('auth');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const accessToken = useSelector(selectAccessToken);
+
+  const schema = useMemo(() => {
+    return yup.object().shape({
+      email_or_login: yup.string().required(`${t('validate_field_required')}`),
+      password: yup
+        .string()
+        .min(6, `${t('validate_password_min')}`)
+        .required(`${t('validate_password_required')}`),
+    });
+  }, [language]);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';

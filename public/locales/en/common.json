@@ -11,5 +11,9 @@
   "404": "404 page not found(((",
   "min": "min",
   "show_less": "Show less",
-  "show_more": "Show more"
+  "show_more": "Show more",
+  "rating": "Rating",
+  "studio": "Studio",
+  "status": "Status",
+  "placement": "Placement"
 }

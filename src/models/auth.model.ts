@@ -30,13 +30,13 @@ export interface IAuthorizedRequestDTO {
 }
 
 export interface ILoginDTO {
-  email_or_login: string;
+  emailOrLogin: string;
   password: string;
 }
 
 export interface IRegistrationDTO {
   email: string;
-  login: string;
+  name: string;
   password: string;
 }
 

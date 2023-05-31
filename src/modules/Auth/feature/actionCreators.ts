@@ -93,11 +93,12 @@ export const logout = createAsyncThunk<
 >(
   `${AUTH_SLICE_NAME}/logout`,
   async () => {
-    const response = await AuthAPI.logout();
-
     localStorage.removeItem(AUTHORIZATION_STORAGE_KEY);
 
-    return response.data;
+    // const response = await AuthAPI.logout();
+    //TODO logout
+
+    return null;
   },
   { serializeError: formatApiError },
 );

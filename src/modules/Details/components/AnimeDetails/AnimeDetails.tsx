@@ -78,10 +78,18 @@ const AnimeDetails: FC<AnimeDetailsProps> = ({ animeDetails, id }) => {
           ))}
         </StyledTags>
 
-        <p>Rating - {rating}</p>
-        <p>Studio - {studio}</p>
-        <p>Status - {status}</p>
-        <p>Placement - {placement}</p>
+        <p>
+          {t('rating')} - {rating}
+        </p>
+        <p>
+          {t('studio')} - {studio}
+        </p>
+        <p>
+          {t('status')} - {status}
+        </p>
+        <p>
+          {t('placement')} - {placement}
+        </p>
       </StyledDetailsPart>
     </StyledAnimeDetails>
   );

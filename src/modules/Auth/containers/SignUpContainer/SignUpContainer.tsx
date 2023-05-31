@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ArrowLeft } from '@styled-icons/material-rounded';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -37,28 +37,32 @@ import {
 } from '@/modules/Auth';
 import { useDispatch, useSelector } from '@/store';
 
-//TODO add translations to validation
-const schema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Email must be a valid email')
-    .required('Email is required'),
-  login: yup.string().required('Login is required'),
-  password: yup
-    .string()
-    .min(6, 'Min length 6 characters')
-    .required('Password is required'),
-  confirm_password: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required('Confirm Password is required'),
-});
-
 const SignUpContainer = () => {
-  const { t } = useTranslation('auth');
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation('auth');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const accessToken = useSelector(selectAccessToken);
+
+  const schema = useMemo(() => {
+    return yup.object().shape({
+      email: yup
+        .string()
+        .email(`${t('validate_email_valid')}`)
+        .required(`${t('validate_email_required')}`),
+      name: yup.string().required(`${t('validate_name_required')}`),
+      password: yup
+        .string()
+        .min(6, `${t('validate_password_min')}`)
+        .required(`${t('validate_password_required')}`),
+      confirm_password: yup
+        .string()
+        .oneOf([yup.ref('password')], `${t('validate_password_confirm_match')}`)
+        .required(`${t('validate_password_confirm_required')}`),
+    });
+  }, [language]);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -140,9 +144,9 @@ const SignUpContainer = () => {
               type="string"
               placeholder={t('login_placeholder')}
               takenMessage={t('login_taken')}
-              errorMessage={errors.login?.message}
-              onCheck={() => handleLoginEmailCheck(getValues().login)}
-              {...formRegister('login')}
+              errorMessage={errors.name?.message}
+              onCheck={() => handleLoginEmailCheck(getValues().name)}
+              {...formRegister('name')}
             />
 
             <StyledControl

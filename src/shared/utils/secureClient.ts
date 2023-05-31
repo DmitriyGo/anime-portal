@@ -50,7 +50,7 @@ export const setupHttpClient = (store: AppStore) => {
         try {
           const refreshResponse: AxiosResponse<TokenRefreshResponse> =
             await secureClient.post<TokenRefreshResponse>(
-              `${API_URL}/${AuthEndpoint.REFRESH}`, //TODO ne proebatb
+              `${API_URL}/${AuthEndpoint.REFRESH}`, //TODO important
             );
 
           const newAccessToken: string = refreshResponse.data.accessToken;
