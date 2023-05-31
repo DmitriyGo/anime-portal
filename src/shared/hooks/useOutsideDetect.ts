@@ -2,7 +2,7 @@ import { RefObject, useEffect } from 'react';
 
 import { useEvent } from '.';
 
-export default function useOutsideDetect(
+function useOutsideDetect(
   ref: RefObject<HTMLElement>,
   isOpen: boolean,
   onClickOutside: () => unknown,
@@ -25,3 +25,5 @@ export default function useOutsideDetect(
     }
   }, [isOpen, ref.current]);
 }
+
+export default useOutsideDetect;

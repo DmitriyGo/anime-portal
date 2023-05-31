@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { DEVICES } from '@/theme';
+import { COLORS, DEVICES } from '@/theme';
 
 export const StyledHeader = styled.header`
   @media ${DEVICES.LG} {
@@ -18,7 +18,7 @@ export const StyledHeader = styled.header`
   gap: 1rem;
   flex-direction: column;
   padding: 0.75rem 2rem;
-  background-color: ${({ theme }) => theme.backGroundColor};
+  background-color: ${COLORS.BACKGROUND};
 `;
 
 export const StyledBlock = styled.div`

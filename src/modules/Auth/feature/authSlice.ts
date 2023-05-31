@@ -8,94 +8,99 @@ import {
 
 import {
   forgotPassword,
-  loginUser,
-  registerUser,
+  signInUser,
+  signUpUser,
   resetPassword,
+  logout,
+  checkAuth,
 } from './actionCreators';
 import { AuthState, AUTH_SLICE_NAME, initialState } from './models';
 
 import {
-  AUTHORIZATION_TOKEN_EXPIRES,
-  AUTHORIZATION_TOKEN_STORAGE_KEY,
+  AUTHORIZATION_STORAGE_KEY,
   ResponseStatusCode,
 } from '@/constants/common';
 import { IApiError } from '@/models/apiError.model';
-import { appCookiesStorage, showApiErrors } from '@/utils';
+import { showApiErrors } from '@/utils';
 
 export const authSlice = createSlice({
   name: AUTH_SLICE_NAME,
   initialState,
   reducers: {
-    setIsAuthorized(state, action: PayloadAction<boolean>) {
-      state.isAuthorized = action.payload;
-    },
-    resetAuthState() {
-      return initialState;
-    },
-    logOut() {
-      appCookiesStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
-
-      return initialState;
+    setAccessToken: (state, action: PayloadAction<string>) => {
+      state.accessToken = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
+      .addMatcher(
+        isFulfilled(signInUser, signUpUser, checkAuth),
+        (state: AuthState, { payload }) => {
+          if (!payload?.token) {
+            return;
+          }
 
-      .addMatcher(isFulfilled(loginUser), (state: AuthState, action) => {
-        const { payload } = action;
+          localStorage.setItem(AUTHORIZATION_STORAGE_KEY, 'true');
 
-        if (!payload.data.token) {
-          return;
-        }
-
-        state.isLoading = false;
-        state.isAuthorized = true;
-        state.user = payload.data.user;
-        state.authToken = payload.data.token;
-
-        appCookiesStorage.setItem(
-          AUTHORIZATION_TOKEN_STORAGE_KEY,
-          payload.data.token,
-          { expires: AUTHORIZATION_TOKEN_EXPIRES },
-        );
+          state.isLoading = false;
+          state.accessToken = payload.token;
+        },
+      )
+      .addMatcher(isFulfilled(logout), () => {
+        return initialState;
       })
       .addMatcher(
-        isFulfilled(forgotPassword, registerUser, resetPassword),
+        isFulfilled(forgotPassword, resetPassword, logout),
         (state: AuthState) => {
           state.isLoading = false;
         },
       )
       .addMatcher(
-        isPending(registerUser, loginUser, forgotPassword, resetPassword),
+        isPending(
+          signUpUser,
+          signInUser,
+          forgotPassword,
+          resetPassword,
+          logout,
+        ),
         (state: AuthState) => {
           state.isLoading = true;
           state.error = null;
         },
       )
       .addMatcher(
-        isRejected(registerUser, loginUser, forgotPassword, resetPassword),
+        isRejected(
+          signUpUser,
+          signInUser,
+          forgotPassword,
+          resetPassword,
+          logout,
+        ),
         (state: AuthState, action) => {
           const { error } = action;
           state.isLoading = false;
           state.error = error;
 
+          localStorage.removeItem(AUTHORIZATION_STORAGE_KEY);
+
           showApiErrors(error);
         },
       )
+      .addMatcher(isRejected(logout), () => {
+        return initialState;
+      })
       .addMatcher(isRejected(), (state: AuthState, action) => {
         const { error } = action;
         if (
           (error as IApiError)?.status === ResponseStatusCode.NOT_AUTHORIZED
         ) {
           state.user = null;
-          state.isAuthorized = false;
-          state.authToken = null;
-          appCookiesStorage.removeItem(AUTHORIZATION_TOKEN_STORAGE_KEY);
+          state.accessToken = null;
         }
       });
   },
 });
 
-export const { setIsAuthorized, logOut, resetAuthState } = authSlice.actions;
+export const { setAccessToken } = authSlice.actions;
 
 export default authSlice.reducer;

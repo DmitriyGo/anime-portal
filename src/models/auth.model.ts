@@ -1,23 +1,27 @@
-import { IUser, UserRole } from './user.model';
+import { IUser } from './user.model';
 
 import { AUTHORIZATION_TOKEN_STORAGE_KEY } from '@/constants/common';
 
-export enum AuthForms {
+export enum AuthForm {
   LOG_IN = 'login',
   REGISTER = 'register',
   FORGOT_PASSWORD = 'forgot',
   RESET_PASSWORD = 'reset',
 }
 
-export enum AuthEndpoints {
-  REGISTER = '/auth/register',
-  REGISTER_VERIFY = '/auth/verification/register',
-  NEW_EMAIL_VERIFY = '/auth/verification/profile',
-  LOGIN = '/auth/login',
-  LOGOUT = '/auth/logout',
-  FORGOT_PASSWORD = '/auth/reset_password/send',
-  RESET_PASSWORD = '/auth/reset_password/reset',
-}
+const JWT_AUTH_PREFIX = '/jwt-auth';
+
+export const AuthEndpoint = {
+  REGISTER: `${JWT_AUTH_PREFIX}/register`,
+  REGISTER_VERIFY: `${JWT_AUTH_PREFIX}/verification/register`,
+  NEW_EMAIL_VERIFY: `${JWT_AUTH_PREFIX}/verification/profile`,
+  LOGIN: `${JWT_AUTH_PREFIX}/login`,
+  LOGOUT: `${JWT_AUTH_PREFIX}/logout`,
+  FORGOT_PASSWORD: `${JWT_AUTH_PREFIX}/reset_password/send`,
+  RESET_PASSWORD: `${JWT_AUTH_PREFIX}/reset_password/reset`,
+  REFRESH: `${JWT_AUTH_PREFIX}/refresh`,
+  USER_EXISTS: `${JWT_AUTH_PREFIX}/user-exists`,
+} as const;
 
 // ============== DTO ==============
 
@@ -26,18 +30,14 @@ export interface IAuthorizedRequestDTO {
 }
 
 export interface ILoginDTO {
-  email: string;
+  emailOrLogin: string;
   password: string;
 }
 
 export interface IRegistrationDTO {
-  firstName: string;
-  lastName: string;
   email: string;
+  name: string;
   password: string;
-  passwordConfirmation: string;
-  role: UserRole;
-  emailSubscription: boolean;
 }
 
 export interface IForgotPasswordDTO {
@@ -59,16 +59,15 @@ export interface IVerifyEmailDTO {
 // ============== Response ==============
 
 export interface IRegistrationResponse {
-  data: {
-    email: string;
-  };
+  token: string;
+}
+
+export interface IUserExistsResponse {
+  checkStatus: boolean;
 }
 
 export interface IAuthResponse {
-  data: {
-    token: string;
-    user: IUser;
-  };
+  token: string;
 }
 
 export interface IVerifyEmailResponse {

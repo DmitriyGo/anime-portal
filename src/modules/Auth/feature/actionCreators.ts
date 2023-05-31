@@ -1,8 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AUTH_SLICE_NAME } from './models';
+import formatApiError from '../../../shared/utils/formatApiError';
 
 import AuthAPI from '@/api/AuthAPI';
+import { AUTHORIZATION_STORAGE_KEY } from '@/constants/common';
 import { IApiError } from '@/models/apiError.model';
 import {
   IAuthResponse,
@@ -12,9 +14,8 @@ import {
   IRegistrationResponse,
   IResetPasswordDTO,
 } from '@/models/auth.model';
-import { formatApiError } from '@/utils';
 
-export const registerUser = createAsyncThunk<
+export const signUpUser = createAsyncThunk<
   IRegistrationResponse,
   IRegistrationDTO,
   { serializedErrorType: IApiError }
@@ -27,7 +28,7 @@ export const registerUser = createAsyncThunk<
   { serializeError: formatApiError },
 );
 
-export const loginUser = createAsyncThunk<
+export const signInUser = createAsyncThunk<
   IAuthResponse,
   ILoginDTO,
   { serializedErrorType: IApiError }
@@ -62,6 +63,42 @@ export const resetPassword = createAsyncThunk<
   async (data: IResetPasswordDTO) => {
     const response = await AuthAPI.resetPassword(data);
     return response.data;
+  },
+  { serializeError: formatApiError },
+);
+
+export const checkAuth = createAsyncThunk<
+  IAuthResponse | null,
+  never,
+  { serializedErrorType: IApiError }
+>(
+  `${AUTH_SLICE_NAME}/checkAuth`,
+  async () => {
+    const authorized = localStorage.getItem(AUTHORIZATION_STORAGE_KEY);
+
+    if (authorized) {
+      const response = await AuthAPI.checkAuth();
+      return response.data;
+    }
+
+    return null;
+  },
+  { serializeError: formatApiError },
+);
+
+export const logout = createAsyncThunk<
+  unknown,
+  never,
+  { serializedErrorType: IApiError }
+>(
+  `${AUTH_SLICE_NAME}/logout`,
+  async () => {
+    localStorage.removeItem(AUTHORIZATION_STORAGE_KEY);
+
+    // const response = await AuthAPI.logout();
+    //TODO logout
+
+    return null;
   },
   { serializeError: formatApiError },
 );

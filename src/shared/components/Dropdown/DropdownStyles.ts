@@ -13,9 +13,9 @@ export const StyledDropdownContent = styled.div<{ top: string; left: string }>`
   position: absolute;
   top: ${({ top }) => top};
   left: ${({ left }) => left};
-  background-color: ${({ theme }) => theme.backGroundColor};
+  background-color: ${COLORS.BACKGROUND};
   border: 1px solid ${COLORS.GREY[800]};
-  box-shadow: 5px 5px 10px ${COLORS.BACKGROUND.DARK};
+  box-shadow: 5px 5px 10px ${COLORS.BACKGROUND};
   transform: translateX(-45%);
   border-radius: 0.5rem;
   overflow: hidden;
