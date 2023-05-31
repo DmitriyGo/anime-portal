@@ -1,13 +1,22 @@
-import { IAnimePrewiew, animeEndpoint } from '@/models/anime.model';
+import {
+  IAnimeDetails,
+  IAnimePreview,
+  getAnimeEndpoints,
+} from '@/models/anime.model';
 import { ApiResponse, httpClient } from '@/utils';
 
 class AnimeAPI {
-  static getDescriptionById(lang: string, id: number): ApiResponse<unknown> {
-    return httpClient.get<unknown>(animeEndpoint.getDetailsById(lang, id));
+  static getAnimeDetailsById(
+    lang: string,
+    id: number,
+  ): ApiResponse<IAnimeDetails> {
+    return httpClient.get<IAnimeDetails>(
+      getAnimeEndpoints(lang).detailsById(id),
+    );
   }
 
-  static getPreviews(lang: string): ApiResponse<IAnimePrewiew[]> {
-    return httpClient.get<IAnimePrewiew[]>(animeEndpoint.getPrewiews(lang));
+  static getPreviews(lang: string): ApiResponse<IAnimePreview[]> {
+    return httpClient.get<IAnimePreview[]>(getAnimeEndpoints(lang).previews());
   }
 }
 

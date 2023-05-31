@@ -7,6 +7,7 @@ import axios, {
 } from 'axios';
 
 import { API_URL } from '@/constants/common';
+import { AuthEndpoint } from '@/models/auth.model';
 import { logout, setAccessToken } from '@/modules/Auth';
 import { AppStore } from '@/store';
 
@@ -21,6 +22,7 @@ const defaultConfig: AxiosRequestConfig = {
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,
 };
 
 const secureClient: AxiosInstance = axios.create(defaultConfig);
@@ -48,7 +50,7 @@ export const setupHttpClient = (store: AppStore) => {
         try {
           const refreshResponse: AxiosResponse<TokenRefreshResponse> =
             await secureClient.post<TokenRefreshResponse>(
-              `${API_URL}/auth/refresh`, //TODO ne proebatb
+              `${API_URL}/${AuthEndpoint.REFRESH}`, //TODO ne proebatb
             );
 
           const newAccessToken: string = refreshResponse.data.accessToken;

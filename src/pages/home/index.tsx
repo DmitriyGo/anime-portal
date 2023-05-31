@@ -1,10 +1,10 @@
-import { SpotlightsContainer, TrendingsContainer } from '@/modules/Home';
+import { SpotlightsContainer } from '@/modules/Home';
 
 const Home = () => {
   return (
     <>
       <SpotlightsContainer />
-      <TrendingsContainer />
+      {/* <TrendingContainer /> */}
     </>
   );
 };

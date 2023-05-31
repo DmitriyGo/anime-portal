@@ -1,33 +1,44 @@
-const Endpoint = {
-  GET_PREWIEWS_BY_ID: (lang: string) => `/anime/${lang}/prewiew`,
-  GET_PREWIEWS_TOP: (lang: string) => `/anime/${lang}/previews/Top`,
-  GET_DETAILS_BY_ID: (lang: string) => `/anime/${lang}/detailed`,
+const ANIME_PREFIX = '/anime';
+
+export const getAnimeEndpoints = (lang: string) => {
+  return {
+    previewById: (id: number) => {
+      return `${ANIME_PREFIX}/${lang}/preview/${id}`;
+    },
+    previews: () => {
+      return `${ANIME_PREFIX}/${lang}/previews`;
+    },
+    detailsById: (id: number) => {
+      return `${ANIME_PREFIX}/${lang}/detailed/${id}`;
+    },
+  };
 };
 
-export const animeEndpoint = {
-  getPrewiewById: (lang: string, id: number) => {
-    return `${Endpoint.GET_PREWIEWS_BY_ID(lang)}/${id}`;
-  },
-  getPrewiews: (lang: string) => {
-    return `${Endpoint.GET_PREWIEWS_TOP(lang)}`;
-  },
-  getDetailsById: (lang: string, id: number) => {
-    return `${Endpoint.GET_DETAILS_BY_ID(lang)}/${id}`;
-  },
-};
+export interface IName {
+  name: string;
+}
 
-export interface IAnimePrewiew {
+export interface IAnimePreview {
   id: number;
   date: string;
   rating: number;
   studio: string;
   duration: string;
   spotlight: string;
-  animeDescription: IAnimeDescriptionDto;
+  animeDescription: IAnimeDescription;
   tags: IName[];
 }
 
-export interface IAnimeDescriptionDto {
+export interface IAnimeDetails {
+  animeDescription: IAnimeDescription;
+  screenshots: string[];
+  tags: IName[];
+  poster: string;
+  studio: string;
+  rating: number;
+}
+
+export interface IAnimeDescription {
   language: IName;
   title: string;
   status: string;
@@ -35,8 +46,4 @@ export interface IAnimeDescriptionDto {
   placement: string;
   description: string;
   genres: IName[];
-}
-
-export interface IName {
-  name: string;
 }

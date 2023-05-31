@@ -4,6 +4,7 @@ import { COLORS } from '@/theme';
 
 export const Styled404 = styled.section`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: calc(100vh - 4.5rem);
   justify-content: center;
@@ -11,6 +12,6 @@ export const Styled404 = styled.section`
 `;
 
 export const StyledErrorText = styled.p`
-  font-size: 3rem;
-  color: ${COLORS.RED};
+  font-size: 2rem;
+  color: ${COLORS.FONT};
 `;
