@@ -2,9 +2,7 @@ import { useLayoutEffect, useMemo, useRef } from 'react';
 
 type Fn<ARGS extends unknown[], T> = (...args: ARGS) => T;
 
-export default function useEvent<T extends unknown[], K>(
-  fn: Fn<T, K>,
-): Fn<T, K> {
+function useEvent<T extends unknown[], K>(fn: Fn<T, K>): Fn<T, K> {
   const ref = useRef<Fn<T, K>>(fn);
 
   useLayoutEffect(() => {
@@ -19,3 +17,5 @@ export default function useEvent<T extends unknown[], K>(
     [],
   );
 }
+
+export default useEvent;

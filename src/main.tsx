@@ -9,6 +9,9 @@ import { persistor, store } from './store';
 
 import { FullPageLoader } from '@/components';
 import { i18n } from '@/modules/Translation';
+import { setupHttpClient } from '@/utils';
+
+setupHttpClient(store);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>

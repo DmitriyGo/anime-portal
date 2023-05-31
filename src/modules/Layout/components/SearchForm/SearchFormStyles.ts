@@ -14,7 +14,7 @@ export const StyledSearchFormSmall = styled.form`
   align-items: center;
 
   background-color: ${COLORS.WHITE};
-  border: 2px solid ${({ theme }) => theme.dividerColor};
+  border: 2px solid ${COLORS.GREY[100]};
 
   padding: 5px;
 `;
@@ -35,7 +35,7 @@ export const StyledSearchFormExtended = styled.form`
   border-top: 2px solid ${COLORS.BLACK};
   border-bottom: 2px solid ${COLORS.BLACK};
   background-color: ${COLORS.WHITE};
-  padding: 5px;
+  padding: 0.5px;
 `;
 
 export const StyledDiv = styled.div`

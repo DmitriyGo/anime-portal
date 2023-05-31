@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { COLORS } from '@/theme';
+
 export const PageLoaderWrapper = styled.div`
   position: absolute;
   top: 0;
@@ -9,5 +11,5 @@ export const PageLoaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.backGroundColor};
+  background-color: ${COLORS.BACKGROUND};
 `;

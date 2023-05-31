@@ -3,12 +3,11 @@ export const COLORS = {
   BLACK: '#121212',
   LIGHT_GREEN: '#CAE962',
   EMERALD: '#00FFB7',
+  RED: '#E21219',
   PRIMARY: '#674299',
   SECONDARY: '#7F5A83',
-  BACKGROUND: {
-    LIGHT: '#FBFEF9',
-    DARK: '#202125',
-  },
+  BACKGROUND: '#202125',
+  FONT: '#FBFEF9',
   DARK_GREY: {
     100: '#222222',
     150: '#1e1e1f',

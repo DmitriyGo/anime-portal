@@ -6,7 +6,7 @@ import { DEVICES } from '@/theme';
 export const StyledSpotlightsCarousel = styled.div`
   display: flex;
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 4.5rem);
 
   z-index: 0;

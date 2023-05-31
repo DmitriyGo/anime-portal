@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useCursorLeave = (onCursorLeave: () => void) => {
+function useCursorLeave(onCursorLeave: () => void) {
   useEffect(() => {
     const handleCursorLeave = () => {
       onCursorLeave();
@@ -12,6 +12,6 @@ const useCursorLeave = (onCursorLeave: () => void) => {
       document.removeEventListener('mouseleave', handleCursorLeave);
     };
   }, [onCursorLeave]);
-};
+}
 
 export default useCursorLeave;
