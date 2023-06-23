@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { Button } from '@/components';
+import { Button as DefaultButton } from '@/components';
 import { COLORS } from '@/theme';
 
-export const StyledSidebarLayout = styled.div`
+export const SidebarLayout = styled.div`
   position: fixed;
   z-index: 20;
   left: 0;
@@ -21,12 +21,12 @@ export const StyledSidebarLayout = styled.div`
   gap: 1.5rem;
 `;
 
-export const StyledBlock = styled.div`
+export const Block = styled.div`
   display: flex;
   gap: 2rem;
 `;
 
-export const StyledButton = styled(Button)`
+export const Button = styled(DefaultButton)`
   display: flex;
   flex-grow: 1;
 `;

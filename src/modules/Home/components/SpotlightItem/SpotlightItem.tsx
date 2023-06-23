@@ -9,18 +9,18 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StyledSpotlightItem,
-  StyledSeries,
-  StyledTitle,
-  StyledDescription,
-  StyledButtonsBlock,
-  StyledWatchNow,
-  StyledDetail,
-  StyledAdditionalInfo,
-  StyledTag,
-  StyledTags,
-  StyledAdditionalInfoBlock,
-  StyledArrowIcon,
+  SpotlightItem as StyledSpotlightItem,
+  Series,
+  Title,
+  Description,
+  ButtonsBlock,
+  WatchNow,
+  Detail,
+  AdditionalInfo,
+  Tag,
+  Tags,
+  AdditionalInfoBlock,
+  ArrowIcon,
 } from './SpotlightItemStyles';
 
 import { ROUTES } from '@/constants/routes';
@@ -54,47 +54,47 @@ const SpotlightItem: FC<SpotlightItemProps> = ({
 
   return (
     <StyledSpotlightItem imageUrl={spotlight}>
-      <StyledSeries>
+      <Series>
         #{position} {t('spotlight')}
-      </StyledSeries>
-      <StyledTitle>{animeDescription.title}</StyledTitle>
+      </Series>
+      <Title>{animeDescription.title}</Title>
       {!querySM && (
         <>
-          <StyledAdditionalInfo>
-            <StyledAdditionalInfoBlock>
+          <AdditionalInfo>
+            <AdditionalInfoBlock>
               <PlayCircleFill size="0.8rem" />
               {animeDescription.placement}
-            </StyledAdditionalInfoBlock>
-            <StyledAdditionalInfoBlock>
+            </AdditionalInfoBlock>
+            <AdditionalInfoBlock>
               <ClockFill size="0.8rem" />
               {duration}
               {t('min')}
-            </StyledAdditionalInfoBlock>
-            <StyledAdditionalInfoBlock>
+            </AdditionalInfoBlock>
+            <AdditionalInfoBlock>
               <CalendarFill size="0.8rem" />
               {formattedDate}
-            </StyledAdditionalInfoBlock>
-          </StyledAdditionalInfo>
-          <StyledTags>
+            </AdditionalInfoBlock>
+          </AdditionalInfo>
+          <Tags>
             {tags.map(({ name }, index) => (
-              <StyledTag key={index} name={name}>
+              <Tag key={index} name={name}>
                 {name}
-              </StyledTag>
+              </Tag>
             ))}
-          </StyledTags>
+          </Tags>
         </>
       )}
-      <StyledDescription>{animeDescription.description}</StyledDescription>
-      <StyledButtonsBlock>
-        <StyledWatchNow onClick={() => navigate(`${ROUTES.WATCH}/${id}`)}>
+      <Description>{animeDescription.description}</Description>
+      <ButtonsBlock>
+        <WatchNow onClick={() => navigate(`${ROUTES.WATCH}/${id}`)}>
           <PlayCircleFill size="1rem" />
           {t('watch_now')}
-        </StyledWatchNow>
-        <StyledDetail onClick={() => navigate(`${ROUTES.DETAILS}/${id}`)}>
+        </WatchNow>
+        <Detail onClick={() => navigate(`${ROUTES.DETAILS}/${id}`)}>
           {t('details')}
-          <StyledArrowIcon size="3rem" />
-        </StyledDetail>
-      </StyledButtonsBlock>
+          <ArrowIcon size="3rem" />
+        </Detail>
+      </ButtonsBlock>
     </StyledSpotlightItem>
   );
 };

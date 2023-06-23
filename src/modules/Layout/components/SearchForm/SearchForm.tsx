@@ -2,20 +2,13 @@ import { Search } from '@styled-icons/boxicons-regular';
 import { ChangeEvent, FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  StyledInput,
-  StyledInputButton,
-  StyledDiv,
-  StyledSearchFormSmall,
-  StyledSearchFormExtended,
-} from './SearchFormStyles';
-import { SearchFormMode } from '../../helpers/types';
+import { Input, Box, SearchForm as StyledSearchForm } from './SearchFormStyles';
 
 import { StyledIconButton } from '@/components';
 import { COLORS } from '@/theme';
 
 interface SearchFormProps {
-  mode: SearchFormMode;
+  mode: boolean;
   show: boolean;
 }
 
@@ -31,29 +24,23 @@ const SearchForm: FC<SearchFormProps> = ({ mode, show }) => {
 
   const content = (
     <>
-      <StyledInput
+      <Input
         value={inputValue}
         onChange={handleInputChange}
         placeholder={`${t('search_form_placeholder')}`}
       />
-      <StyledDiv>
+      <Box>
         <StyledIconButton>
           <Search size="1.5rem" color={COLORS.BLACK} />
         </StyledIconButton>
-        <StyledInputButton>{t('search_form_filter')}</StyledInputButton>
-      </StyledDiv>
+      </Box>
     </>
   );
 
   return (
-    <>
-      {mode === SearchFormMode.small && (
-        <StyledSearchFormSmall>{content}</StyledSearchFormSmall>
-      )}
-      {mode === SearchFormMode.extended && show && (
-        <StyledSearchFormExtended>{content}</StyledSearchFormExtended>
-      )}
-    </>
+    <StyledSearchForm $mode={!mode} $show={show}>
+      {content}
+    </StyledSearchForm>
   );
 };
 

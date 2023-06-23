@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
+import { ContentWrapper } from './LayoutContainerStyles';
 import { Header, SideBar } from '../../components';
 
 import { HEADER_EXCLUDED_ROUTES } from '@/models/layout.model';
@@ -33,7 +34,9 @@ const Layout = () => {
     <>
       {headerShown && <Header onMenuClick={toggleSidebar} />}
       {sidebarShown && <SideBar onClose={toggleSidebar} />}
-      <Outlet />
+      <ContentWrapper>
+        <Outlet />
+      </ContentWrapper>
       {/* TODO footer */}
     </>
   );

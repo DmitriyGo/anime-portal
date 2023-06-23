@@ -1,3 +1,3 @@
 import styled from 'styled-components';
 
-export const StyledTrendingCarousel = styled.div``;
+export const TrendingCarousel = styled.div``;

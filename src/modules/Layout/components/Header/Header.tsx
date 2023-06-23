@@ -1,19 +1,18 @@
 import { Menu, Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StyledHeader,
-  StyledBlock,
-  StyledListBlock,
-  StyledListItem,
+  Header as StyledHeader,
+  Block,
+  ListBlock,
+  ListItem,
 } from './HeaderStyles';
 
 import logo from '/logo.png';
 
-import { SearchFormMode } from '../../helpers/types';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import SearchForm from '../SearchForm/SearchForm';
 
@@ -29,32 +28,41 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({ onMenuClick }) => {
+  const lastScrollTop = useRef(0);
+
+  const [navbarVisible, setNavbarVisible] = useState(true);
   const [showExtendedSearch, setExtendedSearch] = useState<boolean>(false);
 
   const isAuthorized = useSelector(selectAccessToken);
+
+  const navigate = useNavigate();
+  const { t: tAuth } = useTranslation('auth');
 
   const queryMD = useMediaQuery(DEVICES.MD);
   const queryXS = useMediaQuery(DEVICES.XS);
   const queryXXS = useMediaQuery(DEVICES.XXS);
 
-  const navigate = useNavigate();
-  const { t: tAuth } = useTranslation('auth');
-
   const handleSearchClick = () => {
     setExtendedSearch((show) => !show);
   };
 
-  const handleLogoClick = () => {
-    navigate(ROUTES.HOME);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollY } = window;
+      if (scrollY > lastScrollTop.current && scrollY > 72) {
+        setNavbarVisible(false);
+      } else if (scrollY < lastScrollTop.current) {
+        setNavbarVisible(true);
+      }
+      lastScrollTop.current = scrollY <= 0 ? 0 : scrollY;
+    };
 
-  const handleAccountClick = () => {
-    navigate(ROUTES.PROFILE);
-  };
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-  const handleLoginClick = () => {
-    navigate(ROUTES.SIGN_IN);
-  };
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (showExtendedSearch && !queryMD) {
@@ -63,28 +71,24 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
   }, [queryMD, showExtendedSearch]);
 
   return (
-    <StyledHeader>
-      <StyledBlock>
-        <StyledBlock>
+    <StyledHeader visible={navbarVisible}>
+      <Block>
+        <Block gap="2.5rem">
           <StyledIconButton onClick={onMenuClick}>
             <Menu size={30} />
           </StyledIconButton>
           {!queryXXS && (
-            <StyledIconButton onClick={handleLogoClick}>
+            <StyledIconButton onClick={() => navigate(ROUTES.HOME)}>
               <img src={logo} height="30px" alt="logo.png" />
             </StyledIconButton>
           )}
 
-          <SearchForm
-            show={showExtendedSearch}
-            mode={queryMD ? SearchFormMode.extended : SearchFormMode.small}
-          />
-        </StyledBlock>
+          <SearchForm show={showExtendedSearch} mode={queryMD} />
+        </Block>
 
-        <StyledListBlock>
+        <ListBlock>
           {queryMD && (
-            // Icons
-            <StyledListItem>
+            <ListItem>
               <StyledIconButton onClick={handleSearchClick}>
                 <Search
                   // TODO Icon button wrapper
@@ -92,28 +96,28 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
                   size="1.5rem"
                 />
               </StyledIconButton>
-            </StyledListItem>
+            </ListItem>
           )}
 
           {!queryXS && (
-            <StyledListItem>
+            <ListItem>
               <LanguageSelector top="2rem" left="-2.5rem" />
-            </StyledListItem>
+            </ListItem>
           )}
 
           {isAuthorized && (
             <>
-              <StyledListItem>
+              <ListItem>
                 <StyledIconButton>
                   <Notifications size="1.5rem" />
                 </StyledIconButton>
-              </StyledListItem>
+              </ListItem>
 
-              <StyledListItem>
-                <StyledIconButton onClick={handleAccountClick}>
+              <ListItem>
+                <StyledIconButton onClick={() => navigate(ROUTES.PROFILE)}>
                   <AccountCircle size="1.5rem" />
                 </StyledIconButton>
-              </StyledListItem>
+              </ListItem>
             </>
           )}
 
@@ -122,14 +126,14 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
               <Button
                 color={COLORS.LIGHT_GREEN}
                 fontColor={COLORS.BLACK}
-                onClick={handleLoginClick}
+                onClick={() => navigate(ROUTES.SIGN_IN)}
               >
                 {`${tAuth('login')}`}
               </Button>
             </>
           )}
-        </StyledListBlock>
-      </StyledBlock>
+        </ListBlock>
+      </Block>
     </StyledHeader>
   );
 };

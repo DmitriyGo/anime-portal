@@ -2,7 +2,7 @@ import { FC, useLayoutEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { StyledWatchContainer } from './WatchContainerStyles';
+import { WatchContainer as StyledWatchContainer } from './WatchContainerStyles';
 
 import AnimeAPI from '@/api/AnimeAPI';
 import { FullPageLoader } from '@/components';

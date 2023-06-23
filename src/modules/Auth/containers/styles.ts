@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { Button } from '@/components';
-import { Control } from '@/modules/Auth/components';
+import { Control as AuthControl } from '@/modules/Auth/components';
 import { COLORS } from '@/theme';
 
 export const SignPageWrapper = styled.div`
@@ -46,7 +46,7 @@ export const FormContentWrapper = styled.div`
   margin-top: 8rem;
 `;
 
-export const StyledControl = styled(Control)`
+export const Control = styled(AuthControl)`
   margin: 0 0 1rem;
 `;
 

@@ -1,3 +1,3 @@
 import styled from 'styled-components';
 
-export const StyledWatchContainer = styled.section``;
+export const WatchContainer = styled.section``;

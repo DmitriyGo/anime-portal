@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { Button } from '@/components';
+import { Button as DefaultButton } from '@/components';
 import { DEVICES } from '@/theme';
 
-export const StyledSpotlightsCarousel = styled.div`
+export const SpotlightsCarousel = styled.div`
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -16,7 +16,7 @@ export const StyledSpotlightsCarousel = styled.div`
   }
 `;
 
-export const StyledButton = styled(Button)`
+export const Button = styled(DefaultButton)`
   aspect-ratio: 1;
   padding: 0;
   width: 3rem;
@@ -27,7 +27,7 @@ export const StyledButton = styled(Button)`
   align-items: center;
 `;
 
-export const StyledControlButtons = styled.div`
+export const ControlButtons = styled.div`
   position: absolute;
   bottom: 1.5rem;
   right: 3rem;
@@ -44,7 +44,7 @@ export const StyledControlButtons = styled.div`
   }
 `;
 
-export const StyledSlices = styled.div`
+export const Slices = styled.div`
   z-index: 1;
   height: 100%;
 

@@ -1,7 +1,7 @@
-import { StyledTrendingsContainer } from './TrendingContainerStyles';
+import { TrendingContainer as StyledTrendingContainer } from './TrendingContainerStyles';
 
 const TrendingContainer = () => {
-  return <StyledTrendingsContainer />;
+  return <StyledTrendingContainer />;
 };
 
 export default TrendingContainer;

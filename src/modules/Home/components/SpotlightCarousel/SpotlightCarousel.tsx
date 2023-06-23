@@ -10,10 +10,10 @@ import React, {
 } from 'react';
 
 import {
-  StyledButton,
-  StyledControlButtons,
-  StyledSpotlightsCarousel,
-  StyledSlices,
+  Button,
+  ControlButtons,
+  SpotlightsCarousel,
+  Slices,
 } from './SpotlightCarouselStyles';
 import SpotlightItem from '../SpotlightItem/SpotlightItem';
 
@@ -202,8 +202,8 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ previews }) => {
   });
 
   return (
-    <StyledSpotlightsCarousel>
-      <StyledSlices
+    <SpotlightsCarousel>
+      <Slices
         ref={slicesRef}
         onMouseDown={handleDragStart}
         onMouseMove={handleDrag}
@@ -213,16 +213,16 @@ const SpotlightCarousel: FC<SpotlightCarouselProps> = ({ previews }) => {
         onTouchEnd={handleDrop}
       >
         {carouselItems}
-      </StyledSlices>
-      <StyledControlButtons>
-        <StyledButton onClick={handlePrev}>
+      </Slices>
+      <ControlButtons>
+        <Button onClick={handlePrev}>
           <ArrowLeft size="3rem" />
-        </StyledButton>
-        <StyledButton onClick={handleNext}>
+        </Button>
+        <Button onClick={handleNext}>
           <ArrowRight size="3rem" />
-        </StyledButton>
-      </StyledControlButtons>
-    </StyledSpotlightsCarousel>
+        </Button>
+      </ControlButtons>
+    </SpotlightsCarousel>
   );
 };
 

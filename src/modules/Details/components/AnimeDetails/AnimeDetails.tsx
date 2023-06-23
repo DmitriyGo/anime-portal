@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  StyledAnimeDetails,
-  StyledBlock,
-  StyledButton,
-  StyledDetailsPart,
-  StyledMainPart,
-  StyledPoster,
-  StyledPosterBlock,
-  StyledTag,
-  StyledTags,
-  StyledTitle,
+  AnimeDetails as StyledAnimeDetails,
+  Block,
+  Button,
+  DetailsPart,
+  MainPart,
+  Poster,
+  PosterBlock,
+  Tag,
+  Tags,
+  Title,
 } from './AnimeDetailsStyles';
 import Description from '../Description/Description';
 import ScreenshotsCarousel from '../ScreenshotsCarousel/ScreenshotsCarousel';
@@ -43,40 +43,40 @@ const AnimeDetails: FC<AnimeDetailsProps> = ({ animeDetails, id }) => {
 
   return (
     <StyledAnimeDetails>
-      <StyledMainPart>
-        <StyledPosterBlock>
-          <StyledPoster src={poster} alt={animeDescription.title} />
-        </StyledPosterBlock>
+      <MainPart>
+        <PosterBlock>
+          <Poster src={poster} alt={animeDescription.title} />
+        </PosterBlock>
 
-        <StyledBlock>
-          <StyledTitle>{title}</StyledTitle>
-          <StyledTags>
+        <Block>
+          <Title>{title}</Title>
+          <Tags>
             {tags.map(({ name }, index) => (
-              <StyledTag key={index} name={name}>
+              <Tag key={index} name={name}>
                 {name}
-              </StyledTag>
+              </Tag>
             ))}
-          </StyledTags>
-          <StyledButton
+          </Tags>
+          <Button
             fontColor={COLORS.BLACK}
             color={COLORS.LIGHT_GREEN}
             onClick={onWatchNowClick}
           >
             {t('watch_now')}
-          </StyledButton>
+          </Button>
           <Description collapsedDetailsLength={300} text={description} />
           <ScreenshotsCarousel screenshots={screenshots} />
-        </StyledBlock>
-      </StyledMainPart>
+        </Block>
+      </MainPart>
 
-      <StyledDetailsPart>
-        <StyledTags>
+      <DetailsPart>
+        <Tags>
           {genres.map(({ name }, index) => (
-            <StyledTag key={index} name={name}>
+            <Tag key={index} name={name}>
               {name}
-            </StyledTag>
+            </Tag>
           ))}
-        </StyledTags>
+        </Tags>
 
         <p>
           {t('rating')} - {rating}
@@ -90,7 +90,7 @@ const AnimeDetails: FC<AnimeDetailsProps> = ({ animeDetails, id }) => {
         <p>
           {t('placement')} - {placement}
         </p>
-      </StyledDetailsPart>
+      </DetailsPart>
     </StyledAnimeDetails>
   );
 };

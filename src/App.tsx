@@ -1,6 +1,14 @@
 import { SnackbarProvider } from 'notistack';
-import { Details, Home, Page404, Profile, SignIn, SignUp, Watch } from 'pages';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import {
+  Details,
+  Home,
+  PageNotFound,
+  Profile,
+  SignIn,
+  SignUp,
+  Watch,
+} from 'pages';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import GlobalStyles from './styles/globals';
 
@@ -23,10 +31,16 @@ const App = () => {
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
             <Route path={`${ROUTES.DETAILS}/:id`} element={<Details />} />
             <Route path={`${ROUTES.WATCH}/:id`} element={<Watch />} />
+            <Route path={ROUTES.PAGE_NOT_FOUND} element={<PageNotFound />} />
+
             {authorized && (
               <Route path={`${ROUTES.PROFILE}/*`} element={<Profile />} />
             )}
-            <Route path="/*" element={<Page404 />} />
+
+            <Route
+              path="/*"
+              element={<Navigate to={ROUTES.PAGE_NOT_FOUND} />}
+            />
           </Route>
         </Routes>
       </SnackbarProvider>

@@ -1,7 +1,10 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { StyledDescription, StyledExtendButton } from './DescriptionStyles';
+import {
+  Description as StyledDescription,
+  ExtendButton,
+} from './DescriptionStyles';
 
 interface DescriptionProps {
   text: string;
@@ -24,9 +27,9 @@ const Description: FC<DescriptionProps> = ({
     <StyledDescription>
       {extended ? text : `${text.slice(0, collapsedDetailsLength)}...`}
       &nbsp;
-      <StyledExtendButton onClick={extendHandle}>
+      <ExtendButton onClick={extendHandle}>
         {extended ? t('show_less') : t('show_more')}
-      </StyledExtendButton>
+      </ExtendButton>
     </StyledDescription>
   );
 };

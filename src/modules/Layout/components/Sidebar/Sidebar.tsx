@@ -2,14 +2,10 @@ import { FC, MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  StyledBlock,
-  StyledButton,
-  StyledSidebarLayout,
-} from './SidebarStyles';
+import { Block, Button, SidebarLayout } from './SidebarStyles';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 
-import { Backdrop, Button } from '@/components';
+import { Backdrop } from '@/components';
 import { ROUTES } from '@/constants/routes';
 import { useBackdrop, useMediaQuery } from '@/hooks';
 import { COLORS, DEVICES } from '@/theme';
@@ -37,17 +33,17 @@ const Sidebar: FC<SidebarProps> = ({ onClose }) => {
 
   return (
     <Backdrop onClick={onClose}>
-      <StyledSidebarLayout onClick={handleClick}>
-        <StyledBlock>
-          <StyledButton color={COLORS.PRIMARY} onClick={onClose}>
+      <SidebarLayout onClick={handleClick}>
+        <Block>
+          <Button color={COLORS.PRIMARY} onClick={onClose}>
             {t('close_menu')}
-          </StyledButton>
-        </StyledBlock>
+          </Button>
+        </Block>
 
         {queryXS && (
-          <StyledBlock>
+          <Block>
             <LanguageSelector top="-2rem" left="6.25rem" />
-          </StyledBlock>
+          </Block>
         )}
 
         <Button
@@ -56,7 +52,7 @@ const Sidebar: FC<SidebarProps> = ({ onClose }) => {
         >
           {t('home')}
         </Button>
-      </StyledSidebarLayout>
+      </SidebarLayout>
     </Backdrop>
   );
 };

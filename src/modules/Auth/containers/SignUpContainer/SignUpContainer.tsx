@@ -21,7 +21,7 @@ import {
   Subheading,
   SubmitButton,
   OrText,
-  StyledControl,
+  Control,
   BackButton,
   FormContentWrapper,
 } from '../styles';
@@ -149,7 +149,7 @@ const SignUpContainer = () => {
               {...formRegister('name')}
             />
 
-            <StyledControl
+            <Control
               id="password"
               type="password"
               placeholder={t('password_placeholder')}
@@ -157,7 +157,7 @@ const SignUpContainer = () => {
               {...formRegister('password')}
             />
 
-            <StyledControl
+            <Control
               id="confirm_password"
               type="password"
               placeholder={t('confirm_password_placeholder')}

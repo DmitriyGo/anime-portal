@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { Button } from '@/components';
+import { Button as DefaultButton } from '@/components';
 import { COLORS, DEVICES } from '@/theme';
 
-export const StyledAnimeDetails = styled.div`
+export const AnimeDetails = styled.div`
   display: grid;
   grid-template-columns: 5fr 2fr;
   padding: 2rem;
@@ -16,7 +16,7 @@ export const StyledAnimeDetails = styled.div`
   }
 `;
 
-export const StyledMainPart = styled.div`
+export const MainPart = styled.div`
   display: flex;
   gap: 2rem;
   padding: 2rem 2rem 0 2rem;
@@ -32,11 +32,11 @@ export const StyledMainPart = styled.div`
   }
 `;
 
-export const StyledDetailsPart = styled.div`
+export const DetailsPart = styled.div`
   padding: 2rem 2rem 0 2rem;
 `;
 
-export const StyledBlock = styled.div`
+export const Block = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -46,11 +46,11 @@ export const StyledBlock = styled.div`
   }
 `;
 
-export const StyledButton = styled(Button)`
+export const Button = styled(DefaultButton)`
   width: fit-content;
 `;
 
-export const StyledTitle = styled.h3`
+export const Title = styled.h3`
   font-size: 1.5rem;
   margin: 0;
 
@@ -59,19 +59,19 @@ export const StyledTitle = styled.h3`
   }
 `;
 
-export const StyledPoster = styled.img`
+export const Poster = styled.img`
   width: 12rem;
   height: fit-content;
 
   object-fit: contain;
 `;
 
-export const StyledPosterBlock = styled.div`
+export const PosterBlock = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-export const StyledTag = styled.div<{ name: string }>`
+export const Tag = styled.div<{ name: string }>`
   padding: 3px 4px;
   background: ${({ name }) =>
     name === 'HD' ? COLORS.LIGHT_GREEN : COLORS.WHITE};
@@ -81,7 +81,7 @@ export const StyledTag = styled.div<{ name: string }>`
   font-size: 0.8rem;
 `;
 
-export const StyledTags = styled.div`
+export const Tags = styled.div`
   display: flex;
   gap: 0.5rem;
 `;

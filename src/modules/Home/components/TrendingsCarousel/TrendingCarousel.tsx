@@ -1,4 +1,4 @@
-import { StyledTrendingCarousel } from './TrendingCarouselStyles';
+import { TrendingCarousel as StyledTrendingCarousel } from './TrendingCarouselStyles';
 
 const TrendingCarousel = () => {
   return <StyledTrendingCarousel />;

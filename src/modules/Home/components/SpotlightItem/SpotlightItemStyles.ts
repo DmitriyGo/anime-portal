@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Button } from '@/components';
 import { COLORS, DEVICES } from '@/theme';
 
-export const StyledSpotlightItem = styled.div<{ imageUrl: string }>`
+export const SpotlightItem = styled.div<{ imageUrl: string }>`
   position: relative;
   height: 100%;
   width: 100vw;
@@ -66,7 +66,7 @@ export const StyledSpotlightItem = styled.div<{ imageUrl: string }>`
   }
 `;
 
-export const StyledSeries = styled.div`
+export const Series = styled.div`
   font-size: 1.2rem;
   line-height: 1.3em;
   margin-bottom: 0.5rem;
@@ -77,7 +77,7 @@ export const StyledSeries = styled.div`
   }
 `;
 
-export const StyledTitle = styled.div`
+export const Title = styled.div`
   font-size: 2rem;
   line-height: 1.1em;
   margin-bottom: 1rem;
@@ -88,7 +88,7 @@ export const StyledTitle = styled.div`
   }
 `;
 
-export const StyledDescription = styled.p`
+export const Description = styled.p`
   overflow: hidden;
   display: -webkit-box;
   text-align: justify;
@@ -108,7 +108,7 @@ export const StyledDescription = styled.p`
   }
 `;
 
-export const StyledButtonsBlock = styled.div`
+export const ButtonsBlock = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -116,7 +116,7 @@ export const StyledButtonsBlock = styled.div`
   margin: 1rem 0 1rem;
 `;
 
-export const StyledWatchNow = styled(Button)`
+export const WatchNow = styled(Button)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -136,7 +136,7 @@ export const StyledWatchNow = styled(Button)`
   }
 `;
 
-export const StyledDetail = styled(Button)`
+export const Detail = styled(Button)`
   background: ${COLORS.GREY[900]};
   border-color: ${COLORS.GREY[900]};
   color: ${COLORS.WHITE};
@@ -152,26 +152,26 @@ export const StyledDetail = styled(Button)`
   }
 `;
 
-export const StyledArrowIcon = styled(ArrowRight)`
+export const ArrowIcon = styled(ArrowRight)`
   margin-top: -1rem;
   margin-bottom: -1rem;
   margin-right: -1rem;
 `;
 
-export const StyledAdditionalInfo = styled.div`
+export const AdditionalInfo = styled.div`
   display: flex;
   gap: 1rem;
 
   margin-bottom: 1.5rem;
 `;
 
-export const StyledAdditionalInfoBlock = styled.div`
+export const AdditionalInfoBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
 `;
 
-export const StyledTag = styled.div<{ name: string }>`
+export const Tag = styled.div<{ name: string }>`
   padding: 3px 4px;
   background: ${({ name }) =>
     name === 'HD' ? COLORS.LIGHT_GREEN : COLORS.WHITE};
@@ -181,7 +181,7 @@ export const StyledTag = styled.div<{ name: string }>`
   font-size: 0.8rem;
 `;
 
-export const StyledTags = styled.div`
+export const Tags = styled.div`
   display: flex;
   gap: 0.5rem;
 `;

@@ -22,7 +22,7 @@ import {
   Subheading,
   SubmitButton,
   OrText,
-  StyledControl,
+  Control,
   BackButton,
   FormContentWrapper,
 } from '../styles';
@@ -112,7 +112,7 @@ const SignInContainer = () => {
 
             <OrText>{t('or')}</OrText>
 
-            <StyledControl
+            <Control
               id="email_or_login"
               type="string"
               placeholder={t('email_login_placeholder')}
@@ -120,7 +120,7 @@ const SignInContainer = () => {
               {...formRegister('email_or_login')}
             />
 
-            <StyledControl
+            <Control
               id="password"
               type="password"
               placeholder={t('password_placeholder')}
