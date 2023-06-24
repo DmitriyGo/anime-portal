@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="background: rgba(0, 0, 0, 0);" preserveAspectRatio="xMidYMid" viewBox="228.11 54.52 39.8 43.52"><defs><linearGradient id="editing-outline-gradient" x1="-0.41354545764260087" x2="1.4135454576426008" y1="0.09326335692419985" y2="0.9067366430758002"><stop offset="0" stop-color="#ee4208"/><stop offset="1" stop-color="#4139ff"/></linearGradient><filter id="editing-outline" x="-100%" y="-100%" width="300%" height="300%"><feMorphology in="SourceGraphic" operator="dilate" radius="1" result="outline"/><feComposite operator="out" in="outline" in2="SourceAlpha"/></filter></defs><g filter="url(#editing-outline)"><g transform="translate(231.69471168518066, 96.76000022888184)"><path d="M29.18 1.28L29.18 1.28L29.18 1.28Q20.99 1.28 20.22-10.37L20.22-10.37L9.22-10.37L9.22-10.37Q7.94-7.42 7.04-4.86L7.04-4.86L5.38 0L-3.58 0L16.58-42.24L30.34-42.24L33.02-11.14L33.02-11.14Q33.66-4.42 36.22-2.43L36.22-2.43L36.22-2.43Q34.37 1.28 29.18 1.28ZM14.72-23.17L11.20-15.04L20.03-15.04L19.26-31.49L19.26-33.22L14.72-23.17Z" fill="url(#editing-outline-gradient)"/></g></g><style>text {
+  font-size: 64px;
+  font-family: Arial Black;
+  dominant-baseline: central;
+  text-anchor: middle;
+}</style></svg>

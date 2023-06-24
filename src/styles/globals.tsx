@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     color: ${COLORS.FONT};
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
   }
 
   *,

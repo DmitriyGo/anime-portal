@@ -1,4 +1,4 @@
-import { Menu, Search } from '@styled-icons/boxicons-regular';
+import { Search } from '@styled-icons/boxicons-regular';
 import { AccountCircle, Notifications } from '@styled-icons/material-outlined';
 import { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,14 +9,15 @@ import {
   Block,
   ListBlock,
   ListItem,
+  LogoWrapper,
 } from './HeaderStyles';
 
-import logo from '/logo.png';
+import logo from '/logo.svg';
 
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
 import SearchForm from '../SearchForm/SearchForm';
 
-import { Button, StyledIconButton } from '@/components';
+import { BurgerButton, Button, StyledIconButton } from '@/components';
 import { ROUTES } from '@/constants/routes';
 import { useMediaQuery } from '@/hooks';
 import { selectAccessToken } from '@/modules/Auth';
@@ -25,9 +26,10 @@ import { COLORS, DEVICES } from '@/theme';
 
 interface HeaderProps {
   onMenuClick: () => void;
+  active: boolean;
 }
 
-const Header: FC<HeaderProps> = ({ onMenuClick }) => {
+const Header: FC<HeaderProps> = ({ onMenuClick, active }) => {
   const lastScrollTop = useRef(0);
 
   const [navbarVisible, setNavbarVisible] = useState(true);
@@ -48,6 +50,8 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
 
   useEffect(() => {
     const handleScroll = () => {
+      if (active) return;
+
       const { scrollY } = window;
       if (scrollY > lastScrollTop.current && scrollY > 72) {
         setNavbarVisible(false);
@@ -62,7 +66,7 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [active]);
 
   useEffect(() => {
     if (showExtendedSearch && !queryMD) {
@@ -71,15 +75,13 @@ const Header: FC<HeaderProps> = ({ onMenuClick }) => {
   }, [queryMD, showExtendedSearch]);
 
   return (
-    <StyledHeader visible={navbarVisible}>
+    <StyledHeader active={active} visible={navbarVisible}>
       <Block>
-        <Block gap="2.5rem">
-          <StyledIconButton onClick={onMenuClick}>
-            <Menu size={30} />
-          </StyledIconButton>
+        <Block>
+          <BurgerButton onClick={onMenuClick} active={active} />
           {!queryXXS && (
             <StyledIconButton onClick={() => navigate(ROUTES.HOME)}>
-              <img src={logo} height="30px" alt="logo.png" />
+              <LogoWrapper src={logo} alt="AnimePortal" />
             </StyledIconButton>
           )}
 

@@ -8,6 +8,7 @@ export const SpotlightsCarousel = styled.div`
   overflow: hidden;
   width: 100%;
   height: calc(100vh - 4.5rem);
+  margin-top: 4rem;
 
   z-index: 0;
 
@@ -33,7 +34,7 @@ export const ControlButtons = styled.div`
   right: 3rem;
   width: 2.5rem;
   height: auto;
-  z-index: 15;
+  z-index: 9;
 
   display: flex;
   flex-direction: column;

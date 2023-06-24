@@ -8,7 +8,6 @@ export const SignPageWrapper = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   height: 100vh;
-  overflow: hidden;
 `;
 
 export const PictureSection = styled.div`

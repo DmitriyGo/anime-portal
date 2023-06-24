@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'store/hooks';
 
 import { StyledSpotlightsContainer } from './SpotlightsContainerStyles';
@@ -14,7 +13,6 @@ import {
 } from '../../feature/selectors';
 
 import { FullPageLoader } from '@/components';
-import { ROUTES } from '@/constants/routes';
 
 const SpotlightsContainer = () => {
   const previews = useSelector(selectPreviews);
@@ -40,9 +38,20 @@ const SpotlightsContainer = () => {
     return <FullPageLoader />;
   }
 
+  const placeholder = Array.from({ length: 30 }, (_, i) => (
+    <div style={{ height: '5rem' }} key={i}>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias amet
+      asperiores atque dolor doloremque doloribus eius est eum id, illum
+      inventore laudantium minus quia repellat suscipit totam vitae voluptas
+      voluptate.
+    </div>
+  ));
+
   return (
     <StyledSpotlightsContainer>
       {previews.length && <SpotlightCarousel previews={previews} />}
+      <br />
+      {placeholder}
     </StyledSpotlightsContainer>
   );
 };
