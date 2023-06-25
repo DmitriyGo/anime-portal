@@ -5,7 +5,7 @@ import React, {
   Ref,
 } from 'react';
 
-import { StyledInput } from './InputStyles';
+import { Input as StyledInput } from './InputStyles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;

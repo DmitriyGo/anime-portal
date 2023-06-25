@@ -1,7 +1,6 @@
-import { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 
 import { Backdrop } from '@/components';
-import { useBackdrop, useDisableScroll } from '@/hooks';
 
 interface SidebarProps {
   onClose: () => void;
@@ -9,12 +8,18 @@ interface SidebarProps {
 }
 
 const Sidebar: FC<SidebarProps> = ({ onClose, open }) => {
+  const handleContentClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+  };
+
   return (
     <Backdrop onClick={onClose} open={open}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor
-      exercitationem ipsa natus reiciendis. Accusantium adipisci, aliquid,
-      blanditiis, delectus dolorum eaque facilis ipsa labore maiores molestiae
-      nam placeat quas qui vero!
+      <div onClick={handleContentClick}>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor
+        exercitationem ipsa natus reiciendis. Accusantium adipisci, aliquid,
+        blanditiis, delectus dolorum eaque facilis ipsa labore maiores molestiae
+        nam placeat quas qui vero!
+      </div>
     </Backdrop>
   );
 };

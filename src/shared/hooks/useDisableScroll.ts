@@ -1,24 +1,38 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import useScroll from './useScroll';
 
 const useDisableScroll = (disabled: boolean) => {
-  useEffect(() => {
-    if (!disabled) {
-      return;
-    }
-    const disableScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+  const scrollPosition = useScroll();
+  const [previousScrollPosition, setPreviousScrollPosition] = useState(0);
 
-      window.onscroll = function () {
-        window.scrollTo(scrollLeft, scrollTop);
-      };
+  useEffect(() => {
+    const disableScroll = () => {
+      const body = document.body;
+      setPreviousScrollPosition(scrollPosition);
+
+      body.style.position = 'fixed';
+      body.style.overflowY = 'scroll';
+      body.style.width = '100%';
+      body.style.top = `-${scrollPosition}px`;
     };
 
     const enableScroll = () => {
-      window.onscroll = null;
+      const body = document.body;
+
+      body.style.position = '';
+      body.style.overflowY = '';
+      body.style.width = '';
+      body.style.top = '';
+
+      window.scrollTo(0, previousScrollPosition);
     };
 
-    disableScroll();
+    if (disabled) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
 
     return () => {
       enableScroll();

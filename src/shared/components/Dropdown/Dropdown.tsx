@@ -1,6 +1,9 @@
 import React, { FC, ReactNode, useState, useRef } from 'react';
 
-import { StyledDropdown, StyledDropdownContent } from './DropdownStyles';
+import {
+  Dropdown as StyledDropdown,
+  DropdownContent as StyledDropdownContent,
+} from './DropdownStyles';
 import { StyledIconButton } from '../IconButton/IconButton';
 
 import { useOutsideDetect } from '@/hooks';

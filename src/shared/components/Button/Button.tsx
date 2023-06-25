@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 
-import { StyledButton } from './ButtonStyles';
+import { Button as StyledButton } from './ButtonStyles';
 
 import { COLORS } from '@/theme';
 import { calculateBackgroundColor } from '@/utils';

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-interface StyledButtonProps {
+interface ButtonProps {
   bg: string;
   bgHover: string;
   bgActive: string;
@@ -8,7 +8,7 @@ interface StyledButtonProps {
   color: string;
 }
 
-export const StyledButton = styled.button<StyledButtonProps>`
+export const Button = styled.button<ButtonProps>`
   all: unset;
   display: flex;
   padding: 0.35rem 1.5rem;

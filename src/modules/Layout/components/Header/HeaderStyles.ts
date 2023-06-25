@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 import { COLORS, DEVICES } from '@/theme';
 
-interface StyledHeaderProps {
+interface HeaderProps {
   visible: boolean;
   active: boolean;
 }
 
-export const Header = styled.header<StyledHeaderProps>`
+export const Header = styled.header<HeaderProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -19,9 +19,10 @@ export const Header = styled.header<StyledHeaderProps>`
   justify-content: center;
   flex-direction: column;
   transform: translateY(${({ visible }) => (visible ? '0' : '-100%')});
-  background-color: ${({ active }) =>
-    active ? 'transparent' : COLORS.BACKGROUND};
-  transition: transform 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  background-color: ${({ active }) => (active ? 'black' : COLORS.BACKGROUND)};
+  transition: transform 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95),
+    ${({ active }) =>
+      active ? 'background-color 0.3s ease' : 'background-color 0s'};
 `;
 
 export const Block = styled.div<{ gap?: string }>`

@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 import { COLORS } from '@/theme';
 
-export const StyledDropdown = styled.div<{ zIndex?: number }>`
+export const Dropdown = styled.div<{ zIndex?: number }>`
   position: relative;
   display: flex;
   padding: 0;
   z-index: ${({ zIndex }) => zIndex ?? 0};
 `;
 
-export const StyledDropdownContent = styled.div<{ top: string; left: string }>`
+export const DropdownContent = styled.div<{ top: string; left: string }>`
   position: absolute;
   top: ${({ top }) => top};
   left: ${({ left }) => left};

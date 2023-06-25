@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface StyledBackdropProps {
+interface BackdropProps {
   open: boolean;
 }
 
-const Backdrop = styled.div<StyledBackdropProps>`
+const Backdrop = styled.div<BackdropProps>`
   position: fixed;
   top: 0;
   left: 0;
